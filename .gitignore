@@ -1,0 +1,9 @@
+# Git Ignore Policy for lenslist_clad_spatial
+*.exe
+*.zip
+*.tar.gz
+node_modules/
+.DS_Store
+.system_generated/
+.agents/
+

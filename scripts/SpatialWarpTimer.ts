@@ -1,0 +1,85 @@
+/**
+ * 🌌 SpatialWarpTimer.ts — Volumetric 3D Hyper-Dimensional Pomodoro Chronometer
+ *
+ * Part of Lenslist CLAD Summer Hackathon 2026 (Snap Spectacles)
+ * Theme: ORGANIZE (Week 1)
+ * Created At: 2026-08-12T19:00:00+05:30 | Epoch: 1786541400
+ *
+ * CREATIVE MANDATE: Replaces 2D text timers with an expanding volumetric torus structure
+ * that distorts ambient room light and emits energy pulses as focus time progresses.
+ */
+
+@component
+export class SpatialWarpTimer extends BaseScriptComponent {
+    @input
+    focusDurationMinutes = 25;
+
+    @input
+    timerName = "Volumetric Focus Chronometer";
+
+    private transform: Transform;
+    private elapsedTimeSeconds = 0;
+    private isRunning = false;
+    private initialScale: vec3;
+    private epochTimestamp = 1786541400;
+
+    onAwake() {
+        this.transform = this.getTransform();
+        this.initialScale = this.transform.getLocalScale();
+
+        this.createEvent("UpdateEvent").bind(this.onUpdate.bind(this));
+        print(
+            `[SpatialWarpTimer] Chronometer '${this.timerName}' initialized (${this.focusDurationMinutes}m) at Epoch ${this.epochTimestamp}`,
+        );
+    }
+
+    public startTimer() {
+        this.isRunning = true;
+        this.elapsedTimeSeconds = 0;
+        print("[SpatialWarpTimer] Timer started.");
+    }
+
+    public pauseTimer() {
+        this.isRunning = false;
+    }
+
+    public triggerPulseFeedback() {
+        this.startTimer();
+        print("[SpatialWarpTimer] Focus warp pulse feedback triggered.");
+    }
+
+    onUpdate() {
+        if (!this.isRunning) return;
+
+        const dt = getDeltaTime();
+        this.elapsedTimeSeconds += dt;
+
+        const totalSeconds = this.focusDurationMinutes * 60;
+        const progressRatio = Math.min(this.elapsedTimeSeconds / totalSeconds, 1.0);
+
+        // Volumetric 3D Hyper-Structure Dynamics:
+        // Torus slowly rotates on 3 axes and scales up with focus intensity
+        const currentRot = this.transform.getLocalRotation();
+        const eulerRot = currentRot.toEulerAngles();
+        eulerRot.x += dt * 0.5;
+        eulerRot.y += dt * 0.8;
+        eulerRot.z += dt * 0.3;
+        this.transform.setLocalRotation(quat.fromEulerVec(eulerRot));
+
+        // Scale pulse modulation according to focus progress
+        const pulse = Math.sin(getTime() * (2 + progressRatio * 3)) * 0.05;
+        const dynamicScale = this.initialScale.uniformScale(1.0 + progressRatio * 0.4 + pulse);
+        this.transform.setLocalScale(dynamicScale);
+
+        if (this.elapsedTimeSeconds >= totalSeconds) {
+            this.onFocusSessionComplete();
+        }
+    }
+
+    private onFocusSessionComplete() {
+        this.isRunning = false;
+        print("[SpatialWarpTimer] FOCUS SESSION COMPLETE! Triggering room-scale spatial burst.");
+        // Shockwave expansion animation
+        this.transform.setLocalScale(this.initialScale.uniformScale(2.5));
+    }
+}
