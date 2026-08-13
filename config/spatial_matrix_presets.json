@@ -110,6 +110,18 @@
             "gesture": "DualExpand",
             "span_delta_min_meters": 0.15,
             "action": "ScaleMatrixCluster"
+        },
+        {
+            "trigger_id": "voice_hud",
+            "keywords": ["hud", "status", "ring"],
+            "intent": "ToggleHUD",
+            "min_confidence": 0.75
+        },
+        {
+            "trigger_id": "gesture_palm_up",
+            "gesture": "PalmUp",
+            "wrist_normal_dot_up_min": 0.8,
+            "action": "ActivateWristHUD"
         }
     ]
 }

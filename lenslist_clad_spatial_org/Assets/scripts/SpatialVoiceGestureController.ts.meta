@@ -1,0 +1,55 @@
+- !<AssetImportMetadata/9f161cfa-5a1c-4f4a-a895-5f6c95e943fd>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 17ac726e-10e0-415a-bf36-b47ff9417770
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 17ac726e-10e0-415a-bf36-b47ff9417770
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> b1e5b814-1fad-40df-80dc-3cf2c8b2a74b
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/b1e5b814-1fad-40df-80dc-3cf2c8b2a74b>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: 0ac3ee90-fb0d-4705-bd42-50e6f509af4c
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    enableGestureRecognition: false
+    enableVoiceCommands: false
+    matrixManager: false
+    minConfidenceThreshold: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - enableVoiceCommands: true
+      enableGestureRecognition: true
+      minConfidenceThreshold: 0.750000
+      matrixManager: !<MappingBased.AssignableType_1> 00000000-0000-0000-0000-000000000000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - // @input bool enableVoiceCommands = true
+    - // @input bool enableGestureRecognition = true
+    - // @input float minConfidenceThreshold = 0.75
+    - // @input AssignableType_1 matrixManager

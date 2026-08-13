@@ -1,0 +1,85 @@
+- !<AssetImportMetadata/3623c7a2-5940-448f-b2dc-db3cac9d24d5>
+  ImportedAssetIds:
+    26ba073d67b9d0dd: !<reference> a778befc-ee1f-4c2d-bb4b-eee4439a7fb3
+    6681b3f8f8f5ede3: !<reference> 6bde7c44-34c3-4523-9479-85b3eaa764a4
+    Meshes/Mesh 1: !<reference> 7b2dffb2-95d5-43c5-ab6a-5e9fc1199c89
+    Scene: !<reference> d3fba7a1-1390-4349-a427-b2e96a6cd311
+    cb16681e7113a59e: !<reference> 17d60237-37d9-457d-a904-bf7816161281
+  ImporterName: ObjImporter
+  PrimaryAsset: !<reference> d3fba7a1-1390-4349-a427-b2e96a6cd311
+  PackageType: LegacyPackage
+  LegacyPackagePolicy: CanBeUnpackedTransparent
+  ExtraData:
+    {}
+  AssetDataMap:
+    Scene: !<own> 2dd39e48-8e75-4722-9cab-a6d845ac45fa
+  DependentFiles:
+    []
+  ImporterSettings: !<D3FileImporterSettingsBase>
+    UseLegacyImporter: false
+    WithMaterials: true
+    NamingConvention: ByCategorySanitizeV2
+    PersistentIdGenerationAlgorithm: DescriptorBasedV2
+  CompressionSettings: !<ComplexCompressionSettings>
+    Presets:
+      None Compression: !<FileCompressionSettings>
+        {}
+    ExtensionMappings:
+      mesh: None Compression
+    Overrides:
+      {}
+- !<RenderMeshVisual/17d60237-37d9-457d-56fb-4087e9e9ed7e>
+  PrefabRemaps:
+    []
+  Name: component_0
+  Enabled: true
+  RenderOrder: 0
+  StretchMode: Stretch
+  VerticalAlignment: Center
+  HorizontalAlignment: Center
+  MeshShadowMode: None
+  ShadowColor: {x: 1.000000, y: 1.000000, z: 1.000000, w: 1.000000}
+  ShadowDensity: 1.000000
+  Materials:
+    []
+  Mesh: !<reference> 7b2dffb2-95d5-43c5-ab6a-5e9fc1199c89
+  Skin: !<reference> 00000000-0000-0000-0000-000000000000
+  BlendShapesEnabled: true
+  BlendNormals: false
+  BlendShapes:
+    {}
+- !<ObjectPrefabAssetData/2dd39e48-8e75-4722-9cab-a6d845ac45fa>
+  Prototype: !<ObjectOwner/9395f995-2a9a-4c4d-a9d8-e208ca6f58c5>
+    PackagePath: ""
+    objects:
+      - !<own> a778befc-ee1f-4c2d-44b4-111bbc65804c
+- !<SceneObject/6bde7c44-34c3-4523-6b86-7a4c15589b5b>
+  PrefabRemaps:
+    []
+  Name: ""
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> 17d60237-37d9-457d-56fb-4087e9e9ed7e
+- !<SceneObject/a778befc-ee1f-4c2d-44b4-111bbc65804c>
+  PrefabRemaps:
+    []
+  Name: KineticTaskOrbMesh
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    - !<own> 6bde7c44-34c3-4523-6b86-7a4c15589b5b
+  Components:
+    []

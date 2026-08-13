@@ -14,7 +14,9 @@
         "generate:audio": "npx tsx tools/generators/generate_audio.ts",
         "generate:meshes": "npx tsx tools/generators/generate_meshes.ts",
         "generate:resources": "npm run generate:audio && npm run generate:meshes",
-        "ready": "npm run typecheck && npm run lint && npm run format:check && npm run generate:resources && npm test"
+        "sync": "npx tsx tools/sync_scripts.ts",
+        "bridge": "nix-shell -p python3Packages.wsgidav --run \"wsgidav --host=0.0.0.0 --port=8080 --root=/home/sagar/lenslist_clad_spatial --auth=anonymous\"",
+        "ready": "npm run typecheck && npm run lint && npm run format:check && npm run generate:resources && npm run sync && npm test"
     },
     "devDependencies": {
         "@biomejs/biome": "^1.9.4",

@@ -1,0 +1,49 @@
+- !<AssetImportMetadata/add1fd03-97fb-4971-bbb2-909f9ca550d2>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> ade07eec-3dd4-4766-9ff6-49555054ea64
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> ade07eec-3dd4-4766-9ff6-49555054ea64
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 01473b77-e7d5-4177-9966-0d41457701f8
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/01473b77-e7d5-4177-9966-0d41457701f8>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: a2071e67-868b-4d8f-ad55-e030782ae0dd
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    focusDurationMinutes: false
+    timerName: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - focusDurationMinutes: !<float> 25.000000
+      timerName: Volumetric Focus Chronometer
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - // @input float focusDurationMinutes = 25
+    - '// @input string timerName = "Volumetric Focus Chronometer"'

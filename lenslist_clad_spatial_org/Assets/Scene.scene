@@ -1,0 +1,630 @@
+- !<Scene/0a1ccb1a-fe88-4fbb-9883-e3af3c75fd99>
+  PackagePath: ""
+  objects:
+    - !<own> 00000000-0000-0065-0000-000000000064
+    - !<own> 0005641c-028d-459a-0000-000000014b4d
+    - !<own> 7b08f2b2-05b0-42d8-922f-045a5906158b
+    - !<own> 19cd6846-c5bd-409d-85b3-fcd73b0a9f32
+    - !<own> 059218ea-648d-4ca2-8556-aadff3602d01
+  layers: !<Layers/267ee9a7-aff2-4f9d-9a49-f71214747d03>
+    userLayers:
+      []
+  RenderOutput: !<reference> 923415f5-4245-4675-ade1-6d69d6d23e71
+  RenderPreviewOutput: !<reference> 923415f5-4245-4675-ade1-6d69d6d23e71
+  RenderOverlayOutput: !<reference> 00000000-0000-0000-0000-000000000000
+  PhysicsRootWorldSettings: !<reference> 00000000-0000-0000-0000-000000000000
+  HiddenInCaptureLayers: 0
+  HiddenInDisplayLayers: 0
+  PrefabPreviewEnvironmentInitialized: false
+  PrefabPreviewEnvironment: !<reference> 00000000-0000-0000-0000-000000000000
+- !<SceneObject/00000000-0000-0065-0000-000000000064>
+  PrefabRemaps:
+    []
+  Name: Camera Object
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 40.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> 00000000-0000-0065-0000-000000000065
+- !<Camera/00000000-0000-0065-0000-000000000065>
+  PrefabRemaps:
+    []
+  Name: Camera
+  Enabled: true
+  renderLayer: 1
+  MipmapLevel: 0
+  RenderOrder: 0
+  Size: 20.000000
+  Near: 1.000000
+  Far: 1000.000000
+  Fov: 63.541019
+  ClearColor: !<CameraClearColor>
+    Mode: None
+    Color: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}
+    InputTexture: !<reference> 00000000-0000-0000-0000-000000000000
+  ClearDepth: !<CameraClearDepth>
+    Mode: Value
+    Value: 1.000000
+    InputTexture: !<reference> 00000000-0000-0000-0000-000000000000
+  Aspect: 1.000000
+  CameraType: Perspective
+  DepthMode: Regular
+  DeviceProperty: All
+  AspectPreset: Custom
+  OitLayers: NoOit
+  RenderTarget: !<reference> 923415f5-4245-4675-ade1-6d69d6d23e71
+  DepthStencilRenderTarget: !<reference> 00000000-0000-0000-0000-000000000000
+  MaskTexture: !<reference> 00000000-0000-0000-0000-000000000000
+  RayTracing: !<reference> 00000000-0000-0000-0000-000000000000
+  DevicePropertiesSource: !<reference> 00000000-0000-0000-0000-000000000000
+- !<SceneObject/0005641c-028d-459a-0000-000000014b4d>
+  PrefabRemaps:
+    []
+  Name: Lighting
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    - !<own> 00056e79-b066-62ca-0000-000000001406
+    - !<own> 0005641c-028d-4630-0000-000000014b56
+  Components:
+    []
+- !<SceneObject/0005641c-028d-4630-0000-000000014b56>
+  PrefabRemaps:
+    []
+  Name: Light
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 40.000000, y: 85.000000, z: 20.000000}
+    Rotation: {x: 70.000000, y: 10.000000, z: 150.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> 0005641c-028d-463e-0000-000000014b59
+- !<LightSource/0005641c-028d-463e-0000-000000014b59>
+  PrefabRemaps:
+    []
+  Name: Light Source
+  Enabled: true
+  renderLayer: 1310719
+  LightType: Directional
+  Intensity: 1.000000
+  ShadowDensity: 0.440000
+  ShadowBlurRadius: 4.000000
+  ShadowTextureSize: 512
+  AutoLightSourcePosition: true
+  AutoShadowFrustumSize: true
+  AutoShadowFrustumSizeExtend: 2.000000
+  ShadowFrustumSize: 30.000000
+  ShadowFrustumNearClipPlane: 1.000000
+  ShadowFrustumFarClipPlane: 1000.000000
+  UseEnvMapFromCamera: false
+  EnvMapFromCameraMode: Auto
+  EstimationSharpness: 1.000000
+  EnvMapExposure: 1.000000
+  EnvMapRotation: 0.000000
+  DiffuseEnvTexture: !<reference> 00000000-0000-0000-0000-000000000000
+  SpecularEnvTexture: !<reference> 00000000-0000-0000-0000-000000000000
+  Color: {x: 1.000000, y: 1.000000, z: 1.000000, w: 1.000000}
+  ShadowColor: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}
+  DynamicEnvInputTexture: !<reference> 00000000-0000-0000-0000-000000000000
+  InnerConeAngle: 0.000000
+  OuterConeAngle: 45.000000
+  FalloffType: None
+  FalloffRange: .inf
+  ShadowType: None
+- !<SceneObject/00056e79-b066-62ca-0000-000000001406>
+  PrefabRemaps:
+    []
+  Name: Envmap
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 65.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> 00056e79-b066-62f1-0000-000000001409
+- !<LightSource/00056e79-b066-62f1-0000-000000001409>
+  PrefabRemaps:
+    []
+  Name: Light Source
+  Enabled: true
+  renderLayer: 1310719
+  LightType: EnvMap
+  Intensity: 1.000000
+  ShadowDensity: 1.000000
+  ShadowBlurRadius: 0.000000
+  ShadowTextureSize: 512
+  AutoLightSourcePosition: false
+  AutoShadowFrustumSize: false
+  AutoShadowFrustumSizeExtend: 2.000000
+  ShadowFrustumSize: 30.000000
+  ShadowFrustumNearClipPlane: 1.000000
+  ShadowFrustumFarClipPlane: 1000.000000
+  UseEnvMapFromCamera: false
+  EnvMapFromCameraMode: Auto
+  EstimationSharpness: 1.000000
+  EnvMapExposure: 1.000000
+  EnvMapRotation: 0.000000
+  DiffuseEnvTexture: !<reference> 2013a19b-93c1-4f21-b7ea-876a33550c7b
+  SpecularEnvTexture: !<reference> d795fd46-e16b-4cb9-8dfb-4ef227298f7a
+  Color: {x: 1.000000, y: 1.000000, z: 1.000000, w: 1.000000}
+  ShadowColor: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}
+  DynamicEnvInputTexture: !<reference> 00000000-0000-0000-0000-000000000000
+  InnerConeAngle: 0.000000
+  OuterConeAngle: 45.000000
+  FalloffType: None
+  FalloffRange: .inf
+  ShadowType: None
+- !<SceneObject/059218ea-648d-4ca2-8556-aadff3602d01>
+  PrefabRemaps:
+    []
+  Name: SubTaskOrb_Design
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.960000, y: 0.000000, z: -15.900000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.800000, y: 1.800001, z: 1.800001}
+    HasSegmentScaleCompensation: false
+  Children:
+    - !<own> 45e1bb1e-2918-48ae-b353-09753baf6199
+  Components:
+    - !<own> d5d5dc63-2959-4ba4-85b5-9d2c7dbb172d
+    - !<own> 52be3af0-d6d0-4bff-93f7-5c58e932e2ee
+- !<RenderMeshVisual/0f19b7e0-2277-47d9-9bb7-32b0d2f28337>
+  PrefabRemaps:
+    []
+  Name: Render Mesh Visual
+  Enabled: true
+  RenderOrder: 0
+  StretchMode: Stretch
+  VerticalAlignment: Center
+  HorizontalAlignment: Center
+  MeshShadowMode: None
+  ShadowColor: {x: 1.000000, y: 1.000000, z: 1.000000, w: 1.000000}
+  ShadowDensity: 1.000000
+  Materials:
+    - !<reference> 3cfa8961-e94e-4402-93a7-583aa0c0b5e0
+  Mesh: !<reference> 529914ad-5208-4cbe-8c96-eb662c48e8be
+  Skin: !<reference> 00000000-0000-0000-0000-000000000000
+  BlendShapesEnabled: true
+  BlendNormals: false
+  BlendShapes:
+    {}
+- !<RenderMeshVisual/189c7a2e-f336-4031-9fb0-8e4b535cae23>
+  PrefabRemaps:
+    []
+  Name: Render Mesh Visual
+  Enabled: true
+  RenderOrder: 0
+  StretchMode: Stretch
+  VerticalAlignment: Center
+  HorizontalAlignment: Center
+  MeshShadowMode: None
+  ShadowColor: {x: 1.000000, y: 1.000000, z: 1.000000, w: 1.000000}
+  ShadowDensity: 1.000000
+  Materials:
+    - !<reference> 3cfa8961-e94e-4402-93a7-583aa0c0b5e0
+  Mesh: !<reference> 529914ad-5208-4cbe-8c96-eb662c48e8be
+  Skin: !<reference> 00000000-0000-0000-0000-000000000000
+  BlendShapesEnabled: true
+  BlendNormals: false
+  BlendShapes:
+    {}
+- !<SceneObject/19cd6846-c5bd-409d-85b3-fcd73b0a9f32>
+  PrefabRemaps:
+    []
+  Name: SubTaskOrb_Email
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 2.400000, y: 0.000000, z: -10.500000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 3.600000, y: 3.600000, z: 3.600000}
+    HasSegmentScaleCompensation: false
+  Children:
+    - !<own> 82a6719c-bd6e-4a15-ae14-4e2edfb3eefe
+  Components:
+    - !<own> 0f19b7e0-2277-47d9-9bb7-32b0d2f28337
+    - !<own> 4c9853a5-0958-4da1-9e8f-03fce1612387
+- !<Text3D/2a4b84ac-e6ef-4f70-8264-6c3470b9e77f>
+  PrefabRemaps:
+    []
+  Name: Text3D
+  Enabled: true
+  RenderOrder: 0
+  StretchMode: Stretch
+  VerticalAlignment: Center
+  HorizontalAlignment: Center
+  MeshShadowMode: None
+  ShadowColor: {x: 1.000000, y: 1.000000, z: 1.000000, w: 1.000000}
+  ShadowDensity: 1.000000
+  Materials:
+    - !<reference> 894375c1-e1a9-4d1c-b903-d0ae3ee2bd1e
+  Text: PROJECT ALPHA
+  Editable: false
+  ShowEditingPreview: true
+  TouchHandler: !<reference> 00000000-0000-0000-0000-000000000000
+  EnableRichText: false
+  SizeToFit: false
+  FontSize: 20.000000
+  ExtrusionDepth: 0.400000
+  ExtrudeDirection: Both
+  FontSource: !<reference> 00000000-0000-0000-0000-000000000000
+  PreferredStyle: Regular
+  LayoutRect:
+    left: -7.500000
+    bottom: -2.250000
+    right: 7.500000
+    top: 2.250000
+  DebugRenderLayoutRect: false
+  OverflowVertical: Overflow
+  OverflowHorizontal: Overflow
+  AdvancedLayout: !<TextAdvancedLayout>
+    ExtentsTarget: !<reference> 00000000-0000-0000-0000-000000000000
+    LetterSpacing: 0.000000
+    LineSpacing: 1.000000
+    CapitalizationOverride: None
+  EnableBatching: false
+- !<SceneObject/43161cc9-ae7a-44a2-afba-3060f11d5839>
+  PrefabRemaps:
+    []
+  Name: ParentTaskOrb_Work
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: -1.500000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 6.000000, y: 6.000000, z: 6.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    - !<own> d17a1099-ab01-43a3-a1eb-05d69cb228df
+  Components:
+    - !<own> 189c7a2e-f336-4031-9fb0-8e4b535cae23
+    - !<own> be15cc49-c981-44fe-83c0-92f3eb2f0942
+- !<SceneObject/45e1bb1e-2918-48ae-b353-09753baf6199>
+  PrefabRemaps:
+    []
+  Name: UI DESIGN
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.700000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> 93051352-b9fb-467e-896c-d27a7fd9f823
+- !<ScriptComponent/4c9853a5-0958-4da1-9e8f-03fce1612387>
+  PrefabRemaps:
+    []
+  Name: KineticTaskOrb
+  Enabled: true
+  ScriptAsset: !<reference> a047f940-4beb-4fea-a166-2f623bb4b551
+  ScriptInputsDefault:
+    orbName: true
+    priorityMass: true
+    isCompleted: true
+    pulseFrequency: true
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      orbName: Gravitational Task Node
+      priorityMass: 1.500000
+      isCompleted: false
+      pulseFrequency: !<float> 2.000000
+  ScriptTypes:
+    "":
+      {}
+- !<ScriptComponent/52be3af0-d6d0-4bff-93f7-5c58e932e2ee>
+  PrefabRemaps:
+    []
+  Name: KineticTaskOrb
+  Enabled: true
+  ScriptAsset: !<reference> a047f940-4beb-4fea-a166-2f623bb4b551
+  ScriptInputsDefault:
+    orbName: true
+    priorityMass: true
+    isCompleted: true
+    pulseFrequency: true
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      orbName: Gravitational Task Node
+      priorityMass: 1.500000
+      isCompleted: false
+      pulseFrequency: !<float> 2.000000
+  ScriptTypes:
+    "":
+      {}
+- !<RenderMeshVisual/694b563f-6394-4587-b720-924ccf73caf3>
+  PrefabRemaps:
+    []
+  Name: Render Mesh Visual
+  Enabled: true
+  RenderOrder: 0
+  StretchMode: Stretch
+  VerticalAlignment: Center
+  HorizontalAlignment: Center
+  MeshShadowMode: None
+  ShadowColor: {x: 1.000000, y: 1.000000, z: 1.000000, w: 1.000000}
+  ShadowDensity: 1.000000
+  Materials:
+    - !<reference> 3cfa8961-e94e-4402-93a7-583aa0c0b5e0
+  Mesh: !<reference> 529914ad-5208-4cbe-8c96-eb662c48e8be
+  Skin: !<reference> 00000000-0000-0000-0000-000000000000
+  BlendShapesEnabled: true
+  BlendNormals: false
+  BlendShapes:
+    {}
+- !<Text3D/6facf974-a167-4515-b89c-61bc84d41b20>
+  PrefabRemaps:
+    []
+  Name: Text3D
+  Enabled: true
+  RenderOrder: 0
+  StretchMode: Stretch
+  VerticalAlignment: Center
+  HorizontalAlignment: Center
+  MeshShadowMode: None
+  ShadowColor: {x: 1.000000, y: 1.000000, z: 1.000000, w: 1.000000}
+  ShadowDensity: 1.000000
+  Materials:
+    - !<reference> 23bc138c-7718-41f4-987a-2dccbe297b74
+  Text: Email
+  Editable: false
+  ShowEditingPreview: true
+  TouchHandler: !<reference> 00000000-0000-0000-0000-000000000000
+  EnableRichText: false
+  SizeToFit: false
+  FontSize: 18.000000
+  ExtrusionDepth: 0.440000
+  ExtrudeDirection: Both
+  FontSource: !<reference> 00000000-0000-0000-0000-000000000000
+  PreferredStyle: Regular
+  LayoutRect:
+    left: -7.500000
+    bottom: -2.250000
+    right: 7.500000
+    top: 2.250000
+  DebugRenderLayoutRect: false
+  OverflowVertical: Overflow
+  OverflowHorizontal: Overflow
+  AdvancedLayout: !<TextAdvancedLayout>
+    ExtentsTarget: !<reference> 00000000-0000-0000-0000-000000000000
+    LetterSpacing: 0.000000
+    LineSpacing: 1.000000
+    CapitalizationOverride: None
+  EnableBatching: false
+- !<SceneObject/7b08f2b2-05b0-42d8-922f-045a5906158b>
+  PrefabRemaps:
+    []
+  Name: TaskMatrixManager
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    - !<own> 43161cc9-ae7a-44a2-afba-3060f11d5839
+    - !<own> f55f3b5e-3c44-4b37-acca-0cf701f109d9
+  Components:
+    - !<own> 7c7b6cda-2548-436f-a3a0-59a18dbe3d33
+    - !<own> 90b08d85-2085-4c0c-87c0-6ad88323e3f7
+- !<ScriptComponent/7c7b6cda-2548-436f-a3a0-59a18dbe3d33>
+  PrefabRemaps:
+    []
+  Name: SpatialMatrixManager
+  Enabled: true
+  ScriptAsset: !<reference> c55ff66f-f500-4420-a4d0-c1d4470e3750
+  ScriptInputsDefault:
+    clusterCategoryName: true
+    orbitSpeed: true
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      clusterCategoryName: Spatial Work Matrix
+      orbitRadius: !<float> 6.000000
+      orbitSpeed: 0.800000
+      parentTaskOrb: !<MappingBased.AssignableType_1> be15cc49-c981-44fe-83c0-92f3eb2f0942
+      satelliteOrbs: !<MappingBased.AssignableType_2[]>
+        - !<reference> 4c9853a5-0958-4da1-9e8f-03fce1612387
+        - !<reference> 52be3af0-d6d0-4bff-93f7-5c58e932e2ee
+  ScriptTypes:
+    "":
+      {}
+- !<SceneObject/82a6719c-bd6e-4a15-ae14-4e2edfb3eefe>
+  PrefabRemaps:
+    []
+  Name: EMAIL TASK
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.700000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> 6facf974-a167-4515-b89c-61bc84d41b20
+- !<ScriptComponent/8c8d2ef2-f96e-45fb-9ccf-2315037ff282>
+  PrefabRemaps:
+    []
+  Name: SpatialTetherRenderer
+  Enabled: true
+  ScriptAsset: !<reference> 4a84cf3b-b875-4a59-ab4b-20225fbaf118
+  ScriptInputsDefault:
+    tetherName: true
+    maxTetherLength: true
+    springStiffness: true
+    isTetherActive: true
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      tetherName: Elastic Laser Tether
+      maxTetherLength: 2.500000
+      springStiffness: 1.200000
+      isTetherActive: false
+  ScriptTypes:
+    "":
+      {}
+- !<ScriptComponent/90b08d85-2085-4c0c-87c0-6ad88323e3f7>
+  PrefabRemaps:
+    []
+  Name: SpatialVoiceGestureController
+  Enabled: true
+  ScriptAsset: !<reference> 17ac726e-10e0-415a-bf36-b47ff9417770
+  ScriptInputsDefault:
+    enableVoiceCommands: true
+    enableGestureRecognition: true
+    minConfidenceThreshold: true
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      enableVoiceCommands: true
+      enableGestureRecognition: true
+      minConfidenceThreshold: 0.750000
+      matrixManager: !<MappingBased.AssignableType_1> 7c7b6cda-2548-436f-a3a0-59a18dbe3d33
+  ScriptTypes:
+    "":
+      {}
+- !<Text3D/93051352-b9fb-467e-896c-d27a7fd9f823>
+  PrefabRemaps:
+    []
+  Name: Text3D
+  Enabled: true
+  RenderOrder: 0
+  StretchMode: Stretch
+  VerticalAlignment: Center
+  HorizontalAlignment: Center
+  MeshShadowMode: None
+  ShadowColor: {x: 1.000000, y: 1.000000, z: 1.000000, w: 1.000000}
+  ShadowDensity: 1.000000
+  Materials:
+    - !<reference> b808075d-0f34-40d2-aa4b-d574e07e3aed
+  Text: UI Design
+  Editable: false
+  ShowEditingPreview: true
+  TouchHandler: !<reference> 00000000-0000-0000-0000-000000000000
+  EnableRichText: false
+  SizeToFit: false
+  FontSize: 18.000000
+  ExtrusionDepth: 0.400000
+  ExtrudeDirection: Both
+  FontSource: !<reference> 00000000-0000-0000-0000-000000000000
+  PreferredStyle: Regular
+  LayoutRect:
+    left: -7.500000
+    bottom: -2.250000
+    right: 7.500000
+    top: 2.250000
+  DebugRenderLayoutRect: false
+  OverflowVertical: Overflow
+  OverflowHorizontal: Overflow
+  AdvancedLayout: !<TextAdvancedLayout>
+    ExtentsTarget: !<reference> 00000000-0000-0000-0000-000000000000
+    LetterSpacing: 0.000000
+    LineSpacing: 1.000000
+    CapitalizationOverride: None
+  EnableBatching: false
+- !<ScriptComponent/be15cc49-c981-44fe-83c0-92f3eb2f0942>
+  PrefabRemaps:
+    []
+  Name: KineticTaskOrb
+  Enabled: true
+  ScriptAsset: !<reference> a047f940-4beb-4fea-a166-2f623bb4b551
+  ScriptInputsDefault:
+    orbName: true
+    priorityMass: true
+    isCompleted: true
+    pulseFrequency: true
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      orbName: Gravitational Task Node
+      priorityMass: 1.500000
+      isCompleted: false
+      pulseFrequency: !<float> 2.000000
+  ScriptTypes:
+    "":
+      {}
+- !<SceneObject/d17a1099-ab01-43a3-a1eb-05d69cb228df>
+  PrefabRemaps:
+    []
+  Name: TaskLabel
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.900000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> 2a4b84ac-e6ef-4f70-8264-6c3470b9e77f
+- !<RenderMeshVisual/d5d5dc63-2959-4ba4-85b5-9d2c7dbb172d>
+  PrefabRemaps:
+    []
+  Name: Render Mesh Visual
+  Enabled: true
+  RenderOrder: 0
+  StretchMode: Stretch
+  VerticalAlignment: Center
+  HorizontalAlignment: Center
+  MeshShadowMode: None
+  ShadowColor: {x: 1.000000, y: 1.000000, z: 1.000000, w: 1.000000}
+  ShadowDensity: 1.000000
+  Materials:
+    - !<reference> 3cfa8961-e94e-4402-93a7-583aa0c0b5e0
+  Mesh: !<reference> 529914ad-5208-4cbe-8c96-eb662c48e8be
+  Skin: !<reference> 00000000-0000-0000-0000-000000000000
+  BlendShapesEnabled: true
+  BlendNormals: false
+  BlendShapes:
+    {}
+- !<SceneObject/f55f3b5e-3c44-4b37-acca-0cf701f109d9>
+  PrefabRemaps:
+    []
+  Name: Tether_Email
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> 694b563f-6394-4587-b720-924ccf73caf3
+    - !<own> 8c8d2ef2-f96e-45fb-9ccf-2315037ff282

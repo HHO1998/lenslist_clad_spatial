@@ -1,0 +1,16 @@
+- !<AssetImportMetadata/66a5ee2a-7ee0-4151-a06e-e548ad286161>
+  ImportedAssetIds:
+    Pass: !<reference> 9e5a98ce-851b-4bee-a2f4-13cd9f95a9d1
+  ImporterName: PassImporter
+  PrimaryAsset: !<reference> 9e5a98ce-851b-4bee-a2f4-13cd9f95a9d1
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    {}
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000

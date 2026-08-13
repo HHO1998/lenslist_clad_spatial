@@ -1,0 +1,85 @@
+- !<AssetImportMetadata/4854ba89-65e4-44c7-b994-9d7e75fc161b>
+  ImportedAssetIds:
+    26ba073d67b9d0dd: !<reference> 716dc62d-3594-4f61-aa35-962dc557399b
+    6681b3f8f8f5ede3: !<reference> d29090e3-0bf0-447f-bc94-c2f3f45f3708
+    Meshes/Mesh 1: !<reference> a75b02c5-6b0f-46fa-965e-ca733d2c6f92
+    Scene: !<reference> 22b7fd7e-d908-414c-929d-6fd0c55326a5
+    cb16681e7113a59e: !<reference> 0a4317a2-9a04-4e0b-a717-5d11bee88d94
+  ImporterName: ObjImporter
+  PrimaryAsset: !<reference> 22b7fd7e-d908-414c-929d-6fd0c55326a5
+  PackageType: LegacyPackage
+  LegacyPackagePolicy: CanBeUnpackedTransparent
+  ExtraData:
+    {}
+  AssetDataMap:
+    Scene: !<own> 259cb7f2-cffd-43e6-8218-9788efb620f8
+  DependentFiles:
+    []
+  ImporterSettings: !<D3FileImporterSettingsBase>
+    UseLegacyImporter: false
+    WithMaterials: true
+    NamingConvention: ByCategorySanitizeV2
+    PersistentIdGenerationAlgorithm: DescriptorBasedV2
+  CompressionSettings: !<ComplexCompressionSettings>
+    Presets:
+      None Compression: !<FileCompressionSettings>
+        {}
+    ExtensionMappings:
+      mesh: None Compression
+    Overrides:
+      {}
+- !<RenderMeshVisual/0a4317a2-9a04-4e0b-58e8-a2ee4117726b>
+  PrefabRemaps:
+    []
+  Name: component_0
+  Enabled: true
+  RenderOrder: 0
+  StretchMode: Stretch
+  VerticalAlignment: Center
+  HorizontalAlignment: Center
+  MeshShadowMode: None
+  ShadowColor: {x: 1.000000, y: 1.000000, z: 1.000000, w: 1.000000}
+  ShadowDensity: 1.000000
+  Materials:
+    []
+  Mesh: !<reference> a75b02c5-6b0f-46fa-965e-ca733d2c6f92
+  Skin: !<reference> 00000000-0000-0000-0000-000000000000
+  BlendShapesEnabled: true
+  BlendNormals: false
+  BlendShapes:
+    {}
+- !<ObjectPrefabAssetData/259cb7f2-cffd-43e6-8218-9788efb620f8>
+  Prototype: !<ObjectOwner/ce224ff2-7dc8-4da8-8b97-19a410e3ae8a>
+    PackagePath: ""
+    objects:
+      - !<own> 716dc62d-3594-4f61-55ca-69d23aa8c664
+- !<SceneObject/716dc62d-3594-4f61-55ca-69d23aa8c664>
+  PrefabRemaps:
+    []
+  Name: SpatialTorusMesh
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    - !<own> d29090e3-0bf0-447f-436b-3d0c0ba0c8f7
+  Components:
+    []
+- !<SceneObject/d29090e3-0bf0-447f-436b-3d0c0ba0c8f7>
+  PrefabRemaps:
+    []
+  Name: ""
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> 0a4317a2-9a04-4e0b-58e8-a2ee4117726b

@@ -14,6 +14,7 @@ declare class vec3 {
     static zero(): vec3;
     static one(): vec3;
     static up(): vec3;
+    static lerp(a: vec3, b: vec3, t: number): vec3;
     sub(other: vec3): vec3;
     add(other: vec3): vec3;
     scale(factor: number): vec3;

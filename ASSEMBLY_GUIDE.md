@@ -21,6 +21,7 @@ When opening Lens Studio, follow this exact scene hierarchy setup:
   - [SpatialWarpTimer.ts](scripts/SpatialWarpTimer.ts)
   - [SpatialAudioController.ts](scripts/SpatialAudioController.ts)
   - [SpatialVoiceGestureController.ts](scripts/SpatialVoiceGestureController.ts)
+  - [SpatialHolographicRingHUD.ts](scripts/SpatialHolographicRingHUD.ts)
 - Drag & drop 3D Mesh and Shaders from `assets/`:
   - 3D Model: [`assets/models/KineticTaskOrbMesh.obj`](assets/models/KineticTaskOrbMesh.obj)
   - Shader 1: [`assets/shaders/FresnelEnergyShader.glsl`](assets/shaders/FresnelEnergyShader.glsl)
@@ -33,6 +34,8 @@ Scene Hierarchy
 ├── TaskMatrixManager (Empty SceneObject)
 │   ├── Component: SpatialMatrixManager.ts
 │   └── Component: SpatialVoiceGestureController.ts (Voice & Gesture Classifier)
+├── WristHolographicRing (SceneObject Anchor)
+│   └── Component: SpatialHolographicRingHUD.ts (Volumetric Wrist Status Ring)
 ├── ParentTaskOrb_Work (SceneObject + RenderMesh + Fresnel Material)
 │   ├── Transform: Pos(0, 1.5, 1.2), Scale(0.2, 0.2, 0.2)
 │   └── Component: KineticTaskOrb.ts (priorityMass = 2.0)

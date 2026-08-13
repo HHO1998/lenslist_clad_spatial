@@ -1,0 +1,55 @@
+- !<AssetImportMetadata/638bddc1-ddf3-471e-b2c8-3c0f52bb419f>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 4a84cf3b-b875-4a59-ab4b-20225fbaf118
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 4a84cf3b-b875-4a59-ab4b-20225fbaf118
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 4bd2c89f-8f19-403a-83c5-cae8dc864908
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/4bd2c89f-8f19-403a-83c5-cae8dc864908>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: 38cf1fb7-a38a-44b9-932a-a58a62c198eb
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    isTetherActive: false
+    maxTetherLength: false
+    springStiffness: false
+    tetherName: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - tetherName: Elastic Laser Tether
+      maxTetherLength: 2.500000
+      springStiffness: 1.200000
+      isTetherActive: false
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @input string tetherName = "Elastic Laser Tether"'
+    - // @input float maxTetherLength = 2.5
+    - // @input float springStiffness = 1.2
+    - // @input bool isTetherActive
