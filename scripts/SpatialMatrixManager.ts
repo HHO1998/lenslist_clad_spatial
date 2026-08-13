@@ -1,8 +1,11 @@
 /**
- * 🌌 SpatialMatrixManager.ts — Volumetric Task Cluster & Orbital Dynamics Manager
+ * 🌌 SpatialMatrixManager.ts — Master Volumetric Cluster & Orbital Dynamics Manager
  *
  * Part of Lenslist CLAD Summer Hackathon 2026 (Snap Spectacles)
  * Theme: ORGANIZE (Week 1)
+ *
+ * CREATIVE MANDATE: 100% Volumetric 3D Task Matrix with Keplerian orbits, elastic laser-tethers,
+ * dynamic magnetic repulsion, and synesthetic spatial audio feedback.
  */
 
 import type { KineticTaskOrb } from "./KineticTaskOrb";
@@ -24,11 +27,14 @@ export class SpatialMatrixManager extends BaseScriptComponent {
     @input
     satelliteOrbs: KineticTaskOrb[] = [];
 
+    @input
+    tetherBeamRenderers: BaseScriptComponent[] = [];
+
     private isClusterActive = true;
 
     onAwake() {
         this.createEvent("UpdateEvent").bind(this.onUpdate.bind(this));
-        print(`[SpatialMatrixManager] Cluster '${this.clusterCategoryName}' initialized`);
+        print(`[SpatialMatrixManager] Master Cluster '${this.clusterCategoryName}' initialized successfully! 🚀`);
 
         // Execute LEAF automated assertion tests on startup
         this.runLeafTestSuite();
@@ -45,40 +51,35 @@ export class SpatialMatrixManager extends BaseScriptComponent {
             const sat = this.satelliteOrbs[i];
             if (!sat || sat.isCompleted) continue;
 
-            const angle = time + i * ((Math.PI * 2) / this.satelliteOrbs.length);
+            const angle = time + i * ((Math.PI * 2) / Math.max(1, this.satelliteOrbs.length));
             const satX = parentPos.x + Math.cos(angle) * this.orbitRadius;
             const satY = parentPos.y + Math.sin(angle * 0.5) * 0.08; // Vertical subtle wave
             const satZ = parentPos.z + Math.sin(angle) * this.orbitRadius;
 
-            sat.getTransform().setWorldPosition(new vec3(satX, satY, satZ));
+            const satPos = new vec3(satX, satY, satZ);
+            sat.getTransform().setWorldPosition(satPos);
+
+            // Auto-align corresponding tether beam renderer if provided in array
+            if (i < this.tetherBeamRenderers.length && this.tetherBeamRenderers[i]) {
+                const tether = this.tetherBeamRenderers[i] as unknown as {
+                    updateBeamTransform?: (posA: vec3, posB: vec3) => void;
+                };
+                if (typeof tether.updateBeamTransform === "function") {
+                    tether.updateBeamTransform(parentPos, satPos);
+                }
+            }
         }
     }
 
     /**
-     * CLAD & LEAF Closed-Loop Automated Assertion Test Suite
-     */
-    public runLeafTestSuite(): boolean {
-        print("[LEAF Test Framework] Executing spatial matrix integration tests...");
-
-        const test1 = this.assertSpatialLimits();
-        const test2 = this.assertNodeCount();
-
-        if (test1 && test2) {
-            print("[LEAF Test Framework] ✅ ALL TESTS PASSED SUCCESSFULLY!");
-            return true;
-        }
-        print("[LEAF Test Framework] ❌ ASSERTION FAILURE IN SPATIAL MATRIX.");
-        return false;
-    }
-
-    /**
-     * Completes a task orb and calculates remaining active nodes
+     * Completes a task orb by index and triggers completion effects
      */
     public completeTaskOrb(orbIndex: number): { remainingCount: number; isClusterComplete: boolean } {
         if (orbIndex >= 0 && orbIndex < this.satelliteOrbs.length) {
             const orb = this.satelliteOrbs[orbIndex];
             if (orb) {
                 orb.isCompleted = true;
+                orb.completeTask();
             }
         }
 
@@ -102,9 +103,25 @@ export class SpatialMatrixManager extends BaseScriptComponent {
         };
     }
 
+    /**
+     * CLAD & LEAF Closed-Loop Automated Assertion Test Suite
+     */
+    public runLeafTestSuite(): boolean {
+        print("[LEAF Test Framework] Executing spatial matrix integration tests...");
+
+        const test1 = this.assertSpatialLimits();
+        const test2 = this.assertNodeCount();
+
+        if (test1 && test2) {
+            print("[LEAF Test Framework] ✅ ALL TESTS PASSED SUCCESSFULLY!");
+            return true;
+        }
+        print("[LEAF Test Framework] ❌ ASSERTION FAILURE IN SPATIAL MATRIX.");
+        return false;
+    }
+
     private assertSpatialLimits(): boolean {
         const parentPos = this.parentTaskOrb ? this.parentTaskOrb.getTransform().getWorldPosition() : vec3.zero();
-        // Ensure matrix fits inside Spectacles FOV (within 3.5 meters from camera origin)
         const lenVal = (parentPos as unknown as { length: unknown }).length;
         const parentLen =
             typeof lenVal === "function"

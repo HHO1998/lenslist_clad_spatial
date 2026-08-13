@@ -11,14 +11,25 @@ export class SpatialAudioController extends BaseScriptComponent {
     audioComponent: AudioComponent;
 
     onAwake() {
-        print("[SpatialAudioController] Spatial audio resonator ready.");
+        if (!this.audioComponent) {
+            const comp = this.getSceneObject().getComponent("Component.AudioComponent");
+            if (comp) {
+                this.audioComponent = comp as unknown as AudioComponent;
+            }
+        }
+        print("[SpatialAudioController] 3D Synesthetic Spatial Audio Controller ready.");
     }
 
     /**
      * Plays 3D directional acoustic feedback at specific spatial coordinates
      */
     public playSpatialPulseAt(position: vec3) {
-        if (!this.audioComponent) return;
+        if (!this.audioComponent) {
+            print(
+                `[SpatialAudioController] Spatial Pulse at (${position.x.toFixed(2)}, ${position.y.toFixed(2)}, ${position.z.toFixed(2)}) [Simulated 3D Audio Frequency Modulated]`,
+            );
+            return;
+        }
 
         const audioTransform = this.audioComponent.getSceneObject().getTransform();
         audioTransform.setWorldPosition(position);
