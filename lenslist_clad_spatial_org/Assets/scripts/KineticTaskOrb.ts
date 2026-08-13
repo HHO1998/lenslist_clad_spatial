@@ -67,7 +67,10 @@ export class KineticTaskOrb extends BaseScriptComponent {
             return;
         }
 
-        if (this.isManagedByMatrix) {
+        if (
+            this.isManagedByMatrix ||
+            (this.getSceneObject() as unknown as { isManagedByMatrix?: boolean }).isManagedByMatrix
+        ) {
             return;
         }
 
@@ -125,4 +128,4 @@ export class KineticTaskOrb extends BaseScriptComponent {
     }
 }
 
-// BuildSync: 2026-08-13T17:34:25.637Z
+// BuildSync: 2026-08-13T17:40:20.341Z

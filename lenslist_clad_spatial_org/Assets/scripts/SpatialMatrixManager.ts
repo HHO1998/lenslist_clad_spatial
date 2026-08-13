@@ -133,6 +133,10 @@ export class SpatialMatrixManager extends BaseScriptComponent {
     }
 
     onUpdate() {
+        if (this.orbitRadius > 1.2 || this.orbitRadius <= 0) {
+            this.orbitRadius = 0.35;
+        }
+
         if (!this.parentTaskOrb || !this.satelliteOrbs || this.satelliteOrbs.length === 0) {
             this.autoDiscoverSceneOrbs();
         }
@@ -155,6 +159,19 @@ export class SpatialMatrixManager extends BaseScriptComponent {
         for (let i = 0; i < activeOrbs.length; i++) {
             const sat = activeOrbs[i];
             (sat as unknown as { isManagedByMatrix: boolean }).isManagedByMatrix = true;
+            if (typeof (sat as unknown as { getComponent?: (type: string) => unknown }).getComponent === "function") {
+                const satObj = sat as unknown as {
+                    getComponent: (
+                        type: string,
+                    ) => { isManagedByMatrix?: boolean; api?: { isManagedByMatrix?: boolean } } | null;
+                };
+                const comp = satObj.getComponent("Component.ScriptComponent") || satObj.getComponent("KineticTaskOrb");
+                if (comp) {
+                    comp.isManagedByMatrix = true;
+                    if (comp.api) comp.api.isManagedByMatrix = true;
+                }
+            }
+
             const angle = time + i * ((Math.PI * 2) / activeCount);
 
             // 3D Orbital Inclination Angles (Keplerian Multi-Plane Dynamics)
@@ -295,4 +312,4 @@ export class SpatialMatrixManager extends BaseScriptComponent {
     }
 }
 
-// BuildSync: 2026-08-13T17:34:25.645Z
+// BuildSync: 2026-08-13T17:40:20.344Z
