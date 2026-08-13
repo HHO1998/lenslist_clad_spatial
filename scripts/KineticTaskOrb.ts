@@ -21,6 +21,10 @@ export class KineticTaskOrb extends BaseScriptComponent {
     @input
     pulseFrequency = 2.0;
 
+    @allowUndefined
+    @input
+    isManagedByMatrix = false;
+
     private transform: Transform | undefined;
     private initialPosition: vec3 | undefined;
     private currentVelocity: vec3 = vec3.zero();
@@ -52,6 +56,10 @@ export class KineticTaskOrb extends BaseScriptComponent {
     onUpdate() {
         if (this.isCompleted) {
             this.applyDissolvePulse();
+            return;
+        }
+
+        if (this.isManagedByMatrix) {
             return;
         }
 

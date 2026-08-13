@@ -65,6 +65,7 @@ export class SpatialMatrixManager extends BaseScriptComponent {
 
         for (let i = 0; i < activeOrbs.length; i++) {
             const sat = activeOrbs[i];
+            (sat as unknown as { isManagedByMatrix: boolean }).isManagedByMatrix = true;
             const angle = time + i * ((Math.PI * 2) / activeCount);
 
             // 3D Orbital Inclination Angles (Keplerian Multi-Plane Dynamics)

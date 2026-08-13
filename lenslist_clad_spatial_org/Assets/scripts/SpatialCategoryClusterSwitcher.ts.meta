@@ -45,5 +45,4 @@
     -
       {}
   InputLines:
-    - '// @input string switcherName = "Multi-Category Matrix Switcher"'
-    - '// @input string activeCategory = "WORK"'
+    []
