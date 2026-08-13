@@ -13,10 +13,10 @@ export class SpatialTetherRenderer extends BaseScriptComponent {
     @input
     tetherName = "Elastic Laser Tether";
 
-    /** @input @allowundefined */
+    @input
     parentOrb: SceneObject;
 
-    /** @input @allowundefined */
+    @input
     targetOrb: SceneObject;
 
     @input
