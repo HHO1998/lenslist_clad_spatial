@@ -6,6 +6,14 @@
     - !<own> 7b08f2b2-05b0-42d8-922f-045a5906158b
     - !<own> 19cd6846-c5bd-409d-85b3-fcd73b0a9f32
     - !<own> 059218ea-648d-4ca2-8556-aadff3602d01
+    - !<own> a3f9e81b-7c42-4b9d-a185-9e4f20101c01
+    - !<own> 11223344-5566-7788-9900-aabbccdd0001
+    - !<own> 22334455-6677-8899-0011-bbccddeeff01
+    - !<own> 33445566-7788-9900-1122-ccddeeff0001
+    - !<own> 44556677-8899-0011-2233-ddeeff000001
+    - !<own> 55667788-9900-1122-3344-eeff00000001
+    - !<own> 66778899-0011-2233-4455-66778899aa01
+    - !<own> 77889900-1122-3344-5566-77889900bb01
   layers: !<Layers/267ee9a7-aff2-4f9d-9a49-f71214747d03>
     userLayers:
       []
@@ -189,6 +197,26 @@
   Components:
     - !<own> d5d5dc63-2959-4ba4-85b5-9d2c7dbb172d
     - !<own> 52be3af0-d6d0-4bff-93f7-5c58e932e2ee
+- !<RenderMeshVisual/0935e471-32a8-4153-a741-5daf86767207>
+  PrefabRemaps:
+    []
+  Name: Render Mesh Visual
+  Enabled: true
+  RenderOrder: 0
+  StretchMode: Stretch
+  VerticalAlignment: Center
+  HorizontalAlignment: Center
+  MeshShadowMode: None
+  ShadowColor: {x: 1.000000, y: 1.000000, z: 1.000000, w: 1.000000}
+  ShadowDensity: 1.000000
+  Materials:
+    - !<reference> 3cfa8961-e94e-4402-93a7-583aa0c0b5e0
+  Mesh: !<reference> 529914ad-5208-4cbe-8c96-eb662c48e8be
+  Skin: !<reference> 00000000-0000-0000-0000-000000000000
+  BlendShapesEnabled: true
+  BlendNormals: false
+  BlendShapes:
+    {}
 - !<RenderMeshVisual/0f19b7e0-2277-47d9-9bb7-32b0d2f28337>
   PrefabRemaps:
     []
@@ -209,6 +237,41 @@
   BlendNormals: false
   BlendShapes:
     {}
+- !<SceneObject/11223344-5566-7788-9900-aabbccdd0001>
+  PrefabRemaps:
+    []
+  Name: SpatialPersistenceManager
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> 11223344-5566-7788-9900-aabbccdd0002
+- !<ScriptComponent/11223344-5566-7788-9900-aabbccdd0002>
+  PrefabRemaps:
+    []
+  Name: SpatialPersistenceManager
+  Enabled: true
+  ScriptAsset: !<reference> b1234567-89ab-cdef-0123-456789abcdef
+  ScriptInputsDefault:
+    persistenceKey: true
+    autoSaveOnExit: true
+    autoLoadOnStart: true
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      persistenceKey: SpatialMatrix_State_V1
+      autoSaveOnExit: true
+      autoLoadOnStart: true
+  ScriptTypes:
+    "":
+      {}
 - !<RenderMeshVisual/189c7a2e-f336-4031-9fb0-8e4b535cae23>
   PrefabRemaps:
     []
@@ -245,6 +308,67 @@
   Components:
     - !<own> 0f19b7e0-2277-47d9-9bb7-32b0d2f28337
     - !<own> 4c9853a5-0958-4da1-9e8f-03fce1612387
+- !<ScriptComponent/1a46f582-43b9-4264-b852-6eb097878308>
+  PrefabRemaps:
+    []
+  Name: SpatialTetherRenderer
+  Enabled: true
+  ScriptAsset: !<reference> 4a84cf3b-b875-4a59-ab4b-20225fbaf118
+  ScriptInputsDefault:
+    tetherName: true
+    maxTetherLength: true
+    springStiffness: true
+    beamWidth: true
+    isTetherActive: true
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      tetherName: Elastic Laser Tether
+      parentOrb: !<reference.SceneObject> 43161cc9-ae7a-44a2-afba-3060f11d5839
+      targetOrb: !<reference.SceneObject> a3f9e81b-7c42-4b9d-a185-9e4f20101c01
+      maxTetherLength: 2.500000
+      springStiffness: 1.200000
+      beamWidth: 0.020000
+      isTetherActive: false
+  ScriptTypes:
+    "":
+      {}
+- !<SceneObject/22334455-6677-8899-0011-bbccddeeff01>
+  PrefabRemaps:
+    []
+  Name: SpatialRoomOcclusion
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> 22334455-6677-8899-0011-bbccddeeff02
+- !<ScriptComponent/22334455-6677-8899-0011-bbccddeeff02>
+  PrefabRemaps:
+    []
+  Name: SpatialRoomOcclusion
+  Enabled: true
+  ScriptAsset: !<reference> e456789a-bcde-f012-3456-789abcdef012
+  ScriptInputsDefault:
+    enableDepthOcclusion: true
+    occlusionThresholdDistance: true
+    enableWorldMeshRaycast: true
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      enableDepthOcclusion: true
+      occlusionThresholdDistance: 0.150000
+      enableWorldMeshRaycast: true
+  ScriptTypes:
+    "":
+      {}
 - !<Text3D/2a4b84ac-e6ef-4f70-8264-6c3470b9e77f>
   PrefabRemaps:
     []
@@ -284,6 +408,45 @@
     LineSpacing: 1.000000
     CapitalizationOverride: None
   EnableBatching: false
+- !<SceneObject/33445566-7788-9900-1122-ccddeeff0001>
+  PrefabRemaps:
+    []
+  Name: SpatialTaskSpawner
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> 33445566-7788-9900-1122-ccddeeff0002
+- !<ScriptComponent/33445566-7788-9900-1122-ccddeeff0002>
+  PrefabRemaps:
+    []
+  Name: SpatialTaskSpawner
+  Enabled: true
+  ScriptAsset: !<reference> 113a249d-ba5a-495e-9f72-755499b4e470
+  ScriptInputsDefault:
+    spawnerName: true
+    matrixManager: true
+    burstFX: true
+    physicsEngine: true
+    defaultPriorityMass: true
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      spawnerName: Volumetric Task Spawner & Shatter Engine
+      matrixManager: !<MappingBased.AssignableType_1> 00000000-0000-0000-0000-000000000000
+      burstFX: !<MappingBased.AssignableType_2> 00000000-0000-0000-0000-000000000000
+      physicsEngine: !<MappingBased.AssignableType_3> 00000000-0000-0000-0000-000000000000
+      defaultPriorityMass: 1.500000
+  ScriptTypes:
+    "":
+      {}
 - !<SceneObject/43161cc9-ae7a-44a2-afba-3060f11d5839>
   PrefabRemaps:
     []
@@ -297,9 +460,43 @@
     HasSegmentScaleCompensation: false
   Children:
     - !<own> d17a1099-ab01-43a3-a1eb-05d69cb228df
+    - !<own> 77889900-1122-3344-5566-77889900aabb
   Components:
     - !<own> 189c7a2e-f336-4031-9fb0-8e4b535cae23
     - !<own> be15cc49-c981-44fe-83c0-92f3eb2f0942
+- !<SceneObject/44556677-8899-0011-2233-ddeeff000001>
+  PrefabRemaps:
+    []
+  Name: SpatialCategoryClusterSwitcher
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> 44556677-8899-0011-2233-ddeeff000002
+- !<ScriptComponent/44556677-8899-0011-2233-ddeeff000002>
+  PrefabRemaps:
+    []
+  Name: SpatialCategoryClusterSwitcher
+  Enabled: true
+  ScriptAsset: !<reference> 113a249d-ba5a-495e-9f72-755499b4e471
+  ScriptInputsDefault:
+    switcherName: true
+    activeCategory: true
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      switcherName: Multi-Category Matrix Switcher
+      activeCategory: WORK
+  ScriptTypes:
+    "":
+      {}
 - !<SceneObject/45e1bb1e-2918-48ae-b353-09753baf6199>
   PrefabRemaps:
     []
@@ -356,6 +553,41 @@
       priorityMass: 1.500000
       isCompleted: false
       pulseFrequency: !<float> 2.000000
+  ScriptTypes:
+    "":
+      {}
+- !<SceneObject/55667788-9900-1122-3344-eeff00000001>
+  PrefabRemaps:
+    []
+  Name: SpatialPriorityColorAura
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> 55667788-9900-1122-3344-eeff00000002
+- !<ScriptComponent/55667788-9900-1122-3344-eeff00000002>
+  PrefabRemaps:
+    []
+  Name: SpatialPriorityColorAura
+  Enabled: true
+  ScriptAsset: !<reference> 113a249d-ba5a-495e-9f72-755499b4e472
+  ScriptInputsDefault:
+    auraName: true
+    urgentMassThreshold: true
+    mediumMassThreshold: true
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      auraName: Dynamic Priority Fresnel Color Controller
+      urgentMassThreshold: !<float> 2.000000
+      mediumMassThreshold: 1.200000
   ScriptTypes:
     "":
       {}
@@ -418,6 +650,21 @@
     LineSpacing: 1.000000
     CapitalizationOverride: None
   EnableBatching: false
+- !<SceneObject/77889900-1122-3344-5566-77889900aabb>
+  PrefabRemaps:
+    []
+  Name: QuantumBeacon_Work
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.250000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> 99001122-3344-5566-7788-9900aabbccdd
 - !<SceneObject/7b08f2b2-05b0-42d8-922f-045a5906158b>
   PrefabRemaps:
     []
@@ -432,6 +679,7 @@
   Children:
     - !<own> 43161cc9-ae7a-44a2-afba-3060f11d5839
     - !<own> f55f3b5e-3c44-4b37-acca-0cf701f109d9
+    - !<own> f824d360-2197-4042-f630-4c9e75656106
   Components:
     - !<own> 7c7b6cda-2548-436f-a3a0-59a18dbe3d33
     - !<own> 90b08d85-2085-4c0c-87c0-6ad88323e3f7
@@ -444,6 +692,7 @@
   ScriptInputsDefault:
     clusterCategoryName: true
     orbitSpeed: true
+    tetherBeamRenderers: true
   ScriptTypesDefault:
     {}
   ScriptInputs:
@@ -455,6 +704,9 @@
       satelliteOrbs: !<MappingBased.AssignableType_2[]>
         - !<reference> 4c9853a5-0958-4da1-9e8f-03fce1612387
         - !<reference> 52be3af0-d6d0-4bff-93f7-5c58e932e2ee
+        - !<reference> e713c25f-1086-4f31-e529-3b8d64545005
+      tetherBeamRenderers: !<MappingBased.AssignableType_3[]>
+        []
   ScriptTypes:
     "":
       {}
@@ -483,14 +735,18 @@
     tetherName: true
     maxTetherLength: true
     springStiffness: true
+    beamWidth: true
     isTetherActive: true
   ScriptTypesDefault:
     {}
   ScriptInputs:
     "":
       tetherName: Elastic Laser Tether
+      parentOrb: !<reference.SceneObject> 43161cc9-ae7a-44a2-afba-3060f11d5839
+      targetOrb: !<reference.SceneObject> 19cd6846-c5bd-409d-85b3-fcd73b0a9f32
       maxTetherLength: 2.500000
       springStiffness: 1.200000
+      beamWidth: 0.020000
       isTetherActive: false
   ScriptTypes:
     "":
@@ -513,6 +769,8 @@
       enableGestureRecognition: true
       minConfidenceThreshold: 0.750000
       matrixManager: !<MappingBased.AssignableType_1> 7c7b6cda-2548-436f-a3a0-59a18dbe3d33
+      warpTimer: !<MappingBased.AssignableType_2> 66778899-0011-2233-4455-66778899aa02
+      audioController: !<MappingBased.AssignableType_3> 77889900-1122-3344-5566-77889900bb02
   ScriptTypes:
     "":
       {}
@@ -555,6 +813,61 @@
     LineSpacing: 1.000000
     CapitalizationOverride: None
   EnableBatching: false
+- !<ScriptComponent/99001122-3344-5566-7788-9900aabbccdd>
+  PrefabRemaps:
+    []
+  Name: SpatialQuantumBeacon
+  Enabled: true
+  ScriptAsset: !<reference> b1c2d3e4-f5a6-4b7c-8d9e-0f1a2b3c4d5e
+  ScriptInputsDefault:
+    beaconHeightOffset: true
+    pulseFrequency: true
+    beaconRadius: true
+    isBeaconActive: true
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      beaconName: Volumetric Work Quantum Beacon
+      targetOrb: !<MappingBased.AssignableType_1> be15cc49-c981-44fe-83c0-92f3eb2f0942
+      beaconHeightOffset: 0.250000
+      pulseFrequency: !<float> 3.000000
+      beaconRadius: 0.150000
+      isBeaconActive: true
+  ScriptTypes:
+    "":
+      {}
+- !<SceneObject/a3f9e81b-7c42-4b9d-a185-9e4f20101c01>
+  PrefabRemaps:
+    []
+  Name: SubTaskOrb_Code
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: -2.400000, y: 0.000000, z: -12.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 2.400000, y: 2.400000, z: 2.400000}
+    HasSegmentScaleCompensation: false
+  Children:
+    - !<own> b4e0f92c-8d53-4c0e-b296-0f5a31212d02
+  Components:
+    - !<own> d602b14e-0f75-4e20-d418-2a7c53434f04
+    - !<own> e713c25f-1086-4f31-e529-3b8d64545005
+- !<SceneObject/b4e0f92c-8d53-4c0e-b296-0f5a31212d02>
+  PrefabRemaps:
+    []
+  Name: CODE REFACTOR
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.700000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> c5f1a03d-9e64-4d1f-c307-1f6b42323e03
 - !<ScriptComponent/be15cc49-c981-44fe-83c0-92f3eb2f0942>
   PrefabRemaps:
     []
@@ -577,6 +890,45 @@
   ScriptTypes:
     "":
       {}
+- !<Text3D/c5f1a03d-9e64-4d1f-c307-1f6b42323e03>
+  PrefabRemaps:
+    []
+  Name: Text3D
+  Enabled: true
+  RenderOrder: 0
+  StretchMode: Stretch
+  VerticalAlignment: Center
+  HorizontalAlignment: Center
+  MeshShadowMode: None
+  ShadowColor: {x: 1.000000, y: 1.000000, z: 1.000000, w: 1.000000}
+  ShadowDensity: 1.000000
+  Materials:
+    - !<reference> 23bc138c-7718-41f4-987a-2dccbe297b74
+  Text: CODE REFACTOR
+  Editable: false
+  ShowEditingPreview: true
+  TouchHandler: !<reference> 00000000-0000-0000-0000-000000000000
+  EnableRichText: false
+  SizeToFit: false
+  FontSize: 18.000000
+  ExtrusionDepth: 0.400000
+  ExtrudeDirection: Both
+  FontSource: !<reference> 00000000-0000-0000-0000-000000000000
+  PreferredStyle: Regular
+  LayoutRect:
+    left: -7.500000
+    bottom: -2.250000
+    right: 7.500000
+    top: 2.250000
+  DebugRenderLayoutRect: false
+  OverflowVertical: Overflow
+  OverflowHorizontal: Overflow
+  AdvancedLayout: !<TextAdvancedLayout>
+    ExtentsTarget: !<reference> 00000000-0000-0000-0000-000000000000
+    LetterSpacing: 0.000000
+    LineSpacing: 1.000000
+    CapitalizationOverride: None
+  EnableBatching: false
 - !<SceneObject/d17a1099-ab01-43a3-a1eb-05d69cb228df>
   PrefabRemaps:
     []
@@ -612,6 +964,45 @@
   BlendNormals: false
   BlendShapes:
     {}
+- !<RenderMeshVisual/d602b14e-0f75-4e20-d418-2a7c53434f04>
+  PrefabRemaps:
+    []
+  Name: Render Mesh Visual
+  Enabled: true
+  RenderOrder: 0
+  StretchMode: Stretch
+  VerticalAlignment: Center
+  HorizontalAlignment: Center
+  MeshShadowMode: None
+  ShadowColor: {x: 1.000000, y: 1.000000, z: 1.000000, w: 1.000000}
+  ShadowDensity: 1.000000
+  Materials:
+    - !<reference> 3cfa8961-e94e-4402-93a7-583aa0c0b5e0
+  Mesh: !<reference> 529914ad-5208-4cbe-8c96-eb662c48e8be
+  Skin: !<reference> 00000000-0000-0000-0000-000000000000
+  BlendShapesEnabled: true
+  BlendNormals: false
+  BlendShapes:
+    {}
+- !<ScriptComponent/e713c25f-1086-4f31-e529-3b8d64545005>
+  PrefabRemaps:
+    []
+  Name: KineticTaskOrb
+  Enabled: true
+  ScriptAsset: !<reference> a047f940-4beb-4fea-a166-2f623bb4b551
+  ScriptInputsDefault:
+    isCompleted: true
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      orbName: CODE REFACTOR
+      priorityMass: !<float> 2.000000
+      isCompleted: false
+      pulseFrequency: 2.500000
+  ScriptTypes:
+    "":
+      {}
 - !<SceneObject/f55f3b5e-3c44-4b37-acca-0cf701f109d9>
   PrefabRemaps:
     []
@@ -628,3 +1019,83 @@
   Components:
     - !<own> 694b563f-6394-4587-b720-924ccf73caf3
     - !<own> 8c8d2ef2-f96e-45fb-9ccf-2315037ff282
+- !<SceneObject/f824d360-2197-4042-f630-4c9e75656106>
+  PrefabRemaps:
+    []
+  Name: Tether_Code
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> 0935e471-32a8-4153-a741-5daf86767207
+    - !<own> 1a46f582-43b9-4264-b852-6eb097878308
+- !<SceneObject/66778899-0011-2233-4455-66778899aa01>
+  PrefabRemaps:
+    []
+  Name: SpatialWarpTimer
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> 66778899-0011-2233-4455-66778899aa02
+- !<ScriptComponent/66778899-0011-2233-4455-66778899aa02>
+  PrefabRemaps:
+    []
+  Name: SpatialWarpTimer
+  Enabled: true
+  ScriptAsset: !<reference> ade07eec-3dd4-4766-9ff6-49555054ea64
+  ScriptInputsDefault:
+    focusDurationMinutes: true
+    timerName: true
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      focusDurationMinutes: !<float> 25.000000
+      timerName: Volumetric Focus Chronometer
+  ScriptTypes:
+    "":
+      {}
+- !<SceneObject/77889900-1122-3344-5566-77889900bb01>
+  PrefabRemaps:
+    []
+  Name: SpatialAudioController
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> 77889900-1122-3344-5566-77889900bb02
+- !<ScriptComponent/77889900-1122-3344-5566-77889900bb02>
+  PrefabRemaps:
+    []
+  Name: SpatialAudioController
+  Enabled: true
+  ScriptAsset: !<reference> ae3c9b23-2985-49e2-9079-08e2266910c7
+  ScriptInputsDefault:
+    audioComponent: true
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      audioComponent: !<reference.AudioComponent> 00000000-0000-0000-0000-000000000000
+  ScriptTypes:
+    "":
+      {}

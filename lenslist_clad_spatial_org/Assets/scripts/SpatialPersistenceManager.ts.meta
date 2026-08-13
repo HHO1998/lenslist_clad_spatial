@@ -1,0 +1,52 @@
+- !<AssetImportMetadata/a9812b3c-4d5e-6f70-8192-a3b4c5d6e7f8>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> b1234567-89ab-cdef-0123-456789abcdef
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> b1234567-89ab-cdef-0123-456789abcdef
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> f1234567-89ab-cdef-0123-456789abcdef
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/f1234567-89ab-cdef-0123-456789abcdef>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: c2345678-9abc-def0-1234-56789abcdef0
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    autoLoadOnStart: false
+    autoSaveOnExit: false
+    persistenceKey: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - persistenceKey: SpatialMatrix_State_V1
+      autoSaveOnExit: true
+      autoLoadOnStart: true
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @input string persistenceKey = "SpatialMatrix_State_V1"'
+    - // @input bool autoSaveOnExit = true
+    - // @input bool autoLoadOnStart = true

@@ -33,6 +33,7 @@
     orbitSpeed: false
     parentTaskOrb: false
     satelliteOrbs: false
+    tetherBeamRenderers: false
   ScriptTypesHidden:
     {}
   ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
@@ -48,6 +49,8 @@
       parentTaskOrb: !<MappingBased.AssignableType_1> 00000000-0000-0000-0000-000000000000
       satelliteOrbs: !<MappingBased.AssignableType_2[]>
         []
+      tetherBeamRenderers: !<MappingBased.AssignableType_3[]>
+        []
   ScriptTypes:
     -
       {}
@@ -57,3 +60,4 @@
     - // @input float orbitSpeed = 0.8
     - // @input AssignableType_1 parentTaskOrb
     - "// @input AssignableType_2[] satelliteOrbs = {}"
+    - "// @input AssignableType_3[] tetherBeamRenderers = {}"

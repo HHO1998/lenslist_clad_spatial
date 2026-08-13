@@ -1,0 +1,64 @@
+- !<AssetImportMetadata/59ef7ba9-e6c0-4983-ae9b-bebce43a4934>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> bc4fcba6-39e3-419a-ad3a-9937c55cf0cb
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> bc4fcba6-39e3-419a-ad3a-9937c55cf0cb
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 48e1ed68-3a58-42d1-b19d-03e8d974315a
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/48e1ed68-3a58-42d1-b19d-03e8d974315a>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: 3515c4e5-b9f5-4de4-a0c2-83d8685d13b0
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    activeCategory: false
+    completedTaskCount: false
+    hudName: false
+    isVisible: false
+    ringRadiusMeters: false
+    smoothDampingSpeed: false
+    totalTaskCount: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - hudName: Volumetric Wrist Status Ring
+      ringRadiusMeters: 0.120000
+      smoothDampingSpeed: !<float> 8.000000
+      isVisible: false
+      totalTaskCount: !<float> 4.000000
+      completedTaskCount: !<float> 1.000000
+      activeCategory: WORK
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @input string hudName = "Volumetric Wrist Status Ring"'
+    - // @input float ringRadiusMeters = 0.12
+    - // @input float smoothDampingSpeed = 8
+    - // @input bool isVisible = true
+    - // @input float totalTaskCount = 4
+    - // @input float completedTaskCount = 1
+    - '// @input string activeCategory = "WORK"'

@@ -91,3 +91,9 @@ The Preview Panel shows live runtime transforms; the Scene Panel shows authored 
 Verify assumptions early — a quick prototype can save hours of debugging a plan built on wrong foundations. Build incrementally: confirm each layer renders before adding the next.
 
 <!-- END Lens Studio managed AGENTS block -->
+
+## 🎬 LIVE LENS STUDIO SCENE INTEGRATION RULE
+
+1. **DIRECT SCENE & PREVIEW COMPATIBILITY**:
+   - Every single new feature, interaction logic, visual component, or script upgrade MUST be directly wired, configured, and active inside the live Lens Studio scene (`lenslist_clad_spatial_org/Assets/Scene.scene` / Scene Hierarchy).
+   - Ensure all components, script inputs, scene object references, and default initializers are pre-configured out-of-the-box so the user can immediately test and preview every feature live in the Lens Studio 3D Preview window without manual setup steps.

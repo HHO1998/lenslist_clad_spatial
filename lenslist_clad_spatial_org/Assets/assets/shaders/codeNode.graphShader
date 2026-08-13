@@ -92,7 +92,13 @@ Nodes:
             {
             	vec2 uv = system.getSurfaceUVCoord0();
             	vec4 baseTexSample = baseTexture.sample(uv);
-            	result = baseTexSample * colorInput1;
+            	
+            	vec3 cyberCyan = vec3(0.0, 0.94, 1.0);
+            	vec3 cyberLime = vec3(0.0, 1.0, 0.55);
+            	vec3 gradientGlow = mix(cyberCyan, cyberLime, uv.y);
+            	
+            	vec3 finalRgb = baseTexSample.rgb * colorInput1.rgb * gradientGlow * 1.5;
+            	result = vec4(finalRgb, baseTexSample.a * colorInput1.a);
             }
         CustomCodeNodeAsset:
           ClassType1: REFUID

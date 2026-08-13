@@ -54,14 +54,14 @@ describe("💍 Dimension 7: Volumetric Spatial Holographic Ring HUD Tests", () =
         (hud as unknown as { getTransform: () => MockTransform }).getTransform = () => new MockTransform();
         hud.onAwake();
 
-        expect(hud.isVisible).toBe(false);
-
-        const isVis = hud.toggleVisibility();
-        expect(isVis).toBe(true);
         expect(hud.isVisible).toBe(true);
 
-        hud.toggleVisibility(false);
+        const isVis = hud.toggleVisibility();
+        expect(isVis).toBe(false);
         expect(hud.isVisible).toBe(false);
+
+        hud.toggleVisibility(true);
+        expect(hud.isVisible).toBe(true);
     });
 
     it("should calculate task completion ratio and pending task count", async () => {

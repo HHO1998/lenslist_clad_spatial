@@ -47,7 +47,8 @@ export class SpatialAdaptivePhysicsEngine extends BaseScriptComponent {
         }
 
         const forceMagnitude = (1.0 - distance / this.magneticRepulsionDistance) * this.repulsionStiffness;
-        return delta.normalize().scale(forceMagnitude);
+        const norm = delta.normalize();
+        return new vec3(norm.x * forceMagnitude, norm.y * forceMagnitude, norm.z * forceMagnitude);
     }
 
     /**
@@ -69,8 +70,9 @@ export class SpatialAdaptivePhysicsEngine extends BaseScriptComponent {
                 if (posA && posB && velAInit && velBInit) {
                     const force = this.calculateRepulsionForce(posA, posB);
                     if (force.length > 0) {
-                        const velA = velAInit.add(force.scale(deltaTime));
-                        const velB = velBInit.sub(force.scale(deltaTime));
+                        const forceScaled = new vec3(force.x * deltaTime, force.y * deltaTime, force.z * deltaTime);
+                        const velA = velAInit.add(forceScaled);
+                        const velB = velBInit.sub(forceScaled);
 
                         this.nodeVelocities.set(idA, velA);
                         this.nodeVelocities.set(idB, velB);
@@ -85,13 +87,23 @@ export class SpatialAdaptivePhysicsEngine extends BaseScriptComponent {
             const currentPos = this.nodePositions.get(id);
 
             if (velInit && currentPos) {
-                let vel = velInit.scale(this.dampingCoefficient);
+                let vel = new vec3(
+                    velInit.x * this.dampingCoefficient,
+                    velInit.y * this.dampingCoefficient,
+                    velInit.z * this.dampingCoefficient,
+                );
                 if (vel.length > this.maxVelocityMetersPerSec) {
-                    vel = vel.normalize().scale(this.maxVelocityMetersPerSec);
+                    const normVel = vel.normalize();
+                    vel = new vec3(
+                        normVel.x * this.maxVelocityMetersPerSec,
+                        normVel.y * this.maxVelocityMetersPerSec,
+                        normVel.z * this.maxVelocityMetersPerSec,
+                    );
                 }
                 this.nodeVelocities.set(id, vel);
 
-                const updatedPos = currentPos.add(vel.scale(deltaTime));
+                const velScaled = new vec3(vel.x * deltaTime, vel.y * deltaTime, vel.z * deltaTime);
+                const updatedPos = currentPos.add(velScaled);
                 this.nodePositions.set(id, updatedPos);
             }
         }
@@ -131,4 +143,4 @@ export class SpatialAdaptivePhysicsEngine extends BaseScriptComponent {
     }
 }
 
-// BuildSync: 2026-08-13T10:47:13.705Z
+// BuildSync: 2026-08-13T16:52:27.910Z

@@ -4,10 +4,18 @@
  * Part of Lenslist CLAD Summer Hackathon 2026 (Snap Spectacles)
  * Theme: ORGANIZE (Week 1 Upgrade)
  */
+export interface SpatialAudioController extends BaseScriptComponent {
+    playTetherLaserSound: () => void;
+    playTaskCompletionSound: () => void;
+}
 
-import type { SpatialAudioController } from "./SpatialAudioController";
-import type { SpatialMatrixManager } from "./SpatialMatrixManager";
-import type { SpatialWarpTimer } from "./SpatialWarpTimer";
+export interface SpatialMatrixManager extends BaseScriptComponent {
+    runLeafTestSuite: () => boolean;
+}
+
+export interface SpatialWarpTimer extends BaseScriptComponent {
+    triggerPulseFeedback: () => void;
+}
 
 export type SpatialGestureType = "None" | "Pinch" | "DualExpand" | "WaveSwipe";
 export type SpatialVoiceIntent = "None" | "OrganizeMatrix" | "FocusWarp" | "ShatterCompleted" | "ResetGravity";
@@ -30,14 +38,17 @@ export class SpatialVoiceGestureController extends BaseScriptComponent {
     @input
     minConfidenceThreshold = 0.75;
 
+    @allowUndefined
     @input
-    matrixManager: SpatialMatrixManager;
+    matrixManager: SpatialMatrixManager = null as unknown as SpatialMatrixManager;
 
-    /** @input @allowundefined */
-    warpTimer: SpatialWarpTimer;
+    @allowUndefined
+    @input
+    warpTimer: SpatialWarpTimer = null as unknown as SpatialWarpTimer;
 
-    /** @input @allowundefined */
-    audioController: SpatialAudioController;
+    @allowUndefined
+    @input
+    audioController: SpatialAudioController = null as unknown as SpatialAudioController;
 
     private activeGesture: SpatialGestureType = "None";
     private activeIntent: SpatialVoiceIntent = "None";
@@ -45,9 +56,12 @@ export class SpatialVoiceGestureController extends BaseScriptComponent {
 
     onAwake() {
         this.createEvent("UpdateEvent").bind(this.onUpdate.bind(this));
+        this.createEvent("OnStartEvent").bind(this.onStart.bind(this));
         print("[SpatialVoiceGestureController] Initialized spatial voice & gesture engine.");
+    }
 
-        // Run automated LEAF assertions for Voice & Gesture Engine
+    onStart() {
+        // Run automated LEAF assertions for Voice & Gesture Engine after all components are awake
         this.runVoiceGestureLeafTests();
     }
 
@@ -120,24 +134,40 @@ export class SpatialVoiceGestureController extends BaseScriptComponent {
     private executeVoiceIntent(intent: SpatialVoiceIntent) {
         print(`[SpatialVoiceGestureController] Executing Voice Intent: '${intent}'`);
 
-        if (this.audioController) {
-            this.audioController.playTetherLaserSound();
+        if (this.audioController && typeof this.audioController.playTetherLaserSound === "function") {
+            try {
+                this.audioController.playTetherLaserSound();
+            } catch (e) {
+                print(`[SpatialVoiceGestureController] Deferred audio playback: ${e}`);
+            }
         }
 
         switch (intent) {
             case "OrganizeMatrix":
-                if (this.matrixManager) {
-                    this.matrixManager.runLeafTestSuite();
+                if (this.matrixManager && typeof this.matrixManager.runLeafTestSuite === "function") {
+                    try {
+                        this.matrixManager.runLeafTestSuite();
+                    } catch (e) {
+                        print(`[SpatialVoiceGestureController] Deferred matrix assertions: ${e}`);
+                    }
                 }
                 break;
             case "FocusWarp":
-                if (this.warpTimer) {
-                    this.warpTimer.triggerPulseFeedback();
+                if (this.warpTimer && typeof this.warpTimer.triggerPulseFeedback === "function") {
+                    try {
+                        this.warpTimer.triggerPulseFeedback();
+                    } catch (e) {
+                        print(`[SpatialVoiceGestureController] Deferred warp timer trigger: ${e}`);
+                    }
                 }
                 break;
             case "ShatterCompleted":
-                if (this.audioController) {
-                    this.audioController.playTaskCompletionSound();
+                if (this.audioController && typeof this.audioController.playTaskCompletionSound === "function") {
+                    try {
+                        this.audioController.playTaskCompletionSound();
+                    } catch (e) {
+                        print(`[SpatialVoiceGestureController] Deferred audio completion: ${e}`);
+                    }
                 }
                 break;
             case "ResetGravity":
@@ -182,4 +212,4 @@ export class SpatialVoiceGestureController extends BaseScriptComponent {
     }
 }
 
-// BuildSync: 2026-08-13T10:47:13.725Z
+// BuildSync: 2026-08-13T16:52:27.917Z

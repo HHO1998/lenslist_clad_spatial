@@ -28,10 +28,12 @@
   ExportUid: 00000000-0000-0000-0000-000000000000
   PackagePolicy: CanBeUnpacked
   ScriptInputsHidden:
+    audioController: false
     enableGestureRecognition: false
     enableVoiceCommands: false
     matrixManager: false
     minConfidenceThreshold: false
+    warpTimer: false
   ScriptTypesHidden:
     {}
   ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
@@ -45,6 +47,8 @@
       enableGestureRecognition: true
       minConfidenceThreshold: 0.750000
       matrixManager: !<MappingBased.AssignableType_1> 00000000-0000-0000-0000-000000000000
+      warpTimer: !<MappingBased.AssignableType_2> 00000000-0000-0000-0000-000000000000
+      audioController: !<MappingBased.AssignableType_3> 00000000-0000-0000-0000-000000000000
   ScriptTypes:
     -
       {}
@@ -53,3 +57,5 @@
     - // @input bool enableGestureRecognition = true
     - // @input float minConfidenceThreshold = 0.75
     - // @input AssignableType_1 matrixManager
+    - // @input AssignableType_2 warpTimer
+    - // @input AssignableType_3 audioController

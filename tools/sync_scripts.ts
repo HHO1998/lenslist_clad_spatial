@@ -25,11 +25,16 @@ function syncSingleFile(file: string) {
     // Explicitly update mtime and atime for Windows DavWWWRoot filesystem
     fs.utimesSync(destPath, now, now);
 
+    const metaPath = `${destPath}.meta`;
+    if (fs.existsSync(metaPath)) {
+        fs.utimesSync(metaPath, now, now);
+    }
+
     console.log(`  ✓ Synced & Force-Triggered Compilation: ${file} -> lenslist_clad_spatial_org/Assets/scripts/${file}`);
 }
 
 function syncAllFiles() {
-    const files = fs.readdirSync(sourceDir).filter((file) => file.endsWith(".ts"));
+    const files = fs.readdirSync(sourceDir).filter((file) => file.endsWith(".ts") || file.endsWith(".d.ts"));
     console.log(`[Script Sync] Synchronizing ${files.length} scripts to Lens Studio WebDAV workspace...`);
 
     for (const file of files) {

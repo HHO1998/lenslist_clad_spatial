@@ -1,0 +1,49 @@
+- !<AssetImportMetadata/c11e74a1-4321-4f11-8899-77a44f911a02>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 113a249d-ba5a-495e-9f72-755499b4e471
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 113a249d-ba5a-495e-9f72-755499b4e471
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 114e71a7-8d32-4413-8679-e204dc0017b1
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/114e71a7-8d32-4413-8679-e204dc0017b1>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: f64437a4-7a46-444f-bc8a-2a86f24c9902
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    activeCategory: false
+    switcherName: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - switcherName: Multi-Category Matrix Switcher
+      activeCategory: WORK
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @input string switcherName = "Multi-Category Matrix Switcher"'
+    - '// @input string activeCategory = "WORK"'

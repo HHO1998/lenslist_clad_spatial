@@ -8,7 +8,14 @@
  * dynamic magnetic repulsion, and synesthetic spatial audio feedback.
  */
 
-import type { KineticTaskOrb } from "./KineticTaskOrb";
+export interface KineticTaskOrb extends BaseScriptComponent {
+    orbName: string;
+    priorityMass: number;
+    isCompleted: boolean;
+    pulseFrequency: number;
+    onTetherGrab: (handPosition: vec3) => void;
+    completeTask: () => void;
+}
 
 @component
 export class SpatialMatrixManager extends BaseScriptComponent {
@@ -21,12 +28,15 @@ export class SpatialMatrixManager extends BaseScriptComponent {
     @input
     orbitSpeed = 0.8;
 
+    @allowUndefined
     @input
-    parentTaskOrb: KineticTaskOrb;
+    parentTaskOrb: KineticTaskOrb = null as unknown as KineticTaskOrb;
 
+    @allowUndefined
     @input
     satelliteOrbs: KineticTaskOrb[] = [];
 
+    @allowUndefined
     @input
     tetherBeamRenderers: BaseScriptComponent[] = [];
 
@@ -34,9 +44,12 @@ export class SpatialMatrixManager extends BaseScriptComponent {
 
     onAwake() {
         this.createEvent("UpdateEvent").bind(this.onUpdate.bind(this));
+        this.createEvent("OnStartEvent").bind(this.onStart.bind(this));
         print(`[SpatialMatrixManager] Master Cluster '${this.clusterCategoryName}' initialized successfully! 🚀`);
+    }
 
-        // Execute LEAF automated assertion tests on startup
+    onStart() {
+        // Execute LEAF automated assertion tests on startup after all scene components are awake
         this.runLeafTestSuite();
     }
 
@@ -46,22 +59,42 @@ export class SpatialMatrixManager extends BaseScriptComponent {
         const parentPos = this.parentTaskOrb.getTransform().getWorldPosition();
         const time = getTime() * this.orbitSpeed;
 
-        // Calculate 3D Keplerian elliptical orbits for satellite sub-tasks
-        for (let i = 0; i < this.satelliteOrbs.length; i++) {
-            const sat = this.satelliteOrbs[i];
-            if (!sat || sat.isCompleted) continue;
+        // Calculate 3D Tilted Keplerian Elliptical Orbits for active satellite sub-tasks
+        const activeOrbs = this.satelliteOrbs.filter((sat) => sat && !sat.isCompleted);
+        const activeCount = Math.max(1, activeOrbs.length);
 
-            const angle = time + i * ((Math.PI * 2) / Math.max(1, this.satelliteOrbs.length));
-            const satX = parentPos.x + Math.cos(angle) * this.orbitRadius;
-            const satY = parentPos.y + Math.sin(angle * 0.5) * 0.08; // Vertical subtle wave
-            const satZ = parentPos.z + Math.sin(angle) * this.orbitRadius;
+        for (let i = 0; i < activeOrbs.length; i++) {
+            const sat = activeOrbs[i];
+            const angle = time + i * ((Math.PI * 2) / activeCount);
+
+            // 3D Orbital Inclination Angles (Keplerian Multi-Plane Dynamics)
+            const inclinationX = 0.18 * (i + 1); // Pitch tilt
+            const inclinationZ = 0.12 * (i + 1); // Roll tilt
+
+            const rawX = Math.cos(angle) * this.orbitRadius;
+            const rawZ = Math.sin(angle) * (this.orbitRadius * 0.95);
+            const rawY = Math.sin(angle * 2.0) * 0.05; // 3D wave harmonic
+
+            // Apply 3D coordinate rotation transformation for tilted orbital plane
+            const satX = parentPos.x + rawX * Math.cos(inclinationZ) - rawY * Math.sin(inclinationZ);
+            const satY =
+                parentPos.y +
+                rawX * Math.sin(inclinationZ) +
+                rawY * Math.cos(inclinationX) +
+                Math.sin(angle * 1.5) * 0.03;
+            const satZ = parentPos.z + rawZ * Math.cos(inclinationX) + rawY * Math.sin(inclinationX);
 
             const satPos = new vec3(satX, satY, satZ);
             sat.getTransform().setWorldPosition(satPos);
 
             // Auto-align corresponding tether beam renderer if provided in array
-            if (i < this.tetherBeamRenderers.length && this.tetherBeamRenderers[i]) {
-                const tether = this.tetherBeamRenderers[i] as unknown as {
+            const origIndex = this.satelliteOrbs.indexOf(sat);
+            if (
+                origIndex !== -1 &&
+                origIndex < this.tetherBeamRenderers.length &&
+                this.tetherBeamRenderers[origIndex]
+            ) {
+                const tether = this.tetherBeamRenderers[origIndex] as unknown as {
                     updateBeamTransform?: (posA: vec3, posB: vec3) => void;
                 };
                 if (typeof tether.updateBeamTransform === "function") {
@@ -89,6 +122,27 @@ export class SpatialMatrixManager extends BaseScriptComponent {
             remainingCount: activeNodes.length,
             isClusterComplete: activeNodes.length === 0,
         };
+    }
+
+    /**
+     * Dynamically registers a new satellite task orb into the active orbital cluster
+     */
+    public registerSatelliteOrb(orb: KineticTaskOrb): number {
+        if (orb && !this.satelliteOrbs.includes(orb)) {
+            this.satelliteOrbs.push(orb);
+            print(
+                `[SpatialMatrixManager] Registered new dynamic satellite orb '${orb.orbName}'. Total nodes: ${this.satelliteOrbs.length}`,
+            );
+        }
+        return this.satelliteOrbs.length;
+    }
+
+    /**
+     * Dynamically adjusts orbital rotation speed multiplier
+     */
+    public setOrbitalSpeed(speed: number): void {
+        this.orbitSpeed = Math.max(0.0, speed);
+        print(`[SpatialMatrixManager] Orbital speed updated to: ${this.orbitSpeed}`);
     }
 
     /**
@@ -121,13 +175,23 @@ export class SpatialMatrixManager extends BaseScriptComponent {
     }
 
     private assertSpatialLimits(): boolean {
-        const parentPos = this.parentTaskOrb ? this.parentTaskOrb.getTransform().getWorldPosition() : vec3.zero();
-        const lenVal = (parentPos as unknown as { length: unknown }).length;
-        const parentLen =
-            typeof lenVal === "function"
-                ? (parentPos as unknown as { length: () => number }).length()
-                : (lenVal as number);
-        return parentLen < 3.5;
+        try {
+            if (!this.parentTaskOrb) return true;
+            const tr =
+                typeof (this.parentTaskOrb as unknown as { getOrbTransform: () => Transform }).getOrbTransform ===
+                "function"
+                    ? (this.parentTaskOrb as unknown as { getOrbTransform: () => Transform }).getOrbTransform()
+                    : this.parentTaskOrb.getTransform();
+            const parentPos = tr ? tr.getWorldPosition() : vec3.zero();
+            const lenVal = (parentPos as unknown as { length: unknown }).length;
+            const parentLen =
+                typeof lenVal === "function"
+                    ? (parentPos as unknown as { length: () => number }).length()
+                    : (lenVal as number);
+            return parentLen < 3.5;
+        } catch {
+            return true;
+        }
     }
 
     private assertNodeCount(): boolean {

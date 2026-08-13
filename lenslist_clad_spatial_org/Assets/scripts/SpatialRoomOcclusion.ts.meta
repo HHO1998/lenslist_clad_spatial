@@ -1,0 +1,52 @@
+- !<AssetImportMetadata/d3456789-abcd-ef01-2345-6789abcdef01>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> e456789a-bcde-f012-3456-789abcdef012
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> e456789a-bcde-f012-3456-789abcdef012
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> a456789a-bcde-f012-3456-789abcdef012
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/a456789a-bcde-f012-3456-789abcdef012>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: f56789ab-cdef-0123-4567-89abcdef0123
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    enableDepthOcclusion: false
+    enableWorldMeshRaycast: false
+    occlusionThresholdDistance: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - enableDepthOcclusion: true
+      occlusionThresholdDistance: 0.150000
+      enableWorldMeshRaycast: true
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - // @input bool enableDepthOcclusion = true
+    - // @input float occlusionThresholdDistance = 0.15
+    - // @input bool enableWorldMeshRaycast = true

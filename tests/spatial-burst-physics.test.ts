@@ -50,6 +50,7 @@ class BaseScriptComponent {}
 (globalThis as unknown as { BaseScriptComponent: typeof BaseScriptComponent }).BaseScriptComponent =
     BaseScriptComponent;
 (globalThis as unknown as { input: () => (target: unknown, propertyKey: string) => void }).input = () => () => {};
+(globalThis as unknown as { allowUndefined: () => void }).allowUndefined = () => {};
 (globalThis as unknown as { component: (target: unknown) => void }).component = () => {};
 (globalThis as unknown as { vec3: typeof MockVec3 }).vec3 = MockVec3;
 (globalThis as unknown as { getDeltaTime: () => number }).getDeltaTime = () => 0.016;

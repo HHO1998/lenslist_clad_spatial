@@ -28,9 +28,12 @@
   ExportUid: 00000000-0000-0000-0000-000000000000
   PackagePolicy: CanBeUnpacked
   ScriptInputsHidden:
+    beamWidth: false
     isTetherActive: false
     maxTetherLength: false
+    parentOrb: false
     springStiffness: false
+    targetOrb: false
     tetherName: false
   ScriptTypesHidden:
     {}
@@ -42,14 +45,20 @@
     []
   DefaultScriptInputs:
     - tetherName: Elastic Laser Tether
+      parentOrb: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      targetOrb: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
       maxTetherLength: 2.500000
       springStiffness: 1.200000
+      beamWidth: 0.020000
       isTetherActive: false
   ScriptTypes:
     -
       {}
   InputLines:
     - '// @input string tetherName = "Elastic Laser Tether"'
-    - // @input float maxTetherLength = 2.5
+    - // @input SceneObject parentOrb
+    - // @input SceneObject targetOrb
+    - // @input float maxTetherLength = 5
     - // @input float springStiffness = 1.2
-    - // @input bool isTetherActive
+    - // @input float beamWidth = 0.02
+    - // @input bool isTetherActive = true

@@ -13,7 +13,7 @@ export class SpatialHolographicRingHUD extends BaseScriptComponent {
     smoothDampingSpeed = 8.0;
 
     @input
-    isVisible = false;
+    isVisible = true;
 
     @input
     totalTaskCount = 4;
@@ -139,4 +139,4 @@ export class SpatialHolographicRingHUD extends BaseScriptComponent {
     }
 }
 
-// BuildSync: 2026-08-13T10:47:13.714Z
+// BuildSync: 2026-08-13T16:52:27.912Z

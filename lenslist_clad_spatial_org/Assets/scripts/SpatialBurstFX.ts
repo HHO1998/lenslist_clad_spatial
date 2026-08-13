@@ -41,9 +41,19 @@ export class SpatialBurstFX extends BaseScriptComponent {
         }
 
         // Animate particles along radial explosion vectors with velocity drag
+        const expansionStep = deltaTime * this.burstExpansionSpeed;
         for (const particle of this.activeParticles) {
-            particle.position = particle.position.add(particle.velocity.scale(deltaTime * this.burstExpansionSpeed));
-            particle.velocity = particle.velocity.scale(0.92); // Velocity damping
+            const posDelta = new vec3(
+                particle.velocity.x * expansionStep,
+                particle.velocity.y * expansionStep,
+                particle.velocity.z * expansionStep,
+            );
+            particle.position = particle.position.add(posDelta);
+            particle.velocity = new vec3(
+                particle.velocity.x * 0.92,
+                particle.velocity.y * 0.92,
+                particle.velocity.z * 0.92,
+            ); // Velocity damping
             particle.lifeRatio = 1.0 - progress;
         }
     }
@@ -111,4 +121,4 @@ export class SpatialBurstFX extends BaseScriptComponent {
     }
 }
 
-// BuildSync: 2026-08-13T10:47:13.714Z
+// BuildSync: 2026-08-13T16:52:27.911Z

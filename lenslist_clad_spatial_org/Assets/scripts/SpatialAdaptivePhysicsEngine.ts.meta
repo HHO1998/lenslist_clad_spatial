@@ -1,0 +1,58 @@
+- !<AssetImportMetadata/4a2f325c-d348-4a4e-91df-cb2e4ea34cc7>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 113a249d-ba5a-495e-9f72-755499b4e464
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 113a249d-ba5a-495e-9f72-755499b4e464
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 114e71a7-8d32-4413-8679-e204dc0017ac
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/114e71a7-8d32-4413-8679-e204dc0017ac>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: f64437a4-7a46-444f-bc8a-2a86f24c99f0
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    dampingCoefficient: false
+    engineName: false
+    magneticRepulsionDistance: false
+    maxVelocityMetersPerSec: false
+    repulsionStiffness: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - engineName: Spatial Adaptive Physics Engine
+      magneticRepulsionDistance: 0.250000
+      repulsionStiffness: 2.500000
+      dampingCoefficient: 0.920000
+      maxVelocityMetersPerSec: !<float> 3.000000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @input string engineName = "Spatial Adaptive Physics Engine"'
+    - // @input float magneticRepulsionDistance = 0.25
+    - // @input float repulsionStiffness = 2.5
+    - // @input float dampingCoefficient = 0.92
+    - // @input float maxVelocityMetersPerSec = 3

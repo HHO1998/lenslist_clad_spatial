@@ -14,10 +14,10 @@ export class SpatialTetherRenderer extends BaseScriptComponent {
     tetherName = "Elastic Laser Tether";
 
     @input
-    parentOrb: SceneObject;
+    parentOrb: SceneObject = null as unknown as SceneObject;
 
     @input
-    targetOrb: SceneObject;
+    targetOrb: SceneObject = null as unknown as SceneObject;
 
     @input
     maxTetherLength = 5.0;
@@ -36,8 +36,32 @@ export class SpatialTetherRenderer extends BaseScriptComponent {
 
     onAwake() {
         this.transform = this.getTransform();
+        if (!this.parentOrb || !this.targetOrb) {
+            this.tryAutoLinkOrbs();
+        }
         this.createEvent("UpdateEvent").bind(this.onUpdate.bind(this));
         print(`[SpatialTetherRenderer] Tether '${this.tetherName}' initialized`);
+    }
+
+    private tryAutoLinkOrbs() {
+        const currentObj = this.getSceneObject();
+        if (!currentObj) return;
+        const objName = currentObj.name;
+        const parentObj = typeof currentObj.getParent === "function" ? currentObj.getParent() : null;
+        if (!parentObj) return;
+
+        const count = typeof parentObj.getChildrenCount === "function" ? parentObj.getChildrenCount() : 0;
+        for (let i = 0; i < count; i++) {
+            const child = parentObj.getChild(i);
+            if (!child) continue;
+            if (!this.parentOrb && child.name.indexOf("ParentTaskOrb") !== -1) {
+                this.parentOrb = child;
+            }
+            const targetSuffix = objName.replace("Tether_", "");
+            if (!this.targetOrb && child.name.indexOf(targetSuffix) !== -1 && child.name.indexOf("SubTaskOrb") !== -1) {
+                this.targetOrb = child;
+            }
+        }
     }
 
     onUpdate() {
@@ -67,7 +91,8 @@ export class SpatialTetherRenderer extends BaseScriptComponent {
         if (distance < 0.001) return;
 
         // Set midpoint position
-        const midPoint = posA.add(posB).uniformScale(0.5);
+        const sumPos = posA.add(posB);
+        const midPoint = new vec3(sumPos.x * 0.5, sumPos.y * 0.5, sumPos.z * 0.5);
         this.transform.setWorldPosition(midPoint);
 
         // Align Z-axis along beam direction
@@ -75,8 +100,10 @@ export class SpatialTetherRenderer extends BaseScriptComponent {
         const lookRot = quat.lookAt(dir, vec3.up());
         this.transform.setWorldRotation(lookRot);
 
-        // Scale beam length along Z-axis
-        this.transform.setWorldScale(new vec3(this.beamWidth, this.beamWidth, distance));
+        // Scale beam length along Z-axis with high-frequency laser energy pulse modulation
+        const time = getTime();
+        const pulseWidth = this.beamWidth * (1.0 + Math.sin(time * 16.0) * 0.18);
+        this.transform.setWorldScale(new vec3(pulseWidth, pulseWidth, distance));
     }
 
     /**
@@ -138,4 +165,4 @@ export class SpatialTetherRenderer extends BaseScriptComponent {
     }
 }
 
-// BuildSync: 2026-08-13T10:47:13.723Z
+// BuildSync: 2026-08-13T16:52:27.916Z

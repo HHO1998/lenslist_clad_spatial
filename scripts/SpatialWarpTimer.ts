@@ -64,7 +64,12 @@ export class SpatialWarpTimer extends BaseScriptComponent {
 
         // Scale pulse modulation according to focus progress
         const pulse = Math.sin(getTime() * (2 + progressRatio * 3)) * 0.05;
-        const dynamicScale = this.initialScale.uniformScale(1.0 + progressRatio * 0.4 + pulse);
+        const scaleFactor = 1.0 + progressRatio * 0.4 + pulse;
+        const dynamicScale = new vec3(
+            this.initialScale.x * scaleFactor,
+            this.initialScale.y * scaleFactor,
+            this.initialScale.z * scaleFactor,
+        );
         this.transform.setLocalScale(dynamicScale);
 
         if (this.elapsedTimeSeconds >= totalSeconds) {
@@ -76,6 +81,8 @@ export class SpatialWarpTimer extends BaseScriptComponent {
         this.isRunning = false;
         print("[SpatialWarpTimer] FOCUS SESSION COMPLETE! Triggering room-scale spatial burst.");
         // Shockwave expansion animation
-        this.transform.setLocalScale(this.initialScale.uniformScale(2.5));
+        this.transform.setLocalScale(
+            new vec3(this.initialScale.x * 2.5, this.initialScale.y * 2.5, this.initialScale.z * 2.5),
+        );
     }
 }
