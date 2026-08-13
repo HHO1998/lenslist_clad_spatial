@@ -3,7 +3,6 @@
  *
  * Part of Lenslist CLAD Summer Hackathon 2026 (Snap Spectacles)
  * Theme: ORGANIZE (Week 1)
- * Created At: 2026-08-13T07:43:46+05:30 | Epoch: 1786587736
  *
  * CREATIVE MANDATE: Renders hyper-futuristic elastic laser-tethers that stretch,
  * vibrate, and bend between the Spectacles hand pinch ray and target Kinetic Task Orbs.
@@ -24,13 +23,12 @@ export class SpatialTetherRenderer extends BaseScriptComponent {
     isTetherActive = false;
 
     private transform: Transform;
-    private epochTimestamp = 1786587736;
     private currentTension = 0.0;
 
     onAwake() {
         this.transform = this.getTransform();
         this.createEvent("UpdateEvent").bind(this.onUpdate.bind(this));
-        print(`[SpatialTetherRenderer] Tether '${this.tetherName}' initialized at Epoch ${this.epochTimestamp}`);
+        print(`[SpatialTetherRenderer] Tether '${this.tetherName}' initialized`);
     }
 
     onUpdate() {

@@ -3,7 +3,6 @@
  *
  * Part of Lenslist CLAD Summer Hackathon 2026 (Snap Spectacles)
  * Theme: ORGANIZE (Week 1 Upgrade)
- * Created At: 2026-08-13T07:49:15+05:30 | Epoch: 1786588155
  */
 
 import type { SpatialAudioController } from "./SpatialAudioController";
@@ -42,12 +41,11 @@ export class SpatialVoiceGestureController extends BaseScriptComponent {
 
     private activeGesture: SpatialGestureType = "None";
     private activeIntent: SpatialVoiceIntent = "None";
-    private lastEventEpoch = 1786588155;
     private recognizedEventsCount = 0;
 
     onAwake() {
         this.createEvent("UpdateEvent").bind(this.onUpdate.bind(this));
-        print(`[SpatialVoiceGestureController] Initialized at Epoch ${this.lastEventEpoch}`);
+        print("[SpatialVoiceGestureController] Initialized spatial voice & gesture engine.");
 
         // Run automated LEAF assertions for Voice & Gesture Engine
         this.runVoiceGestureLeafTests();

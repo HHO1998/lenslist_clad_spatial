@@ -3,7 +3,6 @@
  *
  * Part of Lenslist CLAD Summer Hackathon 2026 (Snap Spectacles)
  * Theme: ORGANIZE (Week 1)
- * Created At: 2026-08-12T19:00:00+05:30 | Epoch: 1786541400
  */
 
 @component
@@ -11,10 +10,8 @@ export class SpatialAudioController extends BaseScriptComponent {
     @input
     audioComponent: AudioComponent;
 
-    private epochTimestamp = 1786541400;
-
     onAwake() {
-        print(`[SpatialAudioController] Spatial audio resonator ready at Epoch ${this.epochTimestamp}`);
+        print("[SpatialAudioController] Spatial audio resonator ready.");
     }
 
     /**

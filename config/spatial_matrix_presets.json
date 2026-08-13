@@ -3,12 +3,10 @@
     "hackathon": "The CLAD Summer Hackathon 2026",
     "challenge_week": 1,
     "theme": "ORGANIZE",
-    "updated_at": "2026-08-13T07:43:46+05:30",
-    "epoch": 1786587736,
     "presets": [
         {
-            "preset_id": "neural_work_matrix",
-            "name": "Neural Work Matrix",
+            "preset_id": "spatial_work_matrix",
+            "name": "Spatial Work Matrix",
             "category": "WORK",
             "orbit_radius_meters": 0.35,
             "orbit_speed": 0.8,

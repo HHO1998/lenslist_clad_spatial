@@ -2,7 +2,6 @@
 
 > **Target Platform**: Snap Spectacles (Lens Studio 5.22+)  
 > **Framework**: Closed Loop Agentic Development (CLAD) via MCP  
-> **Timestamp**: `2026-08-12T18:44:07+05:30` | **Epoch**: `1786540447`  
 
 ---
 

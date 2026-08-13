@@ -135,6 +135,6 @@ describe("🌌 Dimension 3 & 4: Spatial Physics, Keplerian Orbits & Spectacles F
 
         expect(json.project_id).toBe("lenslist_clad_spatial");
         expect(json.presets.length).toBeGreaterThanOrEqual(3);
-        expect(json.presets[0].preset_id).toBe("neural_work_matrix");
+        expect(json.presets[0].preset_id).toBe("spatial_work_matrix");
     });
 });

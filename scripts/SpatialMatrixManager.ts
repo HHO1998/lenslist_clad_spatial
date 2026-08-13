@@ -3,7 +3,6 @@
  *
  * Part of Lenslist CLAD Summer Hackathon 2026 (Snap Spectacles)
  * Theme: ORGANIZE (Week 1)
- * Created At: 2026-08-12T19:00:00+05:30 | Epoch: 1786541400
  */
 
 import type { KineticTaskOrb } from "./KineticTaskOrb";
@@ -11,7 +10,7 @@ import type { KineticTaskOrb } from "./KineticTaskOrb";
 @component
 export class SpatialMatrixManager extends BaseScriptComponent {
     @input
-    clusterCategoryName = "Neural Work Matrix";
+    clusterCategoryName = "Spatial Work Matrix";
 
     @input
     orbitRadius = 0.35;
@@ -25,14 +24,11 @@ export class SpatialMatrixManager extends BaseScriptComponent {
     @input
     satelliteOrbs: KineticTaskOrb[] = [];
 
-    private epochTimestamp = 1786541400;
     private isClusterActive = true;
 
     onAwake() {
         this.createEvent("UpdateEvent").bind(this.onUpdate.bind(this));
-        print(
-            `[SpatialMatrixManager] Cluster '${this.clusterCategoryName}' initialized at Epoch ${this.epochTimestamp}`,
-        );
+        print(`[SpatialMatrixManager] Cluster '${this.clusterCategoryName}' initialized`);
 
         // Execute LEAF automated assertion tests on startup
         this.runLeafTestSuite();

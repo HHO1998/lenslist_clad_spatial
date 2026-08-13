@@ -50,7 +50,7 @@ Scene Hierarchy
    - Add `SubTaskOrb_Email` and `SubTaskOrb_Design` into the `satelliteOrbs` array.
 2. In Lens Studio Logger window, verify stdout:
    ```
-   [SpatialMatrixManager] Cluster 'Neural Work Matrix' initialized
+   [SpatialMatrixManager] Cluster 'Spatial Work Matrix' initialized
    [LEAF Test Framework] Executing spatial matrix integration tests...
    [LEAF Test Framework] ✅ ALL TESTS PASSED SUCCESSFULLY!
    ```
