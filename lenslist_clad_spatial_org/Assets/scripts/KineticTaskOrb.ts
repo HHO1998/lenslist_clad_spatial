@@ -37,8 +37,16 @@ export class KineticTaskOrb extends BaseScriptComponent {
     }
 
     public getOrbInitialPosition(): vec3 {
-        if (!this.initialPosition) {
-            this.initialPosition = this.getOrbTransform().getWorldPosition();
+        if (
+            !this.initialPosition ||
+            (this.initialPosition.x === 0 && this.initialPosition.y === 0 && this.initialPosition.z === 0)
+        ) {
+            const currentPos = this.getOrbTransform().getWorldPosition();
+            if (currentPos.x !== 0 || currentPos.y !== 0 || currentPos.z !== 0) {
+                this.initialPosition = currentPos;
+            } else {
+                return currentPos;
+            }
         }
         return this.initialPosition;
     }
@@ -117,4 +125,4 @@ export class KineticTaskOrb extends BaseScriptComponent {
     }
 }
 
-// BuildSync: 2026-08-13T17:26:07.082Z
+// BuildSync: 2026-08-13T17:34:25.637Z

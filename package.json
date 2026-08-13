@@ -18,6 +18,7 @@
         "sync": "npx tsx tools/sync_scripts.ts",
         "watch": "npx tsx tools/sync_scripts.ts --watch",
         "bridge": "nix-shell -p python3Packages.wsgidav --run \"wsgidav --host=0.0.0.0 --port=8080 --root=/home/sagar/lenslist_clad_spatial --auth=anonymous\"",
+        "git:save": "git add . && git commit -m \"fix(spatial-ar): safeguard KineticTaskOrb position initialization and sync assets\"",
         "ready": "npm run typecheck && npm run lint && npm run format:check && npm run validate:scene && npm run generate:resources && npm run sync && npm test"
     },
     "devDependencies": {
