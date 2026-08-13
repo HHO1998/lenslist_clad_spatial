@@ -56,7 +56,14 @@ export class SpatialMatrixManager extends BaseScriptComponent {
     onUpdate() {
         if (!this.isClusterActive || !this.parentTaskOrb) return;
 
-        const parentPos = this.parentTaskOrb.getTransform().getWorldPosition();
+        const parentTr =
+            typeof (this.parentTaskOrb as unknown as { getOrbTransform?: () => Transform }).getOrbTransform ===
+            "function"
+                ? (this.parentTaskOrb as unknown as { getOrbTransform: () => Transform }).getOrbTransform()
+                : this.parentTaskOrb.getTransform
+                  ? this.parentTaskOrb.getTransform()
+                  : this.parentTaskOrb.getSceneObject().getTransform();
+        const parentPos = parentTr.getWorldPosition();
         const time = getTime() * this.orbitSpeed;
 
         // Calculate 3D Tilted Keplerian Elliptical Orbits for active satellite sub-tasks
@@ -86,7 +93,13 @@ export class SpatialMatrixManager extends BaseScriptComponent {
             const satZ = parentPos.z + rawZ * Math.cos(inclinationX) + rawY * Math.sin(inclinationX);
 
             const satPos = new vec3(satX, satY, satZ);
-            sat.getTransform().setWorldPosition(satPos);
+            const satTr =
+                typeof (sat as unknown as { getOrbTransform?: () => Transform }).getOrbTransform === "function"
+                    ? (sat as unknown as { getOrbTransform: () => Transform }).getOrbTransform()
+                    : sat.getTransform
+                      ? sat.getTransform()
+                      : sat.getSceneObject().getTransform();
+            satTr.setWorldPosition(satPos);
 
             // Auto-align corresponding tether beam renderer if provided in array
             const origIndex = this.satelliteOrbs.indexOf(sat);
@@ -200,4 +213,4 @@ export class SpatialMatrixManager extends BaseScriptComponent {
     }
 }
 
-// BuildSync: 2026-08-13T17:14:58.392Z
+// BuildSync: 2026-08-13T17:18:56.751Z
