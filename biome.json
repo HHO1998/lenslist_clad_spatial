@@ -26,9 +26,7 @@
             "node_modules",
             "dist",
             "assets/models/*.obj",
-            "assets/audio/*.wav",
-            "telemetry/*.json",
-            "Lens_Studio_5.23.1_win_setup.exe"
+            "assets/audio/*.wav"
         ]
     }
 }
