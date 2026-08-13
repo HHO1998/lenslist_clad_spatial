@@ -71,6 +71,37 @@ export class SpatialMatrixManager extends BaseScriptComponent {
         return false;
     }
 
+    /**
+     * Completes a task orb and calculates remaining active nodes
+     */
+    public completeTaskOrb(orbIndex: number): { remainingCount: number; isClusterComplete: boolean } {
+        if (orbIndex >= 0 && orbIndex < this.satelliteOrbs.length) {
+            const orb = this.satelliteOrbs[orbIndex];
+            if (orb) {
+                orb.isCompleted = true;
+            }
+        }
+
+        const activeNodes = this.satelliteOrbs.filter((o) => o && !o.isCompleted);
+        print(`[SpatialMatrixManager] Task Orb ${orbIndex} completed. Active remaining: ${activeNodes.length}`);
+        return {
+            remainingCount: activeNodes.length,
+            isClusterComplete: activeNodes.length === 0,
+        };
+    }
+
+    /**
+     * Returns active cluster metrics for SpatialHolographicRingHUD status sync
+     */
+    public getClusterMetrics(): { totalCount: number; completedCount: number; activeCategory: string } {
+        const completedCount = this.satelliteOrbs.filter((o) => o?.isCompleted).length;
+        return {
+            totalCount: this.satelliteOrbs.length,
+            completedCount,
+            activeCategory: this.clusterCategoryName,
+        };
+    }
+
     private assertSpatialLimits(): boolean {
         const parentPos = this.parentTaskOrb ? this.parentTaskOrb.getTransform().getWorldPosition() : vec3.zero();
         // Ensure matrix fits inside Spectacles FOV (within 3.5 meters from camera origin)

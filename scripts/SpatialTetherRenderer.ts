@@ -116,6 +116,19 @@ export class SpatialTetherRenderer extends BaseScriptComponent {
     }
 
     /**
+     * Computes dynamic tether energy beam color transitioning from Cyan (#00F0FF) to Magenta (#FF0077) under stretch tension
+     */
+    public computeTetherColor(distance: number): { hexColor: string; isOverstretched: boolean } {
+        const stretchRatio = Math.min(1.0, distance / this.maxTetherLength);
+        const isOverstretched = stretchRatio >= 0.85;
+
+        // Transition from Cyan (#00F0FF) to Luminous Magenta (#FF0077)
+        const hexColor = isOverstretched ? "#FF0055" : stretchRatio > 0.5 ? "#B000FF" : "#00F0FF";
+
+        return { hexColor, isOverstretched };
+    }
+
+    /**
      * Deactivates energy beam tether
      */
     public deactivateTether() {

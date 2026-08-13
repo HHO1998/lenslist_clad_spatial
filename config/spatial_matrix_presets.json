@@ -10,6 +10,16 @@
             "category": "WORK",
             "orbit_radius_meters": 0.35,
             "orbit_speed": 0.8,
+            "burst_fx": {
+                "particle_count": 16,
+                "decay_duration": 0.8,
+                "expansion_speed": 1.5
+            },
+            "physics": {
+                "repulsion_distance": 0.25,
+                "stiffness": 2.5,
+                "damping": 0.92
+            },
             "parent_orb": {
                 "name": "Quarterly Product Strategy",
                 "priority_mass": 3.0,

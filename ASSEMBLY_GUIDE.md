@@ -22,6 +22,8 @@ When opening Lens Studio, follow this exact scene hierarchy setup:
   - [SpatialAudioController.ts](scripts/SpatialAudioController.ts)
   - [SpatialVoiceGestureController.ts](scripts/SpatialVoiceGestureController.ts)
   - [SpatialHolographicRingHUD.ts](scripts/SpatialHolographicRingHUD.ts)
+  - [SpatialBurstFX.ts](scripts/SpatialBurstFX.ts)
+  - [SpatialAdaptivePhysicsEngine.ts](scripts/SpatialAdaptivePhysicsEngine.ts)
 - Drag & drop 3D Mesh and Shaders from `assets/`:
   - 3D Model: [`assets/models/KineticTaskOrbMesh.obj`](assets/models/KineticTaskOrbMesh.obj)
   - Shader 1: [`assets/shaders/FresnelEnergyShader.glsl`](assets/shaders/FresnelEnergyShader.glsl)
@@ -33,7 +35,10 @@ Scene Hierarchy
 ├── WorldCamera (Spectacles Head Tracking)
 ├── TaskMatrixManager (Empty SceneObject)
 │   ├── Component: SpatialMatrixManager.ts
-│   └── Component: SpatialVoiceGestureController.ts (Voice & Gesture Classifier)
+│   ├── Component: SpatialVoiceGestureController.ts (Voice & Gesture Classifier)
+│   └── Component: SpatialAdaptivePhysicsEngine.ts (Magnetic Repulsion Physics)
+├── ParticleShockwaveSystem (Empty SceneObject)
+│   └── Component: SpatialBurstFX.ts (Volumetric Particle Burst FX)
 ├── WristHolographicRing (SceneObject Anchor)
 │   └── Component: SpatialHolographicRingHUD.ts (Volumetric Wrist Status Ring)
 ├── ParentTaskOrb_Work (SceneObject + RenderMesh + Fresnel Material)
