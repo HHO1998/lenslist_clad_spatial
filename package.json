@@ -11,8 +11,8 @@
         "format:check": "biome format scripts tests",
         "knip": "knip --production",
         "test": "vitest run",
-        "generate:audio": "npx tsx scripts/generators/generate_audio.ts",
-        "generate:meshes": "npx tsx scripts/generators/generate_meshes.ts",
+        "generate:audio": "npx tsx tools/generators/generate_audio.ts",
+        "generate:meshes": "npx tsx tools/generators/generate_meshes.ts",
         "generate:resources": "npm run generate:audio && npm run generate:meshes",
         "ready": "npm run typecheck && npm run lint && npm run format:check && npm run generate:resources && npm test"
     },
