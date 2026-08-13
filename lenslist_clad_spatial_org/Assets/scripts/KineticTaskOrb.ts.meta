@@ -45,8 +45,8 @@
     - orbName: Gravitational Task Node
       priorityMass: 1.500000
       isCompleted: false
-      isManagedByMatrix: false
       pulseFrequency: !<float> 2.000000
+      isManagedByMatrix: false
   ScriptTypes:
     -
       {}
@@ -55,4 +55,4 @@
     - // @input float priorityMass = 1.5
     - // @input bool isCompleted
     - // @input float pulseFrequency = 2
-    - // @input bool isManagedByMatrix = false
+    - // @input bool isManagedByMatrix

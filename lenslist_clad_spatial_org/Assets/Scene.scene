@@ -527,6 +527,7 @@
     priorityMass: true
     isCompleted: true
     pulseFrequency: true
+    isManagedByMatrix: true
   ScriptTypesDefault:
     {}
   ScriptInputs:
@@ -535,6 +536,7 @@
       priorityMass: 1.500000
       isCompleted: false
       pulseFrequency: !<float> 2.000000
+      isManagedByMatrix: false
   ScriptTypes:
     "":
       {}
@@ -549,6 +551,7 @@
     priorityMass: true
     isCompleted: true
     pulseFrequency: true
+    isManagedByMatrix: true
   ScriptTypesDefault:
     {}
   ScriptInputs:
@@ -557,6 +560,7 @@
       priorityMass: 1.500000
       isCompleted: false
       pulseFrequency: !<float> 2.000000
+      isManagedByMatrix: false
   ScriptTypes:
     "":
       {}
@@ -885,6 +889,7 @@
     priorityMass: true
     isCompleted: true
     pulseFrequency: true
+    isManagedByMatrix: true
   ScriptTypesDefault:
     {}
   ScriptInputs:
@@ -893,6 +898,7 @@
       priorityMass: 1.500000
       isCompleted: false
       pulseFrequency: !<float> 2.000000
+      isManagedByMatrix: false
   ScriptTypes:
     "":
       {}
@@ -998,6 +1004,7 @@
   ScriptAsset: !<reference> a047f940-4beb-4fea-a166-2f623bb4b551
   ScriptInputsDefault:
     isCompleted: true
+    isManagedByMatrix: true
   ScriptTypesDefault:
     {}
   ScriptInputs:
@@ -1006,6 +1013,7 @@
       priorityMass: !<float> 2.000000
       isCompleted: false
       pulseFrequency: 2.500000
+      isManagedByMatrix: false
   ScriptTypes:
     "":
       {}

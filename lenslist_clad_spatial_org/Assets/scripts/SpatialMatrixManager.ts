@@ -30,15 +30,15 @@ export class SpatialMatrixManager extends BaseScriptComponent {
 
     @allowUndefined
     @input
-    parentTaskOrb: KineticTaskOrb = null as unknown as KineticTaskOrb;
+    parentTaskOrb: SceneObject = null as unknown as SceneObject;
 
     @allowUndefined
     @input
-    satelliteOrbs: KineticTaskOrb[] = [];
+    satelliteOrbs: SceneObject[] = [];
 
     @allowUndefined
     @input
-    tetherBeamRenderers: BaseScriptComponent[] = [];
+    tetherBeamRenderers: ScriptComponent[] = [];
 
     private isClusterActive = true;
 
@@ -69,14 +69,8 @@ export class SpatialMatrixManager extends BaseScriptComponent {
             for (let i = 0; i < childCount; i++) {
                 const child = selfObj.getChild(i);
                 if (child && child.name.indexOf("ParentTaskOrb") !== -1) {
-                    const comp =
-                        typeof child.getComponent === "function"
-                            ? child.getComponent("Component.ScriptComponent")
-                            : null;
-                    if (comp) {
-                        this.parentTaskOrb = comp as unknown as KineticTaskOrb;
-                        break;
-                    }
+                    this.parentTaskOrb = child;
+                    break;
                 }
             }
         }
@@ -91,13 +85,7 @@ export class SpatialMatrixManager extends BaseScriptComponent {
             for (let i = 0; i < totalSiblings; i++) {
                 const child = searchRoot.getChild(i);
                 if (child && child.name.indexOf("SubTaskOrb") !== -1) {
-                    const comp =
-                        typeof child.getComponent === "function"
-                            ? child.getComponent("Component.ScriptComponent")
-                            : null;
-                    if (comp) {
-                        this.satelliteOrbs.push(comp as unknown as KineticTaskOrb);
-                    }
+                    this.satelliteOrbs.push(child);
                 }
             }
         }
@@ -110,7 +98,7 @@ export class SpatialMatrixManager extends BaseScriptComponent {
                     typeof (this.parentTaskOrb as unknown as { getSceneObject?: () => SceneObject }).getSceneObject ===
                     "function"
                         ? (this.parentTaskOrb as unknown as { getSceneObject: () => SceneObject }).getSceneObject()
-                        : null;
+                        : this.parentTaskOrb;
                 if (parentOrbObj) {
                     const childCount =
                         typeof parentOrbObj.getChildrenCount === "function" ? parentOrbObj.getChildrenCount() : 0;
@@ -122,7 +110,7 @@ export class SpatialMatrixManager extends BaseScriptComponent {
                                     ? child.getComponent("Component.ScriptComponent")
                                     : null;
                             if (comp) {
-                                this.tetherBeamRenderers.push(comp as unknown as BaseScriptComponent);
+                                this.tetherBeamRenderers.push(comp as unknown as ScriptComponent);
                             }
                         }
                     }
@@ -141,18 +129,33 @@ export class SpatialMatrixManager extends BaseScriptComponent {
         }
         if (!this.isClusterActive || !this.parentTaskOrb) return;
 
+        const parentObj = this.parentTaskOrb as unknown as {
+            getOrbTransform?: () => Transform;
+            getTransform?: () => Transform;
+            getSceneObject?: () => SceneObject;
+        };
         const parentTr =
-            typeof (this.parentTaskOrb as unknown as { getOrbTransform?: () => Transform }).getOrbTransform ===
-            "function"
-                ? (this.parentTaskOrb as unknown as { getOrbTransform: () => Transform }).getOrbTransform()
-                : this.parentTaskOrb.getTransform
-                  ? this.parentTaskOrb.getTransform()
-                  : this.parentTaskOrb.getSceneObject().getTransform();
+            typeof parentObj.getOrbTransform === "function"
+                ? parentObj.getOrbTransform()
+                : typeof parentObj.getTransform === "function"
+                  ? parentObj.getTransform()
+                  : parentObj.getSceneObject
+                    ? parentObj.getSceneObject().getTransform()
+                    : (this.getSceneObject().getTransform() as Transform);
         const parentPos = parentTr.getWorldPosition();
         const time = getTime() * this.orbitSpeed;
 
         // Calculate 3D Tilted Keplerian Elliptical Orbits for active satellite sub-tasks
-        const activeOrbs = this.satelliteOrbs.filter((sat) => sat && !sat.isCompleted);
+        const activeOrbs = (
+            this.satelliteOrbs as unknown as Array<{
+                isCompleted?: boolean;
+                completeTask?: () => void;
+                getOrbTransform?: () => Transform;
+                getTransform?: () => Transform;
+                getSceneObject?: () => SceneObject;
+                orbName?: string;
+            }>
+        ).filter((sat) => sat && !sat.isCompleted);
         const activeCount = Math.max(1, activeOrbs.length);
 
         for (let i = 0; i < activeOrbs.length; i++) {
@@ -192,15 +195,17 @@ export class SpatialMatrixManager extends BaseScriptComponent {
 
             const satPos = new vec3(satX, satY, satZ);
             const satTr =
-                typeof (sat as unknown as { getOrbTransform?: () => Transform }).getOrbTransform === "function"
-                    ? (sat as unknown as { getOrbTransform: () => Transform }).getOrbTransform()
-                    : sat.getTransform
+                typeof sat.getOrbTransform === "function"
+                    ? sat.getOrbTransform()
+                    : typeof sat.getTransform === "function"
                       ? sat.getTransform()
-                      : sat.getSceneObject().getTransform();
+                      : sat.getSceneObject
+                        ? sat.getSceneObject().getTransform()
+                        : (this.getSceneObject().getTransform() as Transform);
             satTr.setWorldPosition(satPos);
 
             // Auto-align corresponding tether beam renderer if provided in array
-            const origIndex = this.satelliteOrbs.indexOf(sat);
+            const origIndex = (this.satelliteOrbs as unknown as unknown[]).indexOf(sat);
             if (
                 origIndex !== -1 &&
                 origIndex < this.tetherBeamRenderers.length &&
@@ -220,15 +225,21 @@ export class SpatialMatrixManager extends BaseScriptComponent {
      * Completes a task orb by index and triggers completion effects
      */
     public completeTaskOrb(orbIndex: number): { remainingCount: number; isClusterComplete: boolean } {
-        if (orbIndex >= 0 && orbIndex < this.satelliteOrbs.length) {
-            const orb = this.satelliteOrbs[orbIndex];
+        const satArray = this.satelliteOrbs as unknown as Array<{
+            isCompleted?: boolean;
+            completeTask?: () => void;
+        }>;
+        if (orbIndex >= 0 && orbIndex < satArray.length) {
+            const orb = satArray[orbIndex];
             if (orb) {
                 orb.isCompleted = true;
-                orb.completeTask();
+                if (typeof orb.completeTask === "function") {
+                    orb.completeTask();
+                }
             }
         }
 
-        const activeNodes = this.satelliteOrbs.filter((o) => o && !o.isCompleted);
+        const activeNodes = satArray.filter((o) => o && !o.isCompleted);
         print(`[SpatialMatrixManager] Task Orb ${orbIndex} completed. Active remaining: ${activeNodes.length}`);
         return {
             remainingCount: activeNodes.length,
@@ -240,8 +251,9 @@ export class SpatialMatrixManager extends BaseScriptComponent {
      * Dynamically registers a new satellite task orb into the active orbital cluster
      */
     public registerSatelliteOrb(orb: KineticTaskOrb): number {
-        if (orb && !this.satelliteOrbs.includes(orb)) {
-            this.satelliteOrbs.push(orb);
+        const item = orb as unknown as SceneObject;
+        if (item && !(this.satelliteOrbs as unknown as unknown[]).includes(item)) {
+            this.satelliteOrbs.push(item);
             print(
                 `[SpatialMatrixManager] Registered new dynamic satellite orb '${orb.orbName}'. Total nodes: ${this.satelliteOrbs.length}`,
             );
@@ -261,7 +273,8 @@ export class SpatialMatrixManager extends BaseScriptComponent {
      * Returns active cluster metrics for SpatialHolographicRingHUD status sync
      */
     public getClusterMetrics(): { totalCount: number; completedCount: number; activeCategory: string } {
-        const completedCount = this.satelliteOrbs.filter((o) => o?.isCompleted).length;
+        const satArray = this.satelliteOrbs as unknown as Array<{ isCompleted?: boolean }>;
+        const completedCount = satArray.filter((o) => o?.isCompleted).length;
         return {
             totalCount: this.satelliteOrbs.length,
             completedCount,
@@ -311,4 +324,4 @@ export class SpatialMatrixManager extends BaseScriptComponent {
     }
 }
 
-// BuildSync: 2026-08-13T18:59:42.166Z
+// BuildSync: 2026-08-13T19:06:44.784Z

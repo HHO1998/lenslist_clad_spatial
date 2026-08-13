@@ -40,15 +40,15 @@ export class SpatialVoiceGestureController extends BaseScriptComponent {
 
     @allowUndefined
     @input
-    matrixManager: SpatialMatrixManager = null as unknown as SpatialMatrixManager;
+    matrixManager: ScriptComponent = null as unknown as ScriptComponent;
 
     @allowUndefined
     @input
-    warpTimer: SpatialWarpTimer = null as unknown as SpatialWarpTimer;
+    warpTimer: ScriptComponent = null as unknown as ScriptComponent;
 
     @allowUndefined
     @input
-    audioController: SpatialAudioController = null as unknown as SpatialAudioController;
+    audioController: ScriptComponent = null as unknown as ScriptComponent;
 
     private activeGesture: SpatialGestureType = "None";
     private activeIntent: SpatialVoiceIntent = "None";
@@ -134,9 +134,20 @@ export class SpatialVoiceGestureController extends BaseScriptComponent {
     private executeVoiceIntent(intent: SpatialVoiceIntent) {
         print(`[SpatialVoiceGestureController] Executing Voice Intent: '${intent}'`);
 
-        if (this.audioController && typeof this.audioController.playTetherLaserSound === "function") {
+        const audio = this.audioController as unknown as {
+            playTetherLaserSound?: () => void;
+            playTaskCompletionSound?: () => void;
+        };
+        const matrix = this.matrixManager as unknown as {
+            runLeafTestSuite?: () => void;
+        };
+        const warp = this.warpTimer as unknown as {
+            triggerPulseFeedback?: () => void;
+        };
+
+        if (audio && typeof audio.playTetherLaserSound === "function") {
             try {
-                this.audioController.playTetherLaserSound();
+                audio.playTetherLaserSound();
             } catch (e) {
                 print(`[SpatialVoiceGestureController] Deferred audio playback: ${e}`);
             }
@@ -144,27 +155,27 @@ export class SpatialVoiceGestureController extends BaseScriptComponent {
 
         switch (intent) {
             case "OrganizeMatrix":
-                if (this.matrixManager && typeof this.matrixManager.runLeafTestSuite === "function") {
+                if (matrix && typeof matrix.runLeafTestSuite === "function") {
                     try {
-                        this.matrixManager.runLeafTestSuite();
+                        matrix.runLeafTestSuite();
                     } catch (e) {
                         print(`[SpatialVoiceGestureController] Deferred matrix assertions: ${e}`);
                     }
                 }
                 break;
             case "FocusWarp":
-                if (this.warpTimer && typeof this.warpTimer.triggerPulseFeedback === "function") {
+                if (warp && typeof warp.triggerPulseFeedback === "function") {
                     try {
-                        this.warpTimer.triggerPulseFeedback();
+                        warp.triggerPulseFeedback();
                     } catch (e) {
                         print(`[SpatialVoiceGestureController] Deferred warp timer trigger: ${e}`);
                     }
                 }
                 break;
             case "ShatterCompleted":
-                if (this.audioController && typeof this.audioController.playTaskCompletionSound === "function") {
+                if (audio && typeof audio.playTaskCompletionSound === "function") {
                     try {
-                        this.audioController.playTaskCompletionSound();
+                        audio.playTaskCompletionSound();
                     } catch (e) {
                         print(`[SpatialVoiceGestureController] Deferred audio completion: ${e}`);
                     }
