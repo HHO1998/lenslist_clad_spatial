@@ -13,6 +13,7 @@ declare class vec3 {
     constructor(x?: number, y?: number, z?: number);
     static zero(): vec3;
     static one(): vec3;
+    static up(): vec3;
     sub(other: vec3): vec3;
     add(other: vec3): vec3;
     scale(factor: number): vec3;
@@ -28,12 +29,18 @@ declare class quat {
     z: number;
     w: number;
     static fromEulerVec(euler: vec3): quat;
+    static lookAt(forward: vec3, up: vec3): quat;
+    static fromRotationTo(from: vec3, to: vec3): quat;
     toEulerAngles(): vec3;
 }
 
 declare class Transform {
     getWorldPosition(): vec3;
     setWorldPosition(position: vec3): void;
+    getWorldRotation(): quat;
+    setWorldRotation(rotation: quat): void;
+    getWorldScale(): vec3;
+    setWorldScale(scale: vec3): void;
     getLocalPosition(): vec3;
     setLocalPosition(position: vec3): void;
     getLocalScale(): vec3;

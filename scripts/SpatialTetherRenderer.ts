@@ -13,14 +13,23 @@ export class SpatialTetherRenderer extends BaseScriptComponent {
     @input
     tetherName = "Elastic Laser Tether";
 
+    /** @input @allowundefined */
+    parentOrb: SceneObject;
+
+    /** @input @allowundefined */
+    targetOrb: SceneObject;
+
     @input
-    maxTetherLength = 2.5;
+    maxTetherLength = 5.0;
 
     @input
     springStiffness = 1.2;
 
     @input
-    isTetherActive = false;
+    beamWidth = 0.02;
+
+    @input
+    isTetherActive = true;
 
     private transform: Transform;
     private currentTension = 0.0;
@@ -34,9 +43,40 @@ export class SpatialTetherRenderer extends BaseScriptComponent {
     onUpdate() {
         if (!this.isTetherActive) return;
 
+        // Auto-orient tether beam between parentOrb and targetOrb if assigned
+        if (this.parentOrb && this.targetOrb) {
+            const posA = this.parentOrb.getTransform().getWorldPosition();
+            const posB = this.targetOrb.getTransform().getWorldPosition();
+            this.updateBeamTransform(posA, posB);
+        }
+
         // Animate subtle elastic vibration when active
         const time = getTime();
         this.currentTension = Math.sin(time * 12.0) * 0.02 * this.springStiffness;
+    }
+
+    /**
+     * Stretches and aligns the tether beam object between two 3D world coordinates
+     */
+    public updateBeamTransform(posA: vec3, posB: vec3) {
+        const delta = posB.sub(posA);
+        const lenVal = (delta as unknown as { length: unknown }).length;
+        const distance =
+            typeof lenVal === "function" ? (delta as unknown as { length: () => number }).length() : (lenVal as number);
+
+        if (distance < 0.001) return;
+
+        // Set midpoint position
+        const midPoint = posA.add(posB).uniformScale(0.5);
+        this.transform.setWorldPosition(midPoint);
+
+        // Align Z-axis along beam direction
+        const dir = delta.normalize();
+        const lookRot = quat.lookAt(dir, vec3.up());
+        this.transform.setWorldRotation(lookRot);
+
+        // Scale beam length along Z-axis
+        this.transform.setWorldScale(new vec3(this.beamWidth, this.beamWidth, distance));
     }
 
     /**
@@ -68,6 +108,7 @@ export class SpatialTetherRenderer extends BaseScriptComponent {
     public activateTether(originPos: vec3, targetPos: vec3) {
         this.isTetherActive = true;
         const { distance } = this.computeTetherVector(originPos, targetPos);
+        this.updateBeamTransform(originPos, targetPos);
 
         print(
             `[SpatialTetherRenderer] Laser tether ACTIVE (${distance.toFixed(2)}m distance, tension: ${this.currentTension.toFixed(3)})`,
