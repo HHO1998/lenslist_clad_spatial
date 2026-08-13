@@ -1,117 +1,117 @@
 {
-  "project_id": "lenslist_clad_spatial",
-  "hackathon": "The CLAD Summer Hackathon 2026",
-  "challenge_week": 1,
-  "theme": "ORGANIZE",
-  "updated_at": "2026-08-13T07:43:46+05:30",
-  "epoch": 1786587736,
-  "presets": [
-    {
-      "preset_id": "neural_work_matrix",
-      "name": "Neural Work Matrix",
-      "category": "WORK",
-      "orbit_radius_meters": 0.35,
-      "orbit_speed": 0.8,
-      "parent_orb": {
-        "name": "Quarterly Product Strategy",
-        "priority_mass": 3.0,
-        "base_color": "#00F0FF",
-        "rim_color": "#9D00FF"
-      },
-      "satellite_orbs": [
+    "project_id": "lenslist_clad_spatial",
+    "hackathon": "The CLAD Summer Hackathon 2026",
+    "challenge_week": 1,
+    "theme": "ORGANIZE",
+    "updated_at": "2026-08-13T07:43:46+05:30",
+    "epoch": 1786587736,
+    "presets": [
         {
-          "name": "Lens Studio Shader Optimization",
-          "priority_mass": 1.2,
-          "base_color": "#00FF66"
+            "preset_id": "neural_work_matrix",
+            "name": "Neural Work Matrix",
+            "category": "WORK",
+            "orbit_radius_meters": 0.35,
+            "orbit_speed": 0.8,
+            "parent_orb": {
+                "name": "Quarterly Product Strategy",
+                "priority_mass": 3.0,
+                "base_color": "#00F0FF",
+                "rim_color": "#9D00FF"
+            },
+            "satellite_orbs": [
+                {
+                    "name": "Lens Studio Shader Optimization",
+                    "priority_mass": 1.2,
+                    "base_color": "#00FF66"
+                },
+                {
+                    "name": "Spectacles Hand Tracking Calibration",
+                    "priority_mass": 1.5,
+                    "base_color": "#FFB700"
+                },
+                {
+                    "name": "LEAF Test Suite Verification",
+                    "priority_mass": 2.0,
+                    "base_color": "#FF0077"
+                }
+            ]
         },
         {
-          "name": "Spectacles Hand Tracking Calibration",
-          "priority_mass": 1.5,
-          "base_color": "#FFB700"
+            "preset_id": "deep_focus_sprint",
+            "name": "Deep Focus Sprint",
+            "category": "FOCUS",
+            "orbit_radius_meters": 0.25,
+            "orbit_speed": 1.2,
+            "parent_orb": {
+                "name": "Hyper-Torus Focus Session",
+                "priority_mass": 2.5,
+                "base_color": "#FF00E5",
+                "rim_color": "#00FFFF"
+            },
+            "satellite_orbs": [
+                {
+                    "name": "25m Deep Work Chronometer",
+                    "priority_mass": 1.0,
+                    "base_color": "#00E5FF"
+                }
+            ]
         },
         {
-          "name": "LEAF Test Suite Verification",
-          "priority_mass": 2.0,
-          "base_color": "#FF0077"
+            "preset_id": "personal_galaxy",
+            "name": "Personal Galaxy",
+            "category": "PERSONAL",
+            "orbit_radius_meters": 0.4,
+            "orbit_speed": 0.5,
+            "parent_orb": {
+                "name": "Mindful Wellness Cluster",
+                "priority_mass": 1.8,
+                "base_color": "#00FFCC",
+                "rim_color": "#3300FF"
+            },
+            "satellite_orbs": [
+                {
+                    "name": "Hydration Tracking",
+                    "priority_mass": 1.0,
+                    "base_color": "#0099FF"
+                },
+                {
+                    "name": "Spatial Movement Break",
+                    "priority_mass": 1.4,
+                    "base_color": "#FF9900"
+                }
+            ]
         }
-      ]
-    },
-    {
-      "preset_id": "deep_focus_sprint",
-      "name": "Deep Focus Sprint",
-      "category": "FOCUS",
-      "orbit_radius_meters": 0.25,
-      "orbit_speed": 1.2,
-      "parent_orb": {
-        "name": "Hyper-Torus Focus Session",
-        "priority_mass": 2.5,
-        "base_color": "#FF00E5",
-        "rim_color": "#00FFFF"
-      },
-      "satellite_orbs": [
+    ],
+    "voice_gesture_triggers": [
         {
-          "name": "25m Deep Work Chronometer",
-          "priority_mass": 1.0,
-          "base_color": "#00E5FF"
-        }
-      ]
-    },
-    {
-      "preset_id": "personal_galaxy",
-      "name": "Personal Galaxy",
-      "category": "PERSONAL",
-      "orbit_radius_meters": 0.4,
-      "orbit_speed": 0.5,
-      "parent_orb": {
-        "name": "Mindful Wellness Cluster",
-        "priority_mass": 1.8,
-        "base_color": "#00FFCC",
-        "rim_color": "#3300FF"
-      },
-      "satellite_orbs": [
-        {
-          "name": "Hydration Tracking",
-          "priority_mass": 1.0,
-          "base_color": "#0099FF"
+            "trigger_id": "voice_organize",
+            "keywords": ["organize", "matrix", "cluster"],
+            "intent": "OrganizeMatrix",
+            "min_confidence": 0.75
         },
         {
-          "name": "Spatial Movement Break",
-          "priority_mass": 1.4,
-          "base_color": "#FF9900"
+            "trigger_id": "voice_focus",
+            "keywords": ["focus", "warp", "timer"],
+            "intent": "FocusWarp",
+            "min_confidence": 0.8
+        },
+        {
+            "trigger_id": "voice_shatter",
+            "keywords": ["shatter", "complete", "clear"],
+            "intent": "ShatterCompleted",
+            "min_confidence": 0.85
+        },
+        {
+            "trigger_id": "gesture_pinch",
+            "gesture": "Pinch",
+            "pinch_distance_max_meters": 0.03,
+            "action": "TetherGrab"
+        },
+        {
+            "trigger_id": "gesture_dual_expand",
+            "gesture": "DualExpand",
+            "span_delta_min_meters": 0.15,
+            "action": "ScaleMatrixCluster"
         }
-      ]
-    }
-  ],
-  "voice_gesture_triggers": [
-    {
-      "trigger_id": "voice_organize",
-      "keywords": ["organize", "matrix", "cluster"],
-      "intent": "OrganizeMatrix",
-      "min_confidence": 0.75
-    },
-    {
-      "trigger_id": "voice_focus",
-      "keywords": ["focus", "warp", "timer"],
-      "intent": "FocusWarp",
-      "min_confidence": 0.8
-    },
-    {
-      "trigger_id": "voice_shatter",
-      "keywords": ["shatter", "complete", "clear"],
-      "intent": "ShatterCompleted",
-      "min_confidence": 0.85
-    },
-    {
-      "trigger_id": "gesture_pinch",
-      "gesture": "Pinch",
-      "pinch_distance_max_meters": 0.03,
-      "action": "TetherGrab"
-    },
-    {
-      "trigger_id": "gesture_dual_expand",
-      "gesture": "DualExpand",
-      "span_delta_min_meters": 0.15,
-      "action": "ScaleMatrixCluster"
-    }
-  ]
+    ]
 }

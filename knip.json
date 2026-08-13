@@ -1,29 +1,6 @@
 {
-  "$schema": "https://unpkg.com/knip@5/schema.json",
-  "entry": [
-    "scripts/SpatialMatrixManager.ts",
-    "scripts/KineticTaskOrb.ts",
-    "scripts/SpatialWarpTimer.ts",
-    "scripts/SpatialAudioController.ts",
-    "scripts/SpatialTetherRenderer.ts",
-    "scripts/SpatialVoiceGestureController.ts",
-    "scripts/generators/generate_audio.ts",
-    "scripts/generators/generate_meshes.ts",
-    "tests/setup.ts",
-    "tests/*.test.ts"
-  ],
-  "project": [
-    "scripts/**/*.ts",
-    "tests/**/*.ts"
-  ],
-  "ignore": [
-    "node_modules/**"
-  ],
-  "ignoreDependencies": [
-    "tsx",
-    "@biomejs/biome",
-    "knip",
-    "typescript",
-    "vitest"
-  ]
+    "$schema": "https://unpkg.com/knip@5/schema.json",
+    "entry": ["scripts/**/*.ts", "tests/**/*.test.ts"],
+    "project": ["scripts/**/*.ts", "tests/**/*.ts"],
+    "ignoreDependencies": ["@vitest/coverage-v8"]
 }

@@ -1,0 +1,29 @@
+{
+    "name": "lenslist_clad_spatial",
+    "version": "1.0.0",
+    "description": "Gravitational Kinetic Spatial Task Matrix — Snap Spectacles AR (Lenslist CLAD Summer Hackathon 2026)",
+    "main": "scripts/SpatialMatrixManager.ts",
+    "scripts": {
+        "typecheck": "tsc --noEmit",
+        "lint": "biome check scripts tests",
+        "lint:fix": "biome check --write scripts tests",
+        "format": "biome format --write scripts tests",
+        "format:check": "biome format scripts tests",
+        "knip": "knip --production",
+        "test": "vitest run",
+        "generate:audio": "npx tsx scripts/generators/generate_audio.ts",
+        "generate:meshes": "npx tsx scripts/generators/generate_meshes.ts",
+        "generate:resources": "npm run generate:audio && npm run generate:meshes",
+        "ready": "npm run typecheck && npm run lint && npm run format:check && npm run generate:resources && npm test"
+    },
+    "devDependencies": {
+        "@biomejs/biome": "^1.9.4",
+        "knip": "^5.43.0",
+        "tsx": "^4.19.2",
+        "typescript": "^5.7.3",
+        "vitest": "^3.0.5"
+    },
+    "keywords": ["snap-spectacles", "lens-studio", "spatial-ar", "clad", "hackathon-2026"],
+    "author": "HHO1998 (Lenslist Spatial AR Team)",
+    "license": "MIT"
+}
