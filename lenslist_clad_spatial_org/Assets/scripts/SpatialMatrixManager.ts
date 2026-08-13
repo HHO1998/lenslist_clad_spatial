@@ -43,17 +43,99 @@ export class SpatialMatrixManager extends BaseScriptComponent {
     private isClusterActive = true;
 
     onAwake() {
+        this.autoDiscoverSceneOrbs();
         this.createEvent("UpdateEvent").bind(this.onUpdate.bind(this));
         this.createEvent("OnStartEvent").bind(this.onStart.bind(this));
         print(`[SpatialMatrixManager] Master Cluster '${this.clusterCategoryName}' initialized successfully! 🚀`);
     }
 
     onStart() {
+        this.autoDiscoverSceneOrbs();
         // Execute LEAF automated assertion tests on startup after all scene components are awake
         this.runLeafTestSuite();
     }
 
+    public autoDiscoverSceneOrbs() {
+        if (this.orbitRadius > 2.0 || this.orbitRadius <= 0) {
+            this.orbitRadius = 0.35;
+        }
+
+        const selfObj = this.getSceneObject();
+        if (!selfObj) return;
+
+        // Auto-discover parentTaskOrb if unassigned
+        if (!this.parentTaskOrb) {
+            const childCount = typeof selfObj.getChildrenCount === "function" ? selfObj.getChildrenCount() : 0;
+            for (let i = 0; i < childCount; i++) {
+                const child = selfObj.getChild(i);
+                if (child && child.name.indexOf("ParentTaskOrb") !== -1) {
+                    const comp =
+                        typeof child.getComponent === "function"
+                            ? child.getComponent("Component.ScriptComponent") || child.getComponent("KineticTaskOrb")
+                            : null;
+                    if (comp) {
+                        this.parentTaskOrb = comp as unknown as KineticTaskOrb;
+                        break;
+                    }
+                }
+            }
+        }
+
+        // Auto-discover satelliteOrbs if empty or unassigned
+        if (!this.satelliteOrbs || this.satelliteOrbs.length === 0) {
+            this.satelliteOrbs = [];
+            const parentObj = typeof selfObj.getParent === "function" ? selfObj.getParent() : null;
+            const searchRoot = parentObj || selfObj;
+            const totalSiblings = typeof searchRoot.getChildrenCount === "function" ? searchRoot.getChildrenCount() : 0;
+
+            for (let i = 0; i < totalSiblings; i++) {
+                const child = searchRoot.getChild(i);
+                if (child && child.name.indexOf("SubTaskOrb") !== -1) {
+                    const comp =
+                        typeof child.getComponent === "function"
+                            ? child.getComponent("Component.ScriptComponent") || child.getComponent("KineticTaskOrb")
+                            : null;
+                    if (comp) {
+                        this.satelliteOrbs.push(comp as unknown as KineticTaskOrb);
+                    }
+                }
+            }
+        }
+
+        // Auto-discover tetherBeamRenderers if empty or unassigned
+        if (!this.tetherBeamRenderers || this.tetherBeamRenderers.length === 0) {
+            this.tetherBeamRenderers = [];
+            if (this.parentTaskOrb) {
+                const parentOrbObj =
+                    typeof (this.parentTaskOrb as unknown as { getSceneObject?: () => SceneObject }).getSceneObject ===
+                    "function"
+                        ? (this.parentTaskOrb as unknown as { getSceneObject: () => SceneObject }).getSceneObject()
+                        : null;
+                if (parentOrbObj) {
+                    const childCount =
+                        typeof parentOrbObj.getChildrenCount === "function" ? parentOrbObj.getChildrenCount() : 0;
+                    for (let i = 0; i < childCount; i++) {
+                        const child = parentOrbObj.getChild(i);
+                        if (child && child.name.indexOf("Tether_") !== -1) {
+                            const comp =
+                                typeof child.getComponent === "function"
+                                    ? child.getComponent("Component.ScriptComponent") ||
+                                      child.getComponent("SpatialTetherRenderer")
+                                    : null;
+                            if (comp) {
+                                this.tetherBeamRenderers.push(comp as unknown as BaseScriptComponent);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     onUpdate() {
+        if (!this.parentTaskOrb || !this.satelliteOrbs || this.satelliteOrbs.length === 0) {
+            this.autoDiscoverSceneOrbs();
+        }
         if (!this.isClusterActive || !this.parentTaskOrb) return;
 
         const parentTr =
@@ -213,4 +295,4 @@ export class SpatialMatrixManager extends BaseScriptComponent {
     }
 }
 
-// BuildSync: 2026-08-13T17:18:56.751Z
+// BuildSync: 2026-08-13T17:26:07.101Z

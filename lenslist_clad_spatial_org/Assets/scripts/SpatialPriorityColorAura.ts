@@ -90,4 +90,4 @@ export class SpatialPriorityColorAura extends BaseScriptComponent {
     }
 }
 
-// BuildSync: 2026-08-13T17:18:56.755Z
+// BuildSync: 2026-08-13T17:26:07.104Z

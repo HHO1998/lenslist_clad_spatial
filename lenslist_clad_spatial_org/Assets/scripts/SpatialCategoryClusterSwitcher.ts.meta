@@ -29,6 +29,9 @@
   PackagePolicy: CanBeUnpacked
   ScriptInputsHidden:
     activeCategory: false
+    burstFX: false
+    matrixManager: false
+    ringHUD: false
     switcherName: false
   ScriptTypesHidden:
     {}
@@ -41,8 +44,15 @@
   DefaultScriptInputs:
     - switcherName: Multi-Category Matrix Switcher
       activeCategory: WORK
+      ringHUD: !<MappingBased.AssignableType_1> 00000000-0000-0000-0000-000000000000
+      matrixManager: !<MappingBased.AssignableType_2> 00000000-0000-0000-0000-000000000000
+      burstFX: !<MappingBased.AssignableType_3> 00000000-0000-0000-0000-000000000000
   ScriptTypes:
     -
       {}
   InputLines:
-    []
+    - '// @input string switcherName = "Multi-Category Matrix Switcher"'
+    - '// @input string activeCategory = "WORK"'
+    - // @input AssignableType_1 ringHUD
+    - // @input AssignableType_2 matrixManager
+    - // @input AssignableType_3 burstFX

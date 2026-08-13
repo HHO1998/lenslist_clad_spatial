@@ -121,4 +121,4 @@ export class SpatialBurstFX extends BaseScriptComponent {
     }
 }
 
-// BuildSync: 2026-08-13T17:18:56.742Z
+// BuildSync: 2026-08-13T17:26:07.098Z
