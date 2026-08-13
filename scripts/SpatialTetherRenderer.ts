@@ -35,7 +35,11 @@ export class SpatialTetherRenderer extends BaseScriptComponent {
     private currentTension = 0.0;
 
     onAwake() {
-        this.transform = this.getTransform();
+        if (typeof this.getTransform === "function") {
+            this.transform = this.getTransform();
+        } else if (typeof (this as unknown as { getSceneObject?: () => SceneObject }).getSceneObject === "function") {
+            this.transform = (this as unknown as { getSceneObject: () => SceneObject }).getSceneObject().getTransform();
+        }
         if (!this.parentOrb || !this.targetOrb) {
             this.tryAutoLinkOrbs();
         }

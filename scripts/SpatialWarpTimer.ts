@@ -22,8 +22,14 @@ export class SpatialWarpTimer extends BaseScriptComponent {
     private initialScale: vec3;
 
     onAwake() {
-        this.transform = this.getTransform();
-        this.initialScale = this.transform.getLocalScale();
+        if (typeof this.getTransform === "function") {
+            this.transform = this.getTransform();
+        } else if (typeof (this as unknown as { getSceneObject?: () => SceneObject }).getSceneObject === "function") {
+            this.transform = (this as unknown as { getSceneObject: () => SceneObject }).getSceneObject().getTransform();
+        }
+        if (this.transform) {
+            this.initialScale = this.transform.getLocalScale();
+        }
 
         this.createEvent("UpdateEvent").bind(this.onUpdate.bind(this));
         print(`[SpatialWarpTimer] Chronometer '${this.timerName}' initialized (${this.focusDurationMinutes}m)`);

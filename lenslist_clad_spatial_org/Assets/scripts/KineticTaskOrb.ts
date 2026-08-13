@@ -31,7 +31,15 @@ export class KineticTaskOrb extends BaseScriptComponent {
 
     public getOrbTransform(): Transform {
         if (!this.transform) {
-            this.transform = this.getTransform();
+            if (typeof this.getTransform === "function") {
+                this.transform = this.getTransform();
+            } else if (
+                typeof (this as unknown as { getSceneObject?: () => SceneObject }).getSceneObject === "function"
+            ) {
+                this.transform = (this as unknown as { getSceneObject: () => SceneObject })
+                    .getSceneObject()
+                    .getTransform();
+            }
         }
         return this.transform;
     }
@@ -128,4 +136,4 @@ export class KineticTaskOrb extends BaseScriptComponent {
     }
 }
 
-// BuildSync: 2026-08-13T19:06:44.780Z
+// BuildSync: 2026-08-13T19:15:39.358Z

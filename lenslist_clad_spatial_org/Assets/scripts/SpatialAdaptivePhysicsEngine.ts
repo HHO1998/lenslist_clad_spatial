@@ -143,4 +143,4 @@ export class SpatialAdaptivePhysicsEngine extends BaseScriptComponent {
     }
 }
 
-// BuildSync: 2026-08-13T19:06:44.781Z
+// BuildSync: 2026-08-13T19:15:39.359Z

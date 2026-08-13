@@ -29,7 +29,11 @@ export class SpatialHolographicRingHUD extends BaseScriptComponent {
     private currentRotationDeg = 0.0;
 
     onAwake() {
-        this.transform = this.getTransform();
+        if (typeof this.getTransform === "function") {
+            this.transform = this.getTransform();
+        } else if (typeof (this as unknown as { getSceneObject?: () => SceneObject }).getSceneObject === "function") {
+            this.transform = (this as unknown as { getSceneObject: () => SceneObject }).getSceneObject().getTransform();
+        }
         print(`[SpatialHolographicRingHUD] Initialized: '${this.hudName}' (Radius: ${this.ringRadiusMeters}m)`);
     }
 
@@ -139,4 +143,4 @@ export class SpatialHolographicRingHUD extends BaseScriptComponent {
     }
 }
 
-// BuildSync: 2026-08-13T19:06:44.784Z
+// BuildSync: 2026-08-13T19:15:39.361Z

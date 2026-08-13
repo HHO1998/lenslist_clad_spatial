@@ -324,4 +324,4 @@ export class SpatialMatrixManager extends BaseScriptComponent {
     }
 }
 
-// BuildSync: 2026-08-13T19:06:44.784Z
+// BuildSync: 2026-08-13T19:15:39.361Z
