@@ -71,7 +71,7 @@ export class SpatialMatrixManager extends BaseScriptComponent {
                 if (child && child.name.indexOf("ParentTaskOrb") !== -1) {
                     const comp =
                         typeof child.getComponent === "function"
-                            ? child.getComponent("Component.ScriptComponent") || child.getComponent("KineticTaskOrb")
+                            ? child.getComponent("Component.ScriptComponent")
                             : null;
                     if (comp) {
                         this.parentTaskOrb = comp as unknown as KineticTaskOrb;
@@ -93,7 +93,7 @@ export class SpatialMatrixManager extends BaseScriptComponent {
                 if (child && child.name.indexOf("SubTaskOrb") !== -1) {
                     const comp =
                         typeof child.getComponent === "function"
-                            ? child.getComponent("Component.ScriptComponent") || child.getComponent("KineticTaskOrb")
+                            ? child.getComponent("Component.ScriptComponent")
                             : null;
                     if (comp) {
                         this.satelliteOrbs.push(comp as unknown as KineticTaskOrb);
@@ -119,8 +119,7 @@ export class SpatialMatrixManager extends BaseScriptComponent {
                         if (child && child.name.indexOf("Tether_") !== -1) {
                             const comp =
                                 typeof child.getComponent === "function"
-                                    ? child.getComponent("Component.ScriptComponent") ||
-                                      child.getComponent("SpatialTetherRenderer")
+                                    ? child.getComponent("Component.ScriptComponent")
                                     : null;
                             if (comp) {
                                 this.tetherBeamRenderers.push(comp as unknown as BaseScriptComponent);
@@ -165,7 +164,7 @@ export class SpatialMatrixManager extends BaseScriptComponent {
                         type: string,
                     ) => { isManagedByMatrix?: boolean; api?: { isManagedByMatrix?: boolean } } | null;
                 };
-                const comp = satObj.getComponent("Component.ScriptComponent") || satObj.getComponent("KineticTaskOrb");
+                const comp = satObj.getComponent("Component.ScriptComponent");
                 if (comp) {
                     comp.isManagedByMatrix = true;
                     if (comp.api) comp.api.isManagedByMatrix = true;
@@ -312,4 +311,4 @@ export class SpatialMatrixManager extends BaseScriptComponent {
     }
 }
 
-// BuildSync: 2026-08-13T17:40:20.344Z
+// BuildSync: 2026-08-13T18:59:42.166Z
