@@ -49,7 +49,6 @@ Unlike traditional 2D floating screens, this experience converts task management
 ```
 lenslist_clad_spatial/
 ├── ASSEMBLY_GUIDE.md               # Step-by-Step Lens Studio Hierarchy & Recording Guide
-├── RULEBOOK.md                     # Creative & Architectural Mandate (Out-of-the-Box 3D Rules)
 ├── README.md                       # Project Overview & Hackathon Documentation
 ├── scripts/                        # Lens Studio TypeScript & Spatial Controllers
 │   ├── KineticTaskOrb.ts           # Volumetric Gravitational Task Node System
