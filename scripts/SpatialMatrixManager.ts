@@ -73,8 +73,13 @@ export class SpatialMatrixManager extends BaseScriptComponent {
 
     private assertSpatialLimits(): boolean {
         const parentPos = this.parentTaskOrb ? this.parentTaskOrb.getTransform().getWorldPosition() : vec3.zero();
-        // Ensure matrix fits inside Spectacles FOV (within 3 meters from camera origin)
-        return parentPos.length() < 3.5;
+        // Ensure matrix fits inside Spectacles FOV (within 3.5 meters from camera origin)
+        const lenVal = (parentPos as unknown as { length: unknown }).length;
+        const parentLen =
+            typeof lenVal === "function"
+                ? (parentPos as unknown as { length: () => number }).length()
+                : (lenVal as number);
+        return parentLen < 3.5;
     }
 
     private assertNodeCount(): boolean {

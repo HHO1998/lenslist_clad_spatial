@@ -33,10 +33,10 @@ export class SpatialVoiceGestureController extends BaseScriptComponent {
     @input
     matrixManager: SpatialMatrixManager;
 
-    @input
+    /** @input @allowundefined */
     warpTimer: SpatialWarpTimer;
 
-    @input
+    /** @input @allowundefined */
     audioController: SpatialAudioController;
 
     private activeGesture: SpatialGestureType = "None";

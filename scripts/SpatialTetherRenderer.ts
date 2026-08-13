@@ -44,7 +44,9 @@ export class SpatialTetherRenderer extends BaseScriptComponent {
      */
     public computeTetherVector(originPos: vec3, targetPos: vec3): { direction: vec3; distance: number } {
         const delta = targetPos.sub(originPos);
-        const distance = delta.length();
+        const lenVal = (delta as unknown as { length: unknown }).length;
+        const distance =
+            typeof lenVal === "function" ? (delta as unknown as { length: () => number }).length() : (lenVal as number);
         const direction = distance > 0 ? delta.normalize() : vec3.zero();
 
         return { direction, distance };
