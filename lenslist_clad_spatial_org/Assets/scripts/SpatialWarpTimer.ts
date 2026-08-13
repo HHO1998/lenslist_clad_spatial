@@ -79,3 +79,5 @@ export class SpatialWarpTimer extends BaseScriptComponent {
         this.transform.setLocalScale(this.initialScale.uniformScale(2.5));
     }
 }
+
+// BuildSync: 2026-08-13T10:47:13.726Z

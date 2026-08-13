@@ -48,3 +48,5 @@ export class SpatialAudioController extends BaseScriptComponent {
         this.playSpatialPulseAt(new vec3(0, 1.5, 1.0));
     }
 }
+
+// BuildSync: 2026-08-13T10:47:13.708Z
