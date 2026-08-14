@@ -136,5 +136,3 @@ export class SpatialPersistenceManager extends BaseScriptComponent {
         print(`[SpatialPersistenceManager] State cleared for Key: '${this.persistenceKey}'`);
     }
 }
-
-// BuildSync: 2026-08-14T09:11:40.852Z

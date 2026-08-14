@@ -461,5 +461,3 @@ export class SpatialMatrixManager extends BaseScriptComponent {
         return this.satelliteOrbs.length >= 0;
     }
 }
-
-// BuildSync: 2026-08-14T09:11:40.850Z

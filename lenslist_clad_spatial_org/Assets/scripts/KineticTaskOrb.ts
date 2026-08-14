@@ -140,5 +140,3 @@ export class KineticTaskOrb extends BaseScriptComponent {
         }
     }
 }
-
-// BuildSync: 2026-08-14T09:11:40.846Z

@@ -156,5 +156,3 @@ export class SpatialTaskSpawner extends BaseScriptComponent {
         return this.spawnedOrbCount;
     }
 }
-
-// BuildSync: 2026-08-14T09:11:40.855Z

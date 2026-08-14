@@ -172,5 +172,3 @@ export class SpatialCategoryClusterSwitcher extends BaseScriptComponent {
         return this.activeCategory as SpatialTaskCategory;
     }
 }
-
-// BuildSync: 2026-08-14T09:11:40.848Z

@@ -181,5 +181,3 @@ export class SpatialTetherRenderer extends BaseScriptComponent {
         print("[SpatialTetherRenderer] Laser tether DEACTIVATED.");
     }
 }
-
-// BuildSync: 2026-08-14T09:11:40.855Z

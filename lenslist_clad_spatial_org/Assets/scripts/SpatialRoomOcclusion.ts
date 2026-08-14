@@ -67,5 +67,3 @@ export class SpatialRoomOcclusion extends BaseScriptComponent {
         return currentAlpha * 0.25; // Render translucent ghosting effect when occluded behind real walls
     }
 }
-
-// BuildSync: 2026-08-14T09:11:40.854Z

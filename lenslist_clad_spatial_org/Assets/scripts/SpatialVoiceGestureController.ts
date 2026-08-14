@@ -222,5 +222,3 @@ export class SpatialVoiceGestureController extends BaseScriptComponent {
         return this.recognizedEventsCount;
     }
 }
-
-// BuildSync: 2026-08-14T09:11:40.856Z
