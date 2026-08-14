@@ -423,7 +423,7 @@
   ShadowDensity: 1.000000
   Materials:
     - !<reference> 23bc138c-7718-41f4-987a-2dccbe297b74
-  Text: Follow-Up
+  Text: 📌 FOLLOW-UP
   Editable: false
   ShowEditingPreview: true
   TouchHandler: !<reference> 00000000-0000-0000-0000-000000000000
@@ -771,7 +771,7 @@
   ShadowDensity: 1.000000
   Materials:
     - !<reference> 23bc138c-7718-41f4-987a-2dccbe297b74
-  Text: Email
+  Text: 🍃 EMAIL TASK
   Editable: false
   ShowEditingPreview: true
   TouchHandler: !<reference> 00000000-0000-0000-0000-000000000000
@@ -810,7 +810,7 @@
   ShadowDensity: 1.000000
   Materials:
     - !<reference> 23bc138c-7718-41f4-987a-2dccbe297b74
-  Text: AI Prompt
+  Text: 🤖 AI PROMPT
   Editable: false
   ShowEditingPreview: true
   TouchHandler: !<reference> 00000000-0000-0000-0000-000000000000
@@ -1063,7 +1063,7 @@
   ShadowDensity: 1.000000
   Materials:
     - !<reference> b808075d-0f34-40d2-aa4b-d574e07e3aed
-  Text: UI Design
+  Text: 🎨 UI DESIGN
   Editable: false
   ShowEditingPreview: true
   TouchHandler: !<reference> 00000000-0000-0000-0000-000000000000
@@ -1307,7 +1307,7 @@
   ShadowDensity: 1.000000
   Materials:
     - !<reference> 23bc138c-7718-41f4-987a-2dccbe297b74
-  Text: CODE Refactor
+  Text: ⚡ CODE REFACTOR
   Editable: false
   ShowEditingPreview: true
   TouchHandler: !<reference> 00000000-0000-0000-0000-000000000000
