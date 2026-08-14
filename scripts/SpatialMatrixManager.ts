@@ -37,9 +37,12 @@ export class SpatialMatrixManager extends BaseScriptComponent {
     satelliteOrbs: SceneObject[] = [];
 
     @allowUndefined
-    @allowUndefined
     @input
     tetherBeamRenderers: ScriptComponent[] = [];
+
+    @allowUndefined
+    @input
+    audioController: ScriptComponent = null as unknown as ScriptComponent;
 
     private isClusterActive = true;
     private grabbedOrbIndex = -1;
@@ -108,6 +111,15 @@ export class SpatialMatrixManager extends BaseScriptComponent {
             this.grabbedOrbIndex = closestIdx;
             this.dragTargetPos = worldTouch;
             print(`[SpatialMatrixManager] 🧲 Laser Tether GRABBED on node index ${closestIdx}! Dragging with cursor.`);
+
+            // Trigger 3D directional laser tether sound
+            if (
+                this.audioController &&
+                typeof (this.audioController as unknown as { playTetherLaserSound?: () => void })
+                    .playTetherLaserSound === "function"
+            ) {
+                (this.audioController as unknown as { playTetherLaserSound: () => void }).playTetherLaserSound();
+            }
         }
     }
 
@@ -192,6 +204,26 @@ export class SpatialMatrixManager extends BaseScriptComponent {
                                 this.tetherBeamRenderers.push(comp as unknown as ScriptComponent);
                             }
                         }
+                    }
+                }
+            }
+        }
+
+        // Auto-discover audioController if empty or unassigned
+        if (!this.audioController) {
+            const parentObj = typeof selfObj.getParent === "function" ? selfObj.getParent() : null;
+            const searchRoot = parentObj || selfObj;
+            const totalSiblings = typeof searchRoot.getChildrenCount === "function" ? searchRoot.getChildrenCount() : 0;
+            for (let i = 0; i < totalSiblings; i++) {
+                const child = searchRoot.getChild(i);
+                if (child && child.name.indexOf("SpatialAudio") !== -1) {
+                    const comp =
+                        typeof child.getComponent === "function"
+                            ? child.getComponent("Component.ScriptComponent")
+                            : null;
+                    if (comp) {
+                        this.audioController = comp as unknown as ScriptComponent;
+                        break;
                     }
                 }
             }

@@ -918,6 +918,7 @@
         - !<reference> 0339e207-1b17-4cd5-896b-d560818200a8
         - !<reference> 90d9fc98-25d1-491b-9962-90938b89c60d
         - !<reference> 435d9b59-c837-4bc9-8e6c-f7e8de995506
+      audioController: !<reference.ScriptComponent> f2c6d2fb-e377-495e-a4c9-3784ddccccf0
   ScriptTypes:
     "":
       {}
@@ -1207,15 +1208,15 @@
   AudioTrack: !<reference> 837e4327-9bf7-401f-804c-01e0cb931c70
   EnableAutoplayLoop: false
   Volume: 1.000000
-  EnableMixToSnap: false
+  EnableMixToSnap: true
   RecordVolume: 1.000000
-  EnableSpatialAudio: false
+  EnableSpatialAudio: true
   EnableDistanceEffect: false
   CurveType: Logarithm
   MinDistance: 0.000000
   MaxDistance: 100.000000
   EnableDirectivityEffect: false
-  EnablePositionEffect: false
+  EnablePositionEffect: true
 - !<SceneObject/b6b1804a-9238-41ee-b5f1-0986f473aca3>
   PrefabRemaps:
     []
