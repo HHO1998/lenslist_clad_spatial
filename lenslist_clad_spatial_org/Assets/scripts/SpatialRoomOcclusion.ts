@@ -68,4 +68,4 @@ export class SpatialRoomOcclusion extends BaseScriptComponent {
     }
 }
 
-// BuildSync: 2026-08-14T06:14:20.718Z
+// BuildSync: 2026-08-14T06:47:20.629Z

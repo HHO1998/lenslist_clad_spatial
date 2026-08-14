@@ -37,17 +37,94 @@ export class SpatialMatrixManager extends BaseScriptComponent {
     satelliteOrbs: SceneObject[] = [];
 
     @allowUndefined
+    @allowUndefined
     @input
     tetherBeamRenderers: ScriptComponent[] = [];
 
     private isClusterActive = true;
+    private grabbedOrbIndex = -1;
+    private dragTargetPos: vec3 | null = null;
 
     onAwake() {
         this.autoDiscoverSceneOrbs();
         this.updateOrbitalPositions(0);
         this.createEvent("UpdateEvent").bind(this.onUpdate.bind(this));
         this.createEvent("OnStartEvent").bind(this.onStart.bind(this));
+
+        // Register Touch & Mouse Interaction Events for Live Preview & Spectacles
+        try {
+            this.createEvent("TouchStartEvent").bind(this.onTouchStart.bind(this));
+            this.createEvent("TouchMoveEvent").bind(this.onTouchMove.bind(this));
+            this.createEvent("TouchEndEvent").bind(this.onTouchEnd.bind(this));
+        } catch {
+            // Safe fallback in headless unit test environments
+        }
+
         print(`[SpatialMatrixManager] Master Cluster '${this.clusterCategoryName}' initialized successfully! 🚀`);
+    }
+
+    private screenToWorldPosition(screenPos: { x: number; y: number }): vec3 {
+        // Perspective mapping for Spectacles camera at (0, 0, 40) looking at (0, 0, 0)
+        const worldX = (screenPos.x - 0.5) * 45.0;
+        const worldY = (0.5 - screenPos.y) * 28.0;
+        return new vec3(worldX, worldY, 0.0);
+    }
+
+    public onTouchStart(event: unknown) {
+        if (
+            !event ||
+            typeof (event as { getTouchPosition?: () => { x: number; y: number } }).getTouchPosition !== "function"
+        )
+            return;
+        const touchPos = (event as { getTouchPosition: () => { x: number; y: number } }).getTouchPosition();
+        const worldTouch = this.screenToWorldPosition(touchPos);
+
+        let closestIdx = -1;
+        let minDistance = 25.0; // Broad responsive grab radius
+
+        for (let i = 0; i < this.satelliteOrbs.length; i++) {
+            const sat = this.satelliteOrbs[i];
+            if (!sat) continue;
+            const satTr =
+                typeof (sat as unknown as { getOrbTransform?: () => Transform }).getOrbTransform === "function"
+                    ? (sat as unknown as { getOrbTransform: () => Transform }).getOrbTransform()
+                    : typeof (sat as unknown as { getTransform?: () => Transform }).getTransform === "function"
+                      ? (sat as unknown as { getTransform: () => Transform }).getTransform()
+                      : (sat as unknown as { getSceneObject?: () => SceneObject }).getSceneObject
+                        ? (sat as unknown as { getSceneObject: () => SceneObject }).getSceneObject().getTransform()
+                        : null;
+            if (!satTr) continue;
+            const pos = satTr.getWorldPosition();
+            const dx = pos.x - worldTouch.x;
+            const dy = pos.y - worldTouch.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < minDistance) {
+                minDistance = dist;
+                closestIdx = i;
+            }
+        }
+
+        if (closestIdx !== -1) {
+            this.grabbedOrbIndex = closestIdx;
+            this.dragTargetPos = worldTouch;
+            print(`[SpatialMatrixManager] 🧲 Laser Tether GRABBED on node index ${closestIdx}! Dragging with cursor.`);
+        }
+    }
+
+    public onTouchMove(event: unknown) {
+        if (this.grabbedOrbIndex === -1 || !event) return;
+        if (typeof (event as { getTouchPosition?: () => { x: number; y: number } }).getTouchPosition !== "function")
+            return;
+        const touchPos = (event as { getTouchPosition: () => { x: number; y: number } }).getTouchPosition();
+        this.dragTargetPos = this.screenToWorldPosition(touchPos);
+    }
+
+    public onTouchEnd() {
+        if (this.grabbedOrbIndex !== -1) {
+            print(`[SpatialMatrixManager] 🚀 Released node index ${this.grabbedOrbIndex} back to Keplerian orbit.`);
+            this.grabbedOrbIndex = -1;
+            this.dragTargetPos = null;
+        }
     }
 
     onStart() {
@@ -205,10 +282,36 @@ export class SpatialMatrixManager extends BaseScriptComponent {
                       : sat.getSceneObject
                         ? sat.getSceneObject().getTransform()
                         : (this.getSceneObject().getTransform() as Transform);
+            const origIndex = (this.satelliteOrbs as unknown as unknown[]).indexOf(sat);
+
+            if (origIndex === this.grabbedOrbIndex && this.dragTargetPos) {
+                // Interactive Elastic Pull Mode: Orb follows the cursor / hand drag in real-time!
+                const currentPos = satTr.getWorldPosition();
+                const pulledX = currentPos.x + (this.dragTargetPos.x - currentPos.x) * 0.45;
+                const pulledY = currentPos.y + (this.dragTargetPos.y - currentPos.y) * 0.45;
+                const pulledZ = currentPos.z + (this.dragTargetPos.z - currentPos.z) * 0.45;
+                const pulledPos = new vec3(pulledX, pulledY, pulledZ);
+                satTr.setWorldPosition(pulledPos);
+
+                // Auto-align corresponding tether beam renderer
+                if (
+                    origIndex !== -1 &&
+                    origIndex < this.tetherBeamRenderers.length &&
+                    this.tetherBeamRenderers[origIndex]
+                ) {
+                    const tether = this.tetherBeamRenderers[origIndex] as unknown as {
+                        updateBeamTransform?: (posA: vec3, posB: vec3) => void;
+                    };
+                    if (typeof tether.updateBeamTransform === "function") {
+                        tether.updateBeamTransform(parentPos, pulledPos);
+                    }
+                }
+                continue;
+            }
+
             satTr.setWorldPosition(satPos);
 
             // Auto-align corresponding tether beam renderer if provided in array
-            const origIndex = (this.satelliteOrbs as unknown as unknown[]).indexOf(sat);
             if (
                 origIndex !== -1 &&
                 origIndex < this.tetherBeamRenderers.length &&
@@ -327,4 +430,4 @@ export class SpatialMatrixManager extends BaseScriptComponent {
     }
 }
 
-// BuildSync: 2026-08-14T06:14:20.716Z
+// BuildSync: 2026-08-14T06:47:20.620Z
