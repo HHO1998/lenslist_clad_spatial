@@ -1,12 +1,34 @@
-# Git Ignore Policy for lenslist_clad_spatial
-*.exe
-*.zip
-*.tar.gz
+# Dependencies & Runtime
 node_modules/
-.DS_Store
-.system_generated/
-.agents/
-lenslist_clad_spatial_org/Cache/
+dist/
 *.lock.rmlock
-*.tmp
+package-lock.json
 
+# Media & Videos
+*.mp4
+*.webm
+*.mov
+*.avi
+*.mkv
+
+# Lens Studio Cache & Local User Preferences
+lenslist_clad_spatial_org/Cache/
+lenslist_clad_spatial_org/Workspaces/
+lenslist_clad_spatial_org/PluginsUserPreferences/
+
+# Secrets & Local Configurations
+*.pem
+*.key
+.env
+.env.local
+
+# IDE & AI Assistant Artifacts
+.agents/
+.system_generated/
+.claude/
+.codex/
+.cursor/
+.vscode/
+.idea/
+.DS_Store
+*.tmp

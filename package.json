@@ -5,29 +5,20 @@
     "main": "scripts/SpatialMatrixManager.ts",
     "scripts": {
         "typecheck": "tsc --noEmit",
-        "lint": "biome check scripts tests",
-        "lint:fix": "biome check --write scripts tests",
-        "format": "biome format --write scripts tests",
-        "format:check": "biome format scripts tests",
-        "validate:scene": "npx tsx tools/scene_validator.ts",
-        "knip": "knip --production",
         "test": "vitest run",
-        "generate:audio": "npx tsx tools/generators/generate_audio.ts",
-        "generate:meshes": "npx tsx tools/generators/generate_meshes.ts",
-        "generate:resources": "npm run generate:audio && npm run generate:meshes",
-        "sync": "npx tsx tools/sync_scripts.ts",
-        "bridge": "nix-shell -p python3Packages.wsgidav --run \"wsgidav --host=0.0.0.0 --port=8080 --root=. --auth=anonymous\"",
-        "git:save": "git add . && git commit -m \"chore(spatial-ar): save project snapshot and sync assets\"",
-        "ready": "npm run typecheck && npm run lint && npm run format:check && npm run validate:scene && npm run generate:resources && npm run sync && npm test"
+        "build": "tsc --noEmit"
     },
     "devDependencies": {
-        "@biomejs/biome": "^1.9.4",
-        "knip": "^5.43.0",
-        "tsx": "^4.19.2",
         "typescript": "^5.7.3",
         "vitest": "^3.0.5"
     },
-    "keywords": ["snap-spectacles", "lens-studio", "spatial-ar", "clad", "hackathon-2026"],
+    "keywords": [
+        "snap-spectacles",
+        "lens-studio",
+        "spatial-ar",
+        "clad",
+        "hackathon-2026"
+    ],
     "author": "HHO1998 (Lenslist Spatial AR Team)",
     "license": "MIT"
 }

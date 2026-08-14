@@ -71,7 +71,9 @@ Unlike traditional 2D floating screens, this experience converts task management
 lenslist_clad_spatial/
 ├── ASSEMBLY_GUIDE.md               # Step-by-Step Lens Studio Hierarchy & Scene Guide
 ├── README.md                       # Project Overview & Hackathon Documentation
-├── scripts/                        # Lens Studio TypeScript & Spatial Controllers
+├── package.json                    # Standard TypeScript & Testing Setup
+├── tsconfig.json                   # TypeScript Compiler Configuration
+├── scripts/                        # Lens Studio TypeScript & Spatial Controllers (15 Modules)
 │   ├── KineticTaskOrb.ts           # Volumetric Gravitational Task Node System
 │   ├── SpatialMatrixManager.ts     # Orbital Dynamics & Master Cluster Manager
 │   ├── SpatialCategoryClusterSwitcher.ts # Multi-Category Spatial Switcher
@@ -86,18 +88,17 @@ lenslist_clad_spatial/
 │   ├── SpatialVoiceGestureController.ts # Voice Intent & Spatial Gesture Classifier
 │   ├── SpatialHolographicRingHUD.ts # Volumetric Spatial Wrist Status Ring HUD
 │   ├── SpatialBurstFX.ts           # Volumetric Particle Shockwave Generator
-│   └── SpatialAdaptivePhysicsEngine.ts # Inverse-Square Magnetic Repulsion Engine
-├── assets/                         # Procedural 3D Meshes & Custom Shaders
-│   ├── models/KineticTaskOrbMesh.obj
-│   └── shaders/
-│       ├── FresnelEnergyShader.glsl
-│       └── SpatialShockwaveShader.glsl
+│   ├── SpatialAdaptivePhysicsEngine.ts # Inverse-Square Magnetic Repulsion Engine
+│   └── types.d.ts                  # Ambient Lens Studio 5.x & Component Declarations
+├── assets/                         # 3D Meshes, Audio FX & Custom Shaders
+│   ├── audio/                      # 3D Positional Audio Waveforms
+│   ├── models/                     # Wavefront 3D Meshes (.obj)
+│   └── shaders/                    # Custom Spectacles GLSL Shaders (.glsl)
 ├── clad/                           # CLAD AI Agent Prompts & Logs
 │   ├── CLAD_SPECS.md               # CLAD Integration Blueprint
 │   └── prompts_log.md              # Official CLAD Closed-Loop Agentic Transcript
-├── config/                         # Lens Studio & Spectacles Configurations
-├── tests/                          # 12 Vitest Automated Test Suites (47/47 Tests Passing)
-└── tools/                          # Scene Graph Validator & Asset Generators
+├── tests/                          # 12 Automated LEAF Unit Test Suites (47/47 Passing)
+└── lenslist_clad_spatial_org/      # Live Production Lens Studio 5.x Project
 ```
 
 ---

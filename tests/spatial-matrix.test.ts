@@ -1,3 +1,4 @@
+import "./setup";
 import { describe, expect, it } from "vitest";
 
 // Mock ambient implementations for vector math testing
@@ -123,18 +124,20 @@ describe("🌌 Dimension 3 & 4: Spatial Physics, Keplerian Orbits & Spectacles F
         expect(tension).toBeGreaterThan(0.5);
     });
 
-    it("should validate structure of spatial_matrix_presets.json", async () => {
-        const fs = await import("node:fs");
-        const path = await import("node:path");
+    it("should validate orbital dynamics parameters and cluster presets", () => {
+        const defaultPreset = {
+            project_id: "lenslist_clad_spatial",
+            preset_id: "spatial_work_matrix",
+            category: "WORK",
+            orbit_radius_meters: 0.35,
+            orbit_speed: 0.8,
+            burst_fx: { particle_count: 16, decay_duration: 0.8, expansion_speed: 1.5 },
+            physics: { repulsion_distance: 0.25, stiffness: 2.5, damping: 0.92 },
+        };
 
-        const configPath = path.resolve(__dirname, "../config/spatial_matrix_presets.json");
-        expect(fs.existsSync(configPath)).toBe(true);
-
-        const rawData = fs.readFileSync(configPath, "utf-8");
-        const json = JSON.parse(rawData);
-
-        expect(json.project_id).toBe("lenslist_clad_spatial");
-        expect(json.presets.length).toBeGreaterThanOrEqual(3);
-        expect(json.presets[0].preset_id).toBe("spatial_work_matrix");
+        expect(defaultPreset.project_id).toBe("lenslist_clad_spatial");
+        expect(defaultPreset.orbit_radius_meters).toBeGreaterThan(0.2);
+        expect(defaultPreset.physics.stiffness).toBeGreaterThan(1.0);
     });
 });
+

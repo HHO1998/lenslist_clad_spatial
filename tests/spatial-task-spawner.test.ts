@@ -1,3 +1,4 @@
+import "./setup";
 import { beforeEach, describe, expect, it } from "vitest";
 import { SpatialTaskSpawner } from "../scripts/SpatialTaskSpawner";
 

@@ -1,10 +1,90 @@
 /**
- * 🌌 Lens Studio 5.x Custom Project Component Type Declarations
- *
- * Ambient declarations for custom project components inside Lens Studio.
- * Standard engine types (vec3, quat, Transform, SceneObject, BaseScriptComponent, etc.)
- * are automatically provided by Lens Studio's built-in LensifyTS library declarations.
+ * 🌌 Lens Studio 5.x Ambient & Project Type Definitions
+ * 
+ * Synchronized ambient type declarations for root tsconfig and Lens Studio compilation.
  */
+
+declare function print(message: string): void;
+declare function getTime(): number;
+declare function getDeltaTime(): number;
+
+declare class vec3 {
+    x: number;
+    y: number;
+    z: number;
+    constructor(x?: number, y?: number, z?: number);
+    static zero(): vec3;
+    static one(): vec3;
+    static up(): vec3;
+    static lerp(a: vec3, b: vec3, t: number): vec3;
+    sub(other: vec3): vec3;
+    add(other: vec3): vec3;
+    scale(factor: number | vec3): vec3;
+    uniformScale(factor: number | vec3): vec3;
+    normalize(): vec3;
+    distance(other: vec3): number;
+    length: number;
+}
+
+declare class quat {
+    x: number;
+    y: number;
+    z: number;
+    w: number;
+    static fromEulerVec(euler: vec3): quat;
+    static lookAt(forward: vec3, up: vec3): quat;
+    static fromRotationTo(from: vec3, to: vec3): quat;
+    toEulerAngles(): vec3;
+}
+
+declare class Transform {
+    getWorldPosition(): vec3;
+    setWorldPosition(position: vec3): void;
+    getWorldRotation(): quat;
+    setWorldRotation(rotation: quat): void;
+    getWorldScale(): vec3;
+    setWorldScale(scale: vec3): void;
+    getLocalPosition(): vec3;
+    setLocalPosition(position: vec3): void;
+    getLocalScale(): vec3;
+    setLocalScale(scale: vec3): void;
+    getLocalRotation(): quat;
+    setLocalRotation(rotation: quat): void;
+}
+
+declare class AudioTrackAsset {}
+
+declare class AudioComponent {
+    audioTrack: AudioTrackAsset;
+    volume: number;
+    play(loops: number): void;
+    stop(): void;
+    getSceneObject(): SceneObject;
+}
+
+declare class SceneObject {
+    name: string;
+    getTransform(): Transform;
+    getComponent(componentType: string): unknown;
+    getParent(): SceneObject | null;
+    getChildrenCount(): number;
+    getChild(index: number): SceneObject;
+    destroy(): void;
+}
+
+declare class BaseScriptComponent {
+    getTransform(): Transform;
+    getSceneObject(): SceneObject;
+    createEvent(eventType: string): {
+        bind(callback: (data?: unknown) => void): void;
+    };
+}
+
+declare class ScriptComponent extends BaseScriptComponent {}
+
+declare namespace Component {
+    export class ScriptComponent extends BaseScriptComponent {}
+}
 
 declare class KineticTaskOrb extends BaseScriptComponent {
     taskTitle: string;
@@ -76,15 +156,8 @@ declare class SpatialRoomOcclusion extends BaseScriptComponent {
 
 declare class SpatialTaskSpawner extends BaseScriptComponent {
     spawnerName: string;
-    spawnSatelliteTaskOrb(
-        orbName: string,
-        priorityMass?: number,
-        initialPos?: vec3,
-    ): { orbId: string; orbName: string; mass: number; position: vec3 };
-    shatterParentOrb(
-        parentName: string,
-        parentPos: vec3,
-    ): { shatteredOrbsCount: number; burstParticlesTriggered: number };
+    spawnSatelliteTaskOrb(orbName: string, priorityMass?: number, initialPos?: vec3): { orbId: string; orbName: string; mass: number; position: vec3 };
+    shatterParentOrb(parentName: string, parentPos: vec3): { shatteredOrbsCount: number; burstParticlesTriggered: number };
     runLeafSpawnerAssertions(): boolean;
     getSpawnedCount(): number;
 }
@@ -105,4 +178,6 @@ declare class SpatialWarpTimer extends BaseScriptComponent {
     runLeafWarpAssertions(): boolean;
 }
 
-// BuildSync: 2026-08-14T09:11:40.857Z
+declare function component(target: unknown): void;
+declare function input(target: unknown, propertyKey: string): void;
+declare function allowUndefined(target: unknown, propertyKey?: string): void;
