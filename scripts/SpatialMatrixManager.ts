@@ -23,7 +23,7 @@ export class SpatialMatrixManager extends BaseScriptComponent {
     clusterCategoryName = "Spatial Work Matrix";
 
     @input
-    orbitRadius = 0.35;
+    orbitRadius = 6.5;
 
     @input
     orbitSpeed = 0.8;
@@ -56,8 +56,8 @@ export class SpatialMatrixManager extends BaseScriptComponent {
     }
 
     public autoDiscoverSceneOrbs() {
-        if (this.orbitRadius > 2.0 || this.orbitRadius <= 0) {
-            this.orbitRadius = 0.35;
+        if (this.orbitRadius <= 0) {
+            this.orbitRadius = 6.5;
         }
 
         const selfObj = this.getSceneObject();
@@ -120,8 +120,8 @@ export class SpatialMatrixManager extends BaseScriptComponent {
     }
 
     onUpdate() {
-        if (this.orbitRadius > 1.2 || this.orbitRadius <= 0) {
-            this.orbitRadius = 0.35;
+        if (this.orbitRadius <= 0) {
+            this.orbitRadius = 6.5;
         }
 
         if (!this.parentTaskOrb || !this.satelliteOrbs || this.satelliteOrbs.length === 0) {
@@ -167,10 +167,9 @@ export class SpatialMatrixManager extends BaseScriptComponent {
                         type: string,
                     ) => { isManagedByMatrix?: boolean; api?: { isManagedByMatrix?: boolean } } | null;
                 };
-                const comp = satObj.getComponent("Component.ScriptComponent");
+                const comp = satObj.getComponent("Component.ScriptComponent") as { isManagedByMatrix?: boolean } | null;
                 if (comp) {
                     comp.isManagedByMatrix = true;
-                    if (comp.api) comp.api.isManagedByMatrix = true;
                 }
             }
 
@@ -182,7 +181,7 @@ export class SpatialMatrixManager extends BaseScriptComponent {
 
             const rawX = Math.cos(angle) * this.orbitRadius;
             const rawZ = Math.sin(angle) * (this.orbitRadius * 0.95);
-            const rawY = Math.sin(angle * 2.0) * 0.05; // 3D wave harmonic
+            const rawY = Math.sin(angle * 2.0) * (this.orbitRadius * 0.08); // 3D wave harmonic
 
             // Apply 3D coordinate rotation transformation for tilted orbital plane
             const satX = parentPos.x + rawX * Math.cos(inclinationZ) - rawY * Math.sin(inclinationZ);
@@ -190,7 +189,7 @@ export class SpatialMatrixManager extends BaseScriptComponent {
                 parentPos.y +
                 rawX * Math.sin(inclinationZ) +
                 rawY * Math.cos(inclinationX) +
-                Math.sin(angle * 1.5) * 0.03;
+                Math.sin(angle * 1.5) * (this.orbitRadius * 0.05);
             const satZ = parentPos.z + rawZ * Math.cos(inclinationX) + rawY * Math.sin(inclinationX);
 
             const satPos = new vec3(satX, satY, satZ);

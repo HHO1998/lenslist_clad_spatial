@@ -7,6 +7,18 @@
 
 export type SpatialTaskCategory = "WORK" | "PERSONAL" | "CREATIVE" | "HEALTH";
 
+export interface SpatialMatrixManagerLike {
+    clusterCategoryName: string;
+}
+
+export interface SpatialHolographicRingHUDLike {
+    setCategory: (category: SpatialTaskCategory) => void;
+}
+
+export interface SpatialBurstFXLike {
+    triggerBurst: (position: vec3) => number;
+}
+
 @component
 export class SpatialCategoryClusterSwitcher extends BaseScriptComponent {
     @input
@@ -17,15 +29,15 @@ export class SpatialCategoryClusterSwitcher extends BaseScriptComponent {
 
     @allowUndefined
     @input
-    ringHUD: SpatialHolographicRingHUD = null as unknown as SpatialHolographicRingHUD;
+    ringHUD: SceneObject = null as unknown as SceneObject;
 
     @allowUndefined
     @input
-    matrixManager: SpatialMatrixManager = null as unknown as SpatialMatrixManager;
+    matrixManager: SceneObject = null as unknown as SceneObject;
 
     @allowUndefined
     @input
-    burstFX: SpatialBurstFX = null as unknown as SpatialBurstFX;
+    burstFX: SceneObject = null as unknown as SceneObject;
 
     private availableCategories: SpatialTaskCategory[] = ["WORK", "PERSONAL", "CREATIVE", "HEALTH"];
     private isTransitioning = false;
@@ -64,18 +76,49 @@ export class SpatialCategoryClusterSwitcher extends BaseScriptComponent {
         this.activeCategory = targetCategory;
 
         // Trigger volumetric particle shockwave transition if BurstFX is attached
-        if (this.burstFX && typeof this.burstFX.triggerBurst === "function") {
-            this.burstFX.triggerBurst(new vec3(0, 1.5, 1.0));
+        if (this.burstFX) {
+            const burstComp =
+                (this.burstFX as unknown as { getComponent?: (name: string) => unknown }).getComponent?.(
+                    "SpatialBurstFX",
+                ) ||
+                (this.burstFX as unknown as { getComponent?: (name: string) => unknown }).getComponent?.(
+                    "ScriptComponent",
+                ) ||
+                this.burstFX;
+            if (burstComp && typeof (burstComp as unknown as SpatialBurstFXLike).triggerBurst === "function") {
+                (burstComp as unknown as SpatialBurstFXLike).triggerBurst(new vec3(0, 1.5, 1.0));
+            }
         }
 
         // Sync active category with SpatialHolographicRingHUD
-        if (this.ringHUD && typeof this.ringHUD.setCategory === "function") {
-            this.ringHUD.setCategory(targetCategory);
+        if (this.ringHUD) {
+            const ringComp =
+                (this.ringHUD as unknown as { getComponent?: (name: string) => unknown }).getComponent?.(
+                    "SpatialHolographicRingHUD",
+                ) ||
+                (this.ringHUD as unknown as { getComponent?: (name: string) => unknown }).getComponent?.(
+                    "ScriptComponent",
+                ) ||
+                this.ringHUD;
+            if (ringComp && typeof (ringComp as unknown as SpatialHolographicRingHUDLike).setCategory === "function") {
+                (ringComp as unknown as SpatialHolographicRingHUDLike).setCategory(targetCategory);
+            }
         }
 
         // Sync category name with SpatialMatrixManager
         if (this.matrixManager) {
-            this.matrixManager.clusterCategoryName = `Spatial ${targetCategory} Matrix`;
+            const matrixComp =
+                (this.matrixManager as unknown as { getComponent?: (name: string) => unknown }).getComponent?.(
+                    "SpatialMatrixManager",
+                ) ||
+                (this.matrixManager as unknown as { getComponent?: (name: string) => unknown }).getComponent?.(
+                    "ScriptComponent",
+                ) ||
+                this.matrixManager;
+            if (matrixComp) {
+                (matrixComp as unknown as SpatialMatrixManagerLike).clusterCategoryName =
+                    `Spatial ${targetCategory} Matrix`;
+            }
         }
 
         this.isTransitioning = false;

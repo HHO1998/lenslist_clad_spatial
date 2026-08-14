@@ -46,10 +46,10 @@
     - clusterCategoryName: Spatial Work Matrix
       orbitRadius: 0.350000
       orbitSpeed: 0.800000
-      parentTaskOrb: !<MappingBased.AssignableType_1> 00000000-0000-0000-0000-000000000000
-      satelliteOrbs: !<MappingBased.AssignableType_2[]>
+      parentTaskOrb: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      satelliteOrbs: !<reference.SceneObject[]>
         []
-      tetherBeamRenderers: !<MappingBased.AssignableType_3[]>
+      tetherBeamRenderers: !<reference.ScriptComponent[]>
         []
   ScriptTypes:
     -
@@ -58,6 +58,6 @@
     - '// @input string clusterCategoryName = "Spatial Work Matrix"'
     - // @input float orbitRadius = 0.35
     - // @input float orbitSpeed = 0.8
-    - // @input AssignableType_1 parentTaskOrb
-    - "// @input AssignableType_2[] satelliteOrbs = {}"
-    - "// @input AssignableType_3[] tetherBeamRenderers = {}"
+    - // @input SceneObject parentTaskOrb
+    - "// @input SceneObject[] satelliteOrbs = {}"
+    - "// @input Component.ScriptComponent[] tetherBeamRenderers = {}"

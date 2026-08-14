@@ -87,6 +87,19 @@ export class SpatialTetherRenderer extends BaseScriptComponent {
      * Stretches and aligns the tether beam object between two 3D world coordinates
      */
     public updateBeamTransform(posA: vec3, posB: vec3) {
+        if (!this.transform) {
+            if (typeof this.getTransform === "function") {
+                this.transform = this.getTransform();
+            } else if (
+                typeof (this as unknown as { getSceneObject?: () => SceneObject }).getSceneObject === "function"
+            ) {
+                this.transform = (this as unknown as { getSceneObject: () => SceneObject })
+                    .getSceneObject()
+                    .getTransform();
+            }
+        }
+        if (!this.transform) return;
+
         const delta = posB.sub(posA);
         const lenVal = (delta as unknown as { length: unknown }).length;
         const distance =
@@ -169,4 +182,4 @@ export class SpatialTetherRenderer extends BaseScriptComponent {
     }
 }
 
-// BuildSync: 2026-08-13T19:15:39.365Z
+// BuildSync: 2026-08-14T03:36:03.034Z

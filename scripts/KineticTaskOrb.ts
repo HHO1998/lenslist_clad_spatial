@@ -75,10 +75,15 @@ export class KineticTaskOrb extends BaseScriptComponent {
             return;
         }
 
+        const selfObj = this.getSceneObject ? this.getSceneObject() : null;
+        const objName = selfObj ? selfObj.name : "";
         if (
             this.isManagedByMatrix ||
-            (this.getSceneObject() as unknown as { isManagedByMatrix?: boolean }).isManagedByMatrix
+            objName.indexOf("SubTaskOrb") !== -1 ||
+            objName.indexOf("Satellite") !== -1 ||
+            (selfObj as unknown as { isManagedByMatrix?: boolean })?.isManagedByMatrix
         ) {
+            // Managed by SpatialMatrixManager orbital mechanics!
             return;
         }
 

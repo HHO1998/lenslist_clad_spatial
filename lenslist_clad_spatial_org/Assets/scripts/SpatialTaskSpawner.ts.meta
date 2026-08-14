@@ -43,16 +43,16 @@
     []
   DefaultScriptInputs:
     - spawnerName: Volumetric Task Spawner & Shatter Engine
-      matrixManager: !<MappingBased.AssignableType_1> 00000000-0000-0000-0000-000000000000
-      burstFX: !<MappingBased.AssignableType_2> 00000000-0000-0000-0000-000000000000
-      physicsEngine: !<MappingBased.AssignableType_3> 00000000-0000-0000-0000-000000000000
+      matrixManager: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      burstFX: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      physicsEngine: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
       defaultPriorityMass: 1.500000
   ScriptTypes:
     -
       {}
   InputLines:
     - '// @input string spawnerName = "Volumetric Task Spawner & Shatter Engine"'
-    - // @input AssignableType_1 matrixManager
-    - // @input AssignableType_2 burstFX
-    - // @input AssignableType_3 physicsEngine
+    - // @input SceneObject matrixManager
+    - // @input SceneObject burstFX
+    - // @input SceneObject physicsEngine
     - // @input float defaultPriorityMass = 1.5

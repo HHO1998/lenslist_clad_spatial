@@ -5,6 +5,18 @@
  * Theme: ORGANIZE (Week 1 Upgrade)
  */
 
+export interface SpatialAdaptivePhysicsEngineLike {
+    registerNode: (id: string, initialPos: vec3) => void;
+}
+
+export interface SpatialBurstFXLike {
+    triggerBurst: (pos: vec3) => number;
+}
+
+export interface SpatialMatrixManagerLike {
+    clusterCategoryName: string;
+}
+
 @component
 export class SpatialTaskSpawner extends BaseScriptComponent {
     @input
@@ -12,15 +24,15 @@ export class SpatialTaskSpawner extends BaseScriptComponent {
 
     @allowUndefined
     @input
-    matrixManager: SpatialMatrixManager = null as unknown as SpatialMatrixManager;
+    matrixManager: SceneObject = null as unknown as SceneObject;
 
     @allowUndefined
     @input
-    burstFX: SpatialBurstFX = null as unknown as SpatialBurstFX;
+    burstFX: SceneObject = null as unknown as SceneObject;
 
     @allowUndefined
     @input
-    physicsEngine: SpatialAdaptivePhysicsEngine = null as unknown as SpatialAdaptivePhysicsEngine;
+    physicsEngine: SceneObject = null as unknown as SceneObject;
 
     @input
     defaultPriorityMass = 1.5;
@@ -48,8 +60,21 @@ export class SpatialTaskSpawner extends BaseScriptComponent {
         this.spawnedOrbCount++;
         const orbId = `dynamic_orb_${this.spawnedOrbCount}`;
 
-        if (this.physicsEngine && typeof this.physicsEngine.registerNode === "function") {
-            this.physicsEngine.registerNode(orbId, initialPos);
+        if (this.physicsEngine) {
+            const physComp =
+                (this.physicsEngine as unknown as { getComponent?: (name: string) => unknown }).getComponent?.(
+                    "SpatialAdaptivePhysicsEngine",
+                ) ||
+                (this.physicsEngine as unknown as { getComponent?: (name: string) => unknown }).getComponent?.(
+                    "ScriptComponent",
+                ) ||
+                this.physicsEngine;
+            if (
+                physComp &&
+                typeof (physComp as unknown as SpatialAdaptivePhysicsEngineLike).registerNode === "function"
+            ) {
+                (physComp as unknown as SpatialAdaptivePhysicsEngineLike).registerNode(orbId, initialPos);
+            }
         }
 
         print(
@@ -74,8 +99,18 @@ export class SpatialTaskSpawner extends BaseScriptComponent {
         print(`[SpatialTaskSpawner] SHATTERING parent orb '${parentName}' at origin...`);
 
         let burstParticlesTriggered = 0;
-        if (this.burstFX && typeof this.burstFX.triggerBurst === "function") {
-            burstParticlesTriggered = this.burstFX.triggerBurst(parentPos);
+        if (this.burstFX) {
+            const burstComp =
+                (this.burstFX as unknown as { getComponent?: (name: string) => unknown }).getComponent?.(
+                    "SpatialBurstFX",
+                ) ||
+                (this.burstFX as unknown as { getComponent?: (name: string) => unknown }).getComponent?.(
+                    "ScriptComponent",
+                ) ||
+                this.burstFX;
+            if (burstComp && typeof (burstComp as unknown as SpatialBurstFXLike).triggerBurst === "function") {
+                burstParticlesTriggered = (burstComp as unknown as SpatialBurstFXLike).triggerBurst(parentPos);
+            }
         }
 
         const subTaskNames = [`${parentName} - Sub A`, `${parentName} - Sub B`, `${parentName} - Sub C`];
@@ -122,4 +157,4 @@ export class SpatialTaskSpawner extends BaseScriptComponent {
     }
 }
 
-// BuildSync: 2026-08-13T19:15:39.364Z
+// BuildSync: 2026-08-14T03:36:03.032Z
