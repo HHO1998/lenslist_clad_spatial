@@ -173,4 +173,4 @@ export class SpatialCategoryClusterSwitcher extends BaseScriptComponent {
     }
 }
 
-// BuildSync: 2026-08-14T04:04:23.937Z
+// BuildSync: 2026-08-14T04:08:07.191Z

@@ -169,9 +169,7 @@ export class SpatialMatrixManager extends BaseScriptComponent {
             (sat as unknown as { isManagedByMatrix: boolean }).isManagedByMatrix = true;
             if (typeof (sat as unknown as { getComponent?: (type: string) => unknown }).getComponent === "function") {
                 const satObj = sat as unknown as {
-                    getComponent: (
-                        type: string,
-                    ) => { isManagedByMatrix?: boolean; api?: { isManagedByMatrix?: boolean } } | null;
+                    getComponent: (type: string) => { isManagedByMatrix?: boolean } | null;
                 };
                 const comp = satObj.getComponent("Component.ScriptComponent") as { isManagedByMatrix?: boolean } | null;
                 if (comp) {
@@ -218,12 +216,9 @@ export class SpatialMatrixManager extends BaseScriptComponent {
             ) {
                 const tether = this.tetherBeamRenderers[origIndex] as unknown as {
                     updateBeamTransform?: (posA: vec3, posB: vec3) => void;
-                    api?: { updateBeamTransform?: (posA: vec3, posB: vec3) => void };
                 };
                 if (typeof tether.updateBeamTransform === "function") {
                     tether.updateBeamTransform(parentPos, satPos);
-                } else if (tether.api && typeof tether.api.updateBeamTransform === "function") {
-                    tether.api.updateBeamTransform(parentPos, satPos);
                 }
             }
         }
