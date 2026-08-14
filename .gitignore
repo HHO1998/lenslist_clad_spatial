@@ -6,4 +6,7 @@ node_modules/
 .DS_Store
 .system_generated/
 .agents/
+lenslist_clad_spatial_org/Cache/
+*.lock.rmlock
+*.tmp
 
