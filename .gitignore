@@ -32,3 +32,13 @@ lenslist_clad_spatial_org/PluginsUserPreferences/
 .idea/
 .DS_Store
 *.tmp
+AUM_WORKSPACE_CONTEXT.md
+AGENTS.md
+CLAUDE.md
+**/AGENTS.md
+**/CLAUDE.md
+biome.json
+knip.json
+tools/
+config/
+
