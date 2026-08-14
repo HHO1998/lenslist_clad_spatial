@@ -6,6 +6,16 @@
  * are automatically provided by Lens Studio's built-in LensifyTS library declarations.
  */
 
+declare class AudioTrackAsset {}
+
+declare class AudioComponent {
+    audioTrack: AudioTrackAsset;
+    volume: number;
+    play(loops: number): void;
+    stop(): void;
+    getSceneObject(): SceneObject;
+}
+
 declare class KineticTaskOrb extends BaseScriptComponent {
     taskTitle: string;
     isCompleted: boolean;

@@ -52,7 +52,11 @@ declare class Transform {
     setLocalRotation(rotation: quat): void;
 }
 
+declare class AudioTrackAsset {}
+
 declare class AudioComponent {
+    audioTrack: AudioTrackAsset;
+    volume: number;
     play(loops: number): void;
     stop(): void;
     getSceneObject(): SceneObject;

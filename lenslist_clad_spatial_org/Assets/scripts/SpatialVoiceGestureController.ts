@@ -223,4 +223,4 @@ export class SpatialVoiceGestureController extends BaseScriptComponent {
     }
 }
 
-// BuildSync: 2026-08-14T07:09:37.862Z
+// BuildSync: 2026-08-14T07:23:27.486Z
