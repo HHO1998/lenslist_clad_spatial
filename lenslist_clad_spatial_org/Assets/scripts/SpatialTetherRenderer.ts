@@ -20,13 +20,13 @@ export class SpatialTetherRenderer extends BaseScriptComponent {
     targetOrb: SceneObject = null as unknown as SceneObject;
 
     @input
-    maxTetherLength = 5.0;
+    maxTetherLength = 25.0;
 
     @input
     springStiffness = 1.2;
 
     @input
-    beamWidth = 0.02;
+    beamWidth = 0.15;
 
     @input
     isTetherActive = true;
@@ -182,4 +182,4 @@ export class SpatialTetherRenderer extends BaseScriptComponent {
     }
 }
 
-// BuildSync: 2026-08-14T03:45:21.043Z
+// BuildSync: 2026-08-14T03:50:09.088Z

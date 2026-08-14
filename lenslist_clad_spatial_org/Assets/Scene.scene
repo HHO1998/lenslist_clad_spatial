@@ -212,9 +212,9 @@
   Enabled: true
   Layers: 1
   LocalTransform: !<TransformEntity>
-    Position: {x: -3.250000, y: 1.800000, z: 4.100000}
+    Position: {x: -7.000000, y: 3.500000, z: 10.600000}
     Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
-    Scale: {x: 1.800000, y: 1.800001, z: 1.800001}
+    Scale: {x: 1.500000, y: 1.500000, z: 1.500000}
     HasSegmentScaleCompensation: false
   Children:
     - !<own> 45e1bb1e-2918-48ae-b353-09753baf6199
@@ -323,9 +323,9 @@
   Enabled: true
   Layers: 1
   LocalTransform: !<TransformEntity>
-    Position: {x: 6.500000, y: 0.000000, z: -1.500000}
+    Position: {x: 14.000000, y: 0.000000, z: -1.500000}
     Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
-    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    Scale: {x: 1.200000, y: 1.200000, z: 1.200000}
     HasSegmentScaleCompensation: false
   Children:
     - !<own> 82a6719c-bd6e-4a15-ae14-4e2edfb3eefe
@@ -479,7 +479,7 @@
   LocalTransform: !<TransformEntity>
     Position: {x: 0.000000, y: 0.000000, z: -1.500000}
     Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
-    Scale: {x: 6.000000, y: 6.000000, z: 6.000000}
+    Scale: {x: 3.500000, y: 3.500000, z: 3.500000}
     HasSegmentScaleCompensation: false
   Children:
     - !<own> d17a1099-ab01-43a3-a1eb-05d69cb228df
@@ -730,7 +730,7 @@
   ScriptInputs:
     "":
       clusterCategoryName: Spatial Work Matrix
-      orbitRadius: 6.500000
+      orbitRadius: 14.000000
       orbitSpeed: 0.800000
       parentTaskOrb: !<reference.SceneObject> 43161cc9-ae7a-44a2-afba-3060f11d5839
       satelliteOrbs: !<reference.SceneObject[]>
@@ -900,9 +900,9 @@
   Enabled: true
   Layers: 1
   LocalTransform: !<TransformEntity>
-    Position: {x: -3.250000, y: -1.800000, z: -7.100000}
+    Position: {x: -7.000000, y: -3.500000, z: -13.600000}
     Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
-    Scale: {x: 2.400000, y: 2.400000, z: 2.400000}
+    Scale: {x: 1.800000, y: 1.800000, z: 1.800000}
     HasSegmentScaleCompensation: false
   Children:
     - !<own> b4e0f92c-8d53-4c0e-b296-0f5a31212d02
@@ -994,7 +994,7 @@
   Enabled: true
   Layers: 1
   LocalTransform: !<TransformEntity>
-    Position: {x: 0.000000, y: 0.900000, z: 0.000000}
+    Position: {x: 0.000000, y: 1.400000, z: 0.000000}
     Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
     Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
     HasSegmentScaleCompensation: false
