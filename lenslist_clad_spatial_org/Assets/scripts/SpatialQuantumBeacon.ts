@@ -101,4 +101,4 @@ export class SpatialQuantumBeacon extends BaseScriptComponent {
     }
 }
 
-// BuildSync: 2026-08-14T05:21:07.409Z
+// BuildSync: 2026-08-14T05:33:14.186Z

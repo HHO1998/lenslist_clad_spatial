@@ -143,4 +143,4 @@ export class SpatialHolographicRingHUD extends BaseScriptComponent {
     }
 }
 
-// BuildSync: 2026-08-14T05:21:07.407Z
+// BuildSync: 2026-08-14T05:33:14.180Z

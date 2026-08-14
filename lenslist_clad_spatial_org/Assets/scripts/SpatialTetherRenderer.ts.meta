@@ -58,7 +58,7 @@
     - '// @input string tetherName = "Elastic Laser Tether"'
     - // @input SceneObject parentOrb
     - // @input SceneObject targetOrb
-    - // @input float maxTetherLength = 5
+    - // @input float maxTetherLength = 25
     - // @input float springStiffness = 1.2
-    - // @input float beamWidth = 0.02
+    - // @input float beamWidth = 0.15
     - // @input bool isTetherActive = true

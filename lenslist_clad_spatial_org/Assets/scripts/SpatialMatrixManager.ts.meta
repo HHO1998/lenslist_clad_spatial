@@ -56,7 +56,7 @@
       {}
   InputLines:
     - '// @input string clusterCategoryName = "Spatial Work Matrix"'
-    - // @input float orbitRadius = 0.35
+    - // @input float orbitRadius = 11
     - // @input float orbitSpeed = 0.8
     - // @input SceneObject parentTaskOrb
     - "// @input SceneObject[] satelliteOrbs = {}"
