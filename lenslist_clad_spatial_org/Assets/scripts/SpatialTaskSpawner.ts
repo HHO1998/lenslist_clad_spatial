@@ -157,4 +157,4 @@ export class SpatialTaskSpawner extends BaseScriptComponent {
     }
 }
 
-// BuildSync: 2026-08-14T06:08:26.990Z
+// BuildSync: 2026-08-14T06:13:35.255Z
