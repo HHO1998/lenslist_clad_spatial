@@ -212,7 +212,7 @@
   Enabled: true
   Layers: 1
   LocalTransform: !<TransformEntity>
-    Position: {x: -7.000000, y: 3.500000, z: 10.600000}
+    Position: {x: -5.500000, y: 2.800000, z: 8.000000}
     Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
     Scale: {x: 1.500000, y: 1.500000, z: 1.500000}
     HasSegmentScaleCompensation: false
@@ -323,7 +323,7 @@
   Enabled: true
   Layers: 1
   LocalTransform: !<TransformEntity>
-    Position: {x: 14.000000, y: 0.000000, z: -1.500000}
+    Position: {x: 11.000000, y: 0.000000, z: -1.500000}
     Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
     Scale: {x: 1.200000, y: 1.200000, z: 1.200000}
     HasSegmentScaleCompensation: false
@@ -730,7 +730,7 @@
   ScriptInputs:
     "":
       clusterCategoryName: Spatial Work Matrix
-      orbitRadius: 14.000000
+      orbitRadius: 11.000000
       orbitSpeed: 0.800000
       parentTaskOrb: !<reference.SceneObject> 43161cc9-ae7a-44a2-afba-3060f11d5839
       satelliteOrbs: !<reference.SceneObject[]>
@@ -900,7 +900,7 @@
   Enabled: true
   Layers: 1
   LocalTransform: !<TransformEntity>
-    Position: {x: -7.000000, y: -3.500000, z: -13.600000}
+    Position: {x: -5.500000, y: -2.800000, z: -11.000000}
     Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
     Scale: {x: 1.800000, y: 1.800000, z: 1.800000}
     HasSegmentScaleCompensation: false

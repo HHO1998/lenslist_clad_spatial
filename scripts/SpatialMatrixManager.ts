@@ -23,7 +23,7 @@ export class SpatialMatrixManager extends BaseScriptComponent {
     clusterCategoryName = "Spatial Work Matrix";
 
     @input
-    orbitRadius = 14.0;
+    orbitRadius = 11.0;
 
     @input
     orbitSpeed = 0.8;
@@ -59,7 +59,7 @@ export class SpatialMatrixManager extends BaseScriptComponent {
 
     public autoDiscoverSceneOrbs() {
         if (this.orbitRadius <= 0) {
-            this.orbitRadius = 14.0;
+            this.orbitRadius = 11.0;
         }
 
         const selfObj = this.getSceneObject();
@@ -127,7 +127,7 @@ export class SpatialMatrixManager extends BaseScriptComponent {
 
     public updateOrbitalPositions(currentTime: number): void {
         if (this.orbitRadius <= 0) {
-            this.orbitRadius = 14.0;
+            this.orbitRadius = 11.0;
         }
 
         if (!this.parentTaskOrb || !this.satelliteOrbs || this.satelliteOrbs.length === 0) {
