@@ -29,6 +29,9 @@
   PackagePolicy: CanBeUnpacked
   ScriptInputsHidden:
     audioComponent: false
+    completionAudioTrack: false
+    pulseAudioTrack: false
+    tetherAudioTrack: false
   ScriptTypesHidden:
     {}
   ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
@@ -39,8 +42,14 @@
     []
   DefaultScriptInputs:
     - audioComponent: !<reference.AudioComponent> 00000000-0000-0000-0000-000000000000
+      tetherAudioTrack: !<reference.AudioTrackAsset> 00000000-0000-0000-0000-000000000000
+      completionAudioTrack: !<reference.AudioTrackAsset> 00000000-0000-0000-0000-000000000000
+      pulseAudioTrack: !<reference.AudioTrackAsset> 00000000-0000-0000-0000-000000000000
   ScriptTypes:
     -
       {}
   InputLines:
     - // @input Component.AudioComponent audioComponent
+    - // @input Asset.AudioTrackAsset tetherAudioTrack
+    - // @input Asset.AudioTrackAsset completionAudioTrack
+    - // @input Asset.AudioTrackAsset pulseAudioTrack

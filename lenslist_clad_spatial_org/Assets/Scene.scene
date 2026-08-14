@@ -1442,9 +1442,9 @@
   ScriptInputs:
     "":
       audioComponent: !<reference.AudioComponent> b56a20e7-fbd5-4327-8c1c-cbab5fb81134
-      tetherAudioTrack: !<reference> 584061b3-83d1-4702-85ef-286ed8a5bdc1
-      completionAudioTrack: !<reference> f6bd2419-0f5a-4e78-abe1-541dac7f81ca
-      pulseAudioTrack: !<reference> 837e4327-9bf7-401f-804c-01e0cb931c70
+      tetherAudioTrack: !<reference.AudioTrackAsset> 584061b3-83d1-4702-85ef-286ed8a5bdc1
+      completionAudioTrack: !<reference.AudioTrackAsset> f6bd2419-0f5a-4e78-abe1-541dac7f81ca
+      pulseAudioTrack: !<reference.AudioTrackAsset> 837e4327-9bf7-401f-804c-01e0cb931c70
   ScriptTypes:
     "":
       {}

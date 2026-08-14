@@ -182,4 +182,4 @@ export class SpatialTetherRenderer extends BaseScriptComponent {
     }
 }
 
-// BuildSync: 2026-08-14T08:01:41.934Z
+// BuildSync: 2026-08-14T09:11:40.855Z

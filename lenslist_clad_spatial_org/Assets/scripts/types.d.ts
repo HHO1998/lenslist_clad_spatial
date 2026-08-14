@@ -105,4 +105,4 @@ declare class SpatialWarpTimer extends BaseScriptComponent {
     runLeafWarpAssertions(): boolean;
 }
 
-// BuildSync: 2026-08-14T08:01:41.937Z
+// BuildSync: 2026-08-14T09:11:40.857Z

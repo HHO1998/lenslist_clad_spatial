@@ -28,6 +28,7 @@
   ExportUid: 00000000-0000-0000-0000-000000000000
   PackagePolicy: CanBeUnpacked
   ScriptInputsHidden:
+    audioController: false
     clusterCategoryName: false
     orbitRadius: false
     orbitSpeed: false
@@ -51,6 +52,7 @@
         []
       tetherBeamRenderers: !<reference.ScriptComponent[]>
         []
+      audioController: !<reference.ScriptComponent> 00000000-0000-0000-0000-000000000000
   ScriptTypes:
     -
       {}
@@ -61,3 +63,4 @@
     - // @input SceneObject parentTaskOrb
     - "// @input SceneObject[] satelliteOrbs = {}"
     - "// @input Component.ScriptComponent[] tetherBeamRenderers = {}"
+    - // @input Component.ScriptComponent audioController
