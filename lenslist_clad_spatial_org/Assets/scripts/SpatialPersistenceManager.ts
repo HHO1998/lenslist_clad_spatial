@@ -137,4 +137,4 @@ export class SpatialPersistenceManager extends BaseScriptComponent {
     }
 }
 
-// BuildSync: 2026-08-14T04:08:07.197Z
+// BuildSync: 2026-08-14T05:21:07.408Z

@@ -7,8 +7,9 @@
 
 @component
 export class SpatialAudioController extends BaseScriptComponent {
+    @allowUndefined
     @input
-    audioComponent: AudioComponent;
+    audioComponent: AudioComponent = null as unknown as AudioComponent;
 
     onAwake() {
         if (!this.audioComponent) {
@@ -49,4 +50,4 @@ export class SpatialAudioController extends BaseScriptComponent {
     }
 }
 
-// BuildSync: 2026-08-14T04:08:07.186Z
+// BuildSync: 2026-08-14T05:21:07.405Z
