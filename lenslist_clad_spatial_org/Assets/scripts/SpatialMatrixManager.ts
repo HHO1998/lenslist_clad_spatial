@@ -44,6 +44,7 @@ export class SpatialMatrixManager extends BaseScriptComponent {
 
     onAwake() {
         this.autoDiscoverSceneOrbs();
+        this.updateOrbitalPositions(0);
         this.createEvent("UpdateEvent").bind(this.onUpdate.bind(this));
         this.createEvent("OnStartEvent").bind(this.onStart.bind(this));
         print(`[SpatialMatrixManager] Master Cluster '${this.clusterCategoryName}' initialized successfully! 🚀`);
@@ -51,6 +52,7 @@ export class SpatialMatrixManager extends BaseScriptComponent {
 
     onStart() {
         this.autoDiscoverSceneOrbs();
+        this.updateOrbitalPositions(0);
         // Execute LEAF automated assertion tests on startup after all scene components are awake
         this.runLeafTestSuite();
     }
@@ -120,6 +122,10 @@ export class SpatialMatrixManager extends BaseScriptComponent {
     }
 
     onUpdate() {
+        this.updateOrbitalPositions(getTime());
+    }
+
+    public updateOrbitalPositions(currentTime: number): void {
         if (this.orbitRadius <= 0) {
             this.orbitRadius = 6.5;
         }
@@ -143,7 +149,7 @@ export class SpatialMatrixManager extends BaseScriptComponent {
                     ? parentObj.getSceneObject().getTransform()
                     : (this.getSceneObject().getTransform() as Transform);
         const parentPos = parentTr.getWorldPosition();
-        const time = getTime() * this.orbitSpeed;
+        const time = currentTime * this.orbitSpeed;
 
         // Calculate 3D Tilted Keplerian Elliptical Orbits for active satellite sub-tasks
         const activeOrbs = (
@@ -212,9 +218,12 @@ export class SpatialMatrixManager extends BaseScriptComponent {
             ) {
                 const tether = this.tetherBeamRenderers[origIndex] as unknown as {
                     updateBeamTransform?: (posA: vec3, posB: vec3) => void;
+                    api?: { updateBeamTransform?: (posA: vec3, posB: vec3) => void };
                 };
                 if (typeof tether.updateBeamTransform === "function") {
                     tether.updateBeamTransform(parentPos, satPos);
+                } else if (tether.api && typeof tether.api.updateBeamTransform === "function") {
+                    tether.api.updateBeamTransform(parentPos, satPos);
                 }
             }
         }
@@ -323,4 +332,4 @@ export class SpatialMatrixManager extends BaseScriptComponent {
     }
 }
 
-// BuildSync: 2026-08-14T03:36:03.024Z
+// BuildSync: 2026-08-14T03:41:19.816Z
